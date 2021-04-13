@@ -1,38 +1,54 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
+
+<div class="breadcrumb-div">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/user/index'); ?>" <?php echo $url == '/user/index' ? 'active' : ''; ?>>首頁</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="#">工作體驗(措施C)</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/work/get_work_experience_table_by_organization'); ?>" <?php echo $url == '/work/get_work_experience_table_by_organization' ? 'active' : ''; ?>>工作體驗清單(今年度資料)</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
+    </ol>
+  </nav>
+</div>
+
 <div class="container">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url($url);?>" 
           method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
-          <?php echo isset($error) ? '<p class="red-text text-darken-3 text-center">'.$error.'</p>' : '';?>
-          <?php echo isset($success) ? '<p class="green-text text-darken-3 text-center">'.$success.'</p>' : '';?>
+          <?php echo isset($error) ? '<p class="text-danger text-center">'.$error.'</p>' : '';?>
+          <?php echo isset($success) ? '<p class="text-success text-center">'.$success.'</p>' : '';?>
 
           <!-- company -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select name="company" required>
-                <?php if(empty($workExperiences->company)){?>
-                  <option disabled selected value>請選擇</option>
-                  <?php }foreach($companys as $i) { 
-                  if(!empty($workExperiences->company)){
-                    if($i['no'] == $workExperiences->company){ ?>
-                      <option selected value="<?php echo $i['no'];?>"><?php echo $i['name'];?></option>
-                    <?php }
-                    else{ ?>
-                      <option value="<?php echo $i['no'];?>"><?php echo $i['name'];?></option>
-                    <?php }
-                  }else{ ?>
-                    <option value="<?php echo $i['no'];?>"><?php echo $i['name'];?></option>
-                  <?php } ?>
-                <?php } ?>
+          <div class="col-10 m-2 mx-auto">
+            <label class="form-label" for="company">店家名稱*</label>
+            <div class="input-group">
+              <select class="form-select" name="company" id="company">
+              <?php if (empty($workExperiences->company)) { ?>
+                <option disabled selected value>請選擇</option>
+              <?php } ?>
+              <?php foreach ($companys as $i) {
+                      if (!empty($workExperiences->company)) {
+                        if ($i['no'] == $workExperiences->company) { ?>
+                          <option selected value="<?php echo $i['no']; ?>"><?php echo $i['name']; ?></option>
+                  <?php } else {?>
+                          <option value="<?php echo $i['no']; ?>"><?php echo $i['name']; ?></option>
+                  <?php }
+                      } else {?>
+                          <option value="<?php echo $i['no']; ?>"><?php echo $i['name']; ?></option>
+                <?php }?>
+              <?php }?>
               </select>
-              <label>店家名稱*</label>
-            </div>
-            <div class="col s2">
-              <a href="<?php echo site_url('work/company/');?>" class="waves-effect waves-light btn-small btn-floating blue darken-4 add-btn">+</a>
+              <a href="<?php echo site_url('work/company/');?>" class="btn btn-primary m-1 input-group-text">+</a>
             </div>
           </div>
           
@@ -44,6 +60,12 @@
             </div>
           </div>
 
+          
+          <label for="formStartTime">開始時間*</label>
+          <div class="col col-lg-2" style="text-align:center">
+            <input id="formStartTime" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" value="<?php echo (empty($workExperiences)) ? "" : $workExperiences->start_time ?>">
+          </div>
+          
           <!-- endTime -->
           <div class="row">
             <div class="input-field col s10 offset-m2 m8">
@@ -52,8 +74,8 @@
             </div>
           </div>
          
-          <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">送出</button>
+          <div class="d-grid gap-2 col-2 mx-auto">
+            <button class="btn btn-primary m-3" type="submit">送出</button>
           </div>
         </form>
       </div>
@@ -67,4 +89,4 @@
   
 </script>
 
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
