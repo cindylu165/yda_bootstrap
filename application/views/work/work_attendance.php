@@ -1,75 +1,83 @@
-<?php $this->load->view('templates/header');?>
-<script>
+<?php $this->load->view('templates/new_header');?>
 
+<div class="breadcrumb-div">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/user/index'); ?>" <?php echo $url == '/user/index' ? 'active' : ''; ?>>首頁</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="#">工作體驗(措施C)</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/work/get_work_attendance_table_by_organization'); ?>" <?php echo $url == '/work/get_work_attendance_table_by_organization' ? 'active' : ''; ?>>工作體驗時數清單(執行當日更新、每月自動統計報表數據)</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
+    </ol>
+  </nav>
+</div>
 
-  </script>
 <div class="container">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url($url); ?>"
           method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
-          <?php echo isset($error) ? '<p class="red-text text-darken-3 text-center">' . $error . '</p>' : ''; ?>
-          <?php echo isset($success) ? '<p class="green-text text-darken-3 text-center">' . $success . '</p>' : ''; ?>
+          <?php echo isset($error) ? '<p class="text-danger text-center">' . $error . '</p>' : ''; ?>
+          <?php echo isset($success) ? '<p class="text-success text-center">' . $success . '</p>' : ''; ?>
 
           <!-- workExperience -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select name="workExperience" required onchange="location = this.value;" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (empty($workAttendances->work_experience)) {?>
-                  <option disabled selected value>請選擇</option>
-                  <?php }
-foreach ($workExperiences as $i) {
-    if (!empty($workAttendances->work_experience)) {
-        if ($i['no'] == $workAttendances->work_experience) {?>
-                      <option selected value="<?php echo site_url('work/work_attendance/' . '' . $i['no'] . '/' . $no); ?>"><?php echo $i['name']; ?></option>
-                    <?php } else {?>
-                      <option value="<?php echo site_url('work/work_attendance/' . '' . $i['no'] . '/' . $no); ?>"><?php echo $i['name']; ?></option>
-                    <?php }
-    } else { 
-      if($i['no'] == $workType){?>
-                    <option selected value="<?php echo site_url('work/work_attendance/' . '' . $i['no'] . '/' . $no); ?>"><?php echo $i['name']; ?></option>
-                  <?php }else{ ?>
-
+          <div class="col-10 m-2 mx-auto">
+            <label>店家名稱*</label>
+            <div class="input-group">
+              <select class="form-select" name="workExperience" onchange="location = this.value;" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (empty($workAttendances->work_experience)) { ?>
+                <option disabled selected value>請選擇</option>
+              <?php } ?>
+              <?php foreach ($workExperiences as $i) {
+                      if (!empty($workAttendances->work_experience)) {
+                        if ($i['no'] == $workAttendances->work_experience) { ?>
+                          <option selected value="<?php echo site_url('work/work_attendance/' . '' . $i['no'] . '/' . $no); ?>"><?php echo $i['name']; ?></option>
+                  <?php } else { ?>
                     <option value="<?php echo site_url('work/work_attendance/' . '' . $i['no'] . '/' . $no); ?>"><?php echo $i['name']; ?></option>
-                  <?php } }?>
-                <?php }?>
+                  <?php }
+                      } else { 
+                        if ($i['no'] == $workType) { ?>
+                          <option selected value="<?php echo site_url('work/work_attendance/' . '' . $i['no'] . '/' . $no); ?>"><?php echo $i['name']; ?></option>
+                        <?php } else { ?>
+                          <option value="<?php echo site_url('work/work_attendance/' . '' . $i['no'] . '/' . $no); ?>"><?php echo $i['name']; ?></option>
+                    <?php } }?>
+                  <?php }?>
               </select>
-              <label>店家名稱*</label>
-            </div>
-            <div class="col s2">
-              <a href="<?php echo site_url('work/work_experience/'); ?>" class="waves-effect waves-light btn-small btn-floating blue darken-4 add-btn">+</a>
+              <a href="<?php echo site_url('work/work_experience/');?>" class="btn btn-primary m-1 input-group-text">+</a>
             </div>
           </div>
 
           <!-- member -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select id="member" required name="member" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (empty($workAttendances->member)) {?>
-                  <option disabled selected value>請選擇</option>
+          <div class="col-10 m-2 mx-auto">
+            <label>學員名稱*</label>
+            <div class="input-group">
+              <select class="form-select" name="member" id="member" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (empty($workAttendances->member)) { ?>
+                <option disabled selected value>請選擇</option>
+              <?php } ?>
+              <?php foreach ($members as $i) {
+                      if (!empty($workAttendances->member)) {
+                        if ($i['no'] == $workAttendances->member) { ?>
+                          <option selected value="<?php echo $i['no']; ?>"><?php echo $i['system_no'] . $i['name']; ?></option>
+                  <?php } else { ?>
+                          <option value="<?php echo $i['no']; ?>"><?php echo $i['system_no'] . $i['name']; ?></option>
                   <?php }
-foreach ($members as $i) {
-    if (!empty($workAttendances->member)) {
-        if ($i['no'] == $workAttendances->member) {?>
-                      <option selected value="<?php echo $i['no']; ?>"><?php echo $i['system_no'] . $i['name']; ?></option>
-                    <?php } else {?>
-                      <option value="<?php echo $i['no']; ?>"><?php echo $i['system_no'] . $i['name']; ?></option>
-                    <?php }
-    } else {?>
-                    <option value="<?php echo $i['no']; ?>"><?php echo $i['system_no'] . $i['name']; ?></option>
-                  <?php }?>
-                <?php }?>
+                      } else {?>
+                          <option value="<?php echo $i['no']; ?>"><?php echo $i['system_no'] . $i['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
               </select>
-              <label>學員名稱*</label>
-            </div>
-            <div class="col s2">
-            <a href="<?php echo site_url('member/get_member_table_by_counselor/'); ?>" class="waves-light btn-small btn-floating blue darken-4 add-btn">投保</a>
+              <a href="<?php echo site_url('member/get_member_table_by_counselor/');?>" class="btn btn-primary m-1">投保</a>
             </div>
           </div>
-
 
 
           <!-- startTime -->
@@ -89,25 +97,20 @@ foreach ($members as $i) {
           </div>
 
           <!-- duration -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input readonly type="number" id="formDuration" min="0" name="duration" step="0.25" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($workAttendances)) ? $workInfo ? (strtotime($workInfo->end_time) - strtotime($workInfo->start_time))/3600 : '' : $workAttendances->duration ?>">
-              <label for="formDuration">上班時數*</label>
-            </div>
+          <div class="col-10 m-2 mx-auto">
+            <label for="formDuration" class="form-label">上班時數*</label>
+            <input readonly class="form-control" type="number" id="formDuration" min="0" name="duration" step="0.25" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($workAttendances)) ? $workInfo ? (strtotime($workInfo->end_time) - strtotime($workInfo->start_time))/3600 : '' : $workAttendances->duration ?>">
           </div>
 
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <textarea id="note" class="materialize-textarea" required
-                name="note" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?>><?php echo (empty($workAttendances)) ? "" : $workAttendances->note ?></textarea>
-              <label for="work_trainning_note">備註*</label>
-            </div>
+          <div class="col-10 m-2 mx-auto">
+            <label for="work_trainning_note" class="form-label">備註*</label>
+            <input class="form-control" type="text" id="note" name="note" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($workAttendances)) ? "" : $workAttendances->note ?>">
           </div>
 
           <?php if ($hasDelegation != '0'): ?>
-          <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">送出</button>
-          </div>
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button class="btn btn-primary m-3" type="submit">送出</button>
+            </div>
           <?php endif;?>
         </form>
       </div>
@@ -181,4 +184,4 @@ foreach ($members as $i) {
 
 </script>
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ModeSwitch.js"></script>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
