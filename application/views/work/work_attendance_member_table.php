@@ -1,14 +1,12 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container">
   <div class="row">
-    <div class="card col s12">
-
-      <div class="row"> 
-        <a class="btn col s2 offset-s0 waves-effect teal darken-2" style="margin:10px;" href="<?php echo site_url('/work/get_work_attendance_table_by_organization'); ?>">←工作時數列表</a>
-      </div>
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <?php if($hasDelegation != '0' && $canInsert != '0'): ?>
-      <a class="btn col s2 offset-s5 waves-effect blue lighten-1" href="<?php echo site_url($url);?>">新增</a>
+        <div class="d-grid gap-2 col-2 mx-auto">
+          <a class="btn btn-info m-3" href="<?php echo site_url($url);?>">新增</a>
+        </div>
       <?php endif;?>
       <div class="card-content">
 
@@ -59,12 +57,10 @@
 
   $('#print').click(function () {
 
-        document.getElementById('footer').style.display = 'none';
- 
-        window.print();
+    document.getElementById('footer').style.display = 'none';
+
+    window.print();
   });
 
 </script>
-<?php $this->load->view('templates/footer');?>
-<?php $this->load->view('templates/footer');?>
-
+<?php $this->load->view('templates/new_footer');?>
