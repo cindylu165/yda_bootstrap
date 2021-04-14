@@ -1,59 +1,41 @@
-<?php $this->load->view('templates/header');?>
-<div class="container" style="width:90%;">
+<?php $this->load->view('templates/new_header');?>
+<div class="container">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
-
-      <?php if($role == 9) :?>
-        	<!-- counties -->
-				<div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <select name="counties" id="counties" onchange="location = this.value;">
-						<?php foreach ($counties as $i) {?>
-							<option <?php echo ($county == $i['no']) ? 'selected' : '' ?> value="<?php echo site_url($url . '/' . $i['no'] . '/' . $yearType); ?>"><?php echo $i['name'] ?></option>
-            <?php }?>
-            </select>
-            <label>縣市</label>
-          </div>
-        </div>
-      <?php endif;?>
         <!-- years -->
 				<div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <select name="years" id="years" onchange="location = this.value;">
-		
-						<?php foreach($years as $i) {?>
-            
-							<option <?php echo ($yearType == $i['year']) ? 'selected' : ''?> value="<?php echo site_url($url . '/' . $county . '/' . $i['year']);?>"><?php echo $i['year']?></option>
-            <?php } ?>
-
-            </select>
+          <div class="col-12">
             <label>年度</label>
+            <select class="form-select" name="years" id="years" onchange="location = this.value;">
+              <?php foreach ($years as $i) { ?>
+                <option <?php echo ($yearType == $i['year']) ? 'selected' : ''?> value="<?php echo site_url($url . '/' .  $i['year']);?>"><?php echo $i['year']?></option>
+              <?php } ?>
+            </select>
           </div>
         </div>
 
-        <?php if($current_role == '6') :?>
-
-        <div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <i class="material-icons col s1" >search</i>
-            <input id="myInput" class="col s11" type="search" onkeyup="myFunction()" placeholder="搜尋編號、姓名或身分證">
+        <?php if ($current_role == '6') :?>
+          <div class="row">
+            <div class="form-group has-search input-group my-3">
+              <i class="fa fa-search"></i>
+              <input id="myInput" class="form-control" type="text" onkeyup="myFunction()" placeholder="搜尋編號、姓名或身分證">
+            </div>
           </div>
-        </div>
 
         <?php elseif($current_role != '6') :?>
 
-        <div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <i class="material-icons col s1" >search</i>
-            <input id="myInput" class="col s11" type="search" onkeyup="myFunction()" placeholder="搜尋編號、姓名或是否結案">
+          <div class="row">
+            <div class="form-group has-search input-group my-3">
+              <i class="fa fa-search"></i>
+              <input id="myInput" class="form-control" type="text" onkeyup="myFunction()" placeholder="搜尋編號、姓名或是否結案">
+            </div>
           </div>
-        </div>
 
         <?php endif; ?>
 
-        <table id="memberTable" class="highlight centered">
+        <table id="memberTable" class="table table-hover">
           <thead class="thead-dark">
             <tr>
               <th scope="col">編號</th>
@@ -79,16 +61,16 @@
                 <?php if($current_role == '6'){ ?>
                   <td><?php echo $i['identifications'];?></td>
                   <td>
-                    <a class="btn waves-effect purple lighten-1" href="<?php echo site_url('youth/intake/member/'.$i['youthNo']);?>">青少年初評表</a>
-                    <a class="btn waves-effect orange lighten-1" href="<?php echo site_url('member/case_assessment/'.$i['no']);?>">開案學員資料表</a>             
-                    <a class="btn waves-effect green lighten-1" href="<?php echo site_url('member/get_individual_counseling_table_by_member/'.$i['no']);?>">個別諮詢紀錄清單</a>  
-                    <a class="btn waves-effect red lighten-1" href="<?php echo site_url('member/get_insurance_table_by_member/'.$i['no']);?>">投保紀錄清單</a> 
-                    <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('member/end_case/'.$i['no']);?>">結案評估表</a> 
+                    <a class="btn btn-primary" href="<?php echo site_url('youth/intake/member/'.$i['youthNo']);?>">青少年初評表</a>
+                    <a class="btn btn-warning" href="<?php echo site_url('member/case_assessment/'.$i['no']);?>">開案學員資料表</a>             
+                    <a class="btn btn-success" href="<?php echo site_url('member/get_individual_counseling_table_by_member/'.$i['no']);?>">個別諮詢紀錄清單</a>  
+                    <a class="btn btn-danger" href="<?php echo site_url('member/get_insurance_table_by_member/'.$i['no']);?>">投保紀錄清單</a> 
+                    <a class="btn btn-info" href="<?php echo site_url('member/end_case/'.$i['no']);?>">結案評估表</a> 
                 
                     <?php foreach($endCases as $value) {
                       if($value['member'] == $i['no']) {
                         ?>
-                        <a class="btn waves-effect red lighten-1" href="<?php echo site_url('member/get_month_review_table_by_member/'.$i['no']);?>">結案後追蹤清單</a>      
+                        <a class="btn btn-danger" href="<?php echo site_url('member/get_month_review_table_by_member/'.$i['no']);?>">結案後追蹤清單</a>      
                         <?php
                       }
                     }?>        
@@ -97,7 +79,7 @@
                     <td><?php if(empty($i['end_date'])) { echo '否'; } else { echo '是'; }?></td>
                   <?php } ?>
                   <?php if($current_role == '5'){ ?>
-                    <td> <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('member/change_counselor/'.$i['no']);?>">更換輔導員</a></td>
+                    <td> <a class="btn btn-info" href="<?php echo site_url('member/change_counselor/'.$i['no']);?>">更換輔導員</a></td>
                   <?php } ?>
               </tr>
             <?php } ?>
@@ -141,4 +123,4 @@
     }
 
 </script>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>

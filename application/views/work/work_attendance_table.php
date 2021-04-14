@@ -1,45 +1,47 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <?php if($hasDelegation != '0' && $canInsert != '0'): ?>
-      <a class="btn col s2 offset-s5 waves-effect blue lighten-1" href="<?php echo site_url($url);?>">新增</a>
+        <div class="d-grid gap-2 col-2 mx-auto">
+          <a class="btn btn-info m-3" href="<?php echo site_url($url);?>">新增</a>
+        </div>
       <?php endif;?>
+
       <div class="card-content">
-
         <!-- years -->
-				<div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <select name="years" id="years" onchange="location = this.value;">
-		
-						<?php foreach($years as $i) {?>
-            
-							<option <?php echo ($yearType == $i['year']) ? 'selected' : ''?> value="<?php echo site_url('/work/get_work_attendance_table_by_organization/' .  $i['year']);?>"><?php echo $i['year']?></option>
-            <?php } ?>
-
-            </select>
+        <div class="row">
+          <div class="col-12">
             <label>年度</label>
+            <select class="form-select" name="years" id="years" onchange="location = this.value;">
+              <?php foreach($years as $i) {?>
+                <option <?php echo ($yearType == $i['year']) ? 'selected' : ''?> value="<?php echo site_url('/work/get_work_attendance_table_by_organization/' .  $i['year']);?>"><?php echo $i['year']?></option>
+              <?php } ?>
+            </select>
           </div>
         </div>
 
-        <a id="print" class="btn waves-effect">列印</a>   
+        <a id="print" class="btn btn-success my-3">列印</a>
 
-        <table class="highlight centered">
+        <table class="table table-hover">
           <thead class="thead-dark">
             <tr>
+            <th scope="col">店家名稱</th>
+              <th scope="col">時間</th>
               <th scope="col">參與學員</th>
-              <th scope="col">總時數</th>
               <th scope="col">要項</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach($workAttendances as $i) { ?>
               <tr>
+              <td><?php echo $i['name'];?></td>
+                <td><?php echo $i['start_time'];?></td>
                 <td><?php echo $i['youthName'];?></td>
-                <td><?php echo $i['sum'];?></td>
                 <td>
-                  <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('work/get_work_attendance_table_by_member/' . $i['memberNo']. '/' . $yearType);?>">查看</a>   
+                  <a class="btn btn-info mx-2" href="<?php echo site_url($url .$i['work_experience'] . '/' .$i['no']);?>">查看/修改</a>
+                  <a class="btn btn-warning" href="<?php echo site_url('work/delete_work_attendance_table?no=' . $i['no']); ?>">刪除</a>
                 </td>
               </tr>
             <?php } ?>
@@ -59,6 +61,4 @@
   });
 
 </script>
-<?php $this->load->view('templates/footer');?>
-<?php $this->load->view('templates/footer');?>
-
+<?php $this->load->view('templates/new_footer');?>

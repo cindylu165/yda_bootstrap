@@ -1,29 +1,47 @@
-<?php $this->load->view('templates/header');?>
-<div class="container" style="width:90%;">
-  <div class="row">
-    <div class="card col s12">
+<?php $this->load->view('templates/new_header');?>
 
-     <div class="row">
-        <a class="btn col s2 offset-s0 waves-effect teal darken-2" style="margin:10px;" href="<?php echo site_url('/member/get_member_table_by_counselor'); ?>">←學員列表</a>
+<div class="breadcrumb-div">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/user/index'); ?>" <?php echo $url == '/user/index' ? 'active' : ''; ?>>首頁</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="#">輔導會談(措施A)</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/member/get_member_table_by_counselor'); ?>" <?php echo $url == '/member/get_member_table_by_counselor' ? 'active' : ''; ?>>開案學員清單</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+     <div class="col-10 m-2">
+        <a class="btn btn-success" href="<?php echo site_url('/member/get_member_table_by_counselor'); ?>">←學員列表</a>
       </div>
 
       <div class="row">
-        <h4 class="card-title text-center"><?php echo $title ?></h4>
+        <h4 class="text-dark text-center"><?php echo $title ?></h4>
       </div>
 
       <div class="card-content">
         <form action="<?php echo site_url($url); ?>"
           method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
-          <?php echo isset($error) ? '<p class="red-text text-darken-3 text-center">' . $error . '</p>' : ''; ?>
-          <?php echo isset($success) ? '<p class="green-text text-darken-3 text-center">' . $success . '</p>' : ''; ?>
+          <?php echo isset($error) ? '<p class="text-danger text-center">' . $error . '</p>' : ''; ?>
+          <?php echo isset($success) ? '<p class="text-success text-center">' . $success . '</p>' : ''; ?>
 
           <?php if ($hasDelegation != '0' && $youthRate == '100' && $intakeRate == '100' && $caseAssessmentRate == '100' && $individualCounselingRate == '100' && $groupCounselingRate == '100'): ?>
 
           <?php else: ?>
-            <h6 class="card-title text-center">有尚未完成之表單(未完成無法結案)</h6>
+            <h5 class="text-dark text-center">有尚未完成之表單(未完成無法結案)</h5>
 
-            <table class="responsive-table highlight centered" style="border:2px grey solid;">
+            <table class="table table-hover" style="border:2px grey solid;">
               <thead class="thead-dark">
                 <tr>
                   <?php if ($youthRate != '100'): ?>
@@ -47,27 +65,27 @@
                 <tr>
                   <?php if ($youthRate != '100'): ?>
                     <td>
-                      <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('youth/personal_data/end_case/' . $youths->no); ?>">查看/修改</a>
+                      <a class="btn btn-info" href="<?php echo site_url('youth/personal_data/' . $youths->no); ?>">查看/修改</a>
                     </td>
                   <?php endif;?>
                   <?php if ($intakeRate != '100'): ?>
                     <td>
-                      <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('youth/intake/end_case/' . $youths->no); ?>">查看/修改</a>
+                      <a class="btn btn-info" href="<?php echo site_url('youth/intake/' . $youths->no); ?>">查看/修改</a>
                     </td>
                   <?php endif;?>
                   <?php if ($caseAssessmentRate != '100'): ?>
                     <td>
-                      <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('member/case_assessment/' . $member); ?>">查看/修改</a>
+                      <a class="btn btn-info" href="<?php echo site_url('member/case_assessment/' . $member); ?>">查看/修改</a>
                     </td>
                     <?php endif;?>
                   <?php if ($individualCounselingRate != '100'): ?>
                     <td>
-                      <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('member/get_individual_counseling_table_by_member/' . $member); ?>">查看/修改</a>
+                      <a class="btn btn-info" href="<?php echo site_url('member/get_individual_counseling_table_by_member/' . $member); ?>">查看/修改</a>
                     </td>
                     <?php endif;?>
                   <?php if ($groupCounselingRate != '100'): ?>
                     <td>
-                      <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('member/get_group_counseling_table_by_member/' . $member); ?>">查看/修改</a>
+                      <a class="btn btn-info" href="<?php echo site_url('member/get_group_counseling_table_by_member/' . $member); ?>">查看/修改</a>
                     </td>
                   <?php endif;?>
                 </tr>
@@ -76,13 +94,13 @@
 
           <?php endif;?>
 
-          <h6 class="card-title text-center">青少年背景資料</h6>
+          <h5 class="text-dark text-center">青少年背景資料</h5>
 
           <!-- name -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formName" name="name" required <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->name ?>">
-              <label for="formName">姓名*</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formName" class="form-label">姓名*</label>
+              <input class="form-control" type="text" id="formName" name="name" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->name ?>">
             </div>
           </div>
 
@@ -102,108 +120,107 @@
           </div>
 
            <!-- juniorGraduateYear -->
-           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input readonly type="number" id="formJuniorGraduateYear" min="0" name="juniorGraduateYear" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->junior_graduate_year ?>">
-              <label for="formJuniorGraduateYear">國中畢業年度(填寫「年度」非「學年度，並請填列民國年」)</label>
+          <div class="row">
+            <div class="col-10 m-2 mx-auto">
+              <label for="formJuniorGraduateYear" class="form-label">國中畢業年度(填寫「年度」非「學年度，並請填列民國年」)</label>
+              <input readonly class="form-control" type="number" id="formJuniorGraduateYear" min="0" name="juniorGraduateYear" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->junior_graduate_year ?>">
             </div>
           </div>
 
           <!-- juniorDropoutRecord -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select disabled name="juniorDropoutRecord" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (isset($youths->junior_dropout_record)) {
-    if ($youths->junior_dropout_record == "1") {?>
+          <div class="col-10 m-2 mx-auto">
+            <label>國中是否曾有中輟通報紀錄</label>
+            <div class="input-group">
+              <select disabled class="form-select" name="juniorDropoutRecord" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (isset($youths->junior_dropout_record)) {
+                  if ($youths->junior_dropout_record == "1") { ?>
                   <option value="1" selected>是</option>
-                  <option value="0" >否</option>
-                <?php } else {?>
-                  <option value="1" >是</option>
+                  <option value="0">否</option>
+                <?php } else { ?>
+                  <option value="1">是</option>
                   <option value="0" selected>否</option>
                 <?php }
-} else {?>
+                } else { ?>
                   <option disabled selected value>請選擇</option>
                   <option value="1">是</option>
                   <option value="0">否</option>
-                <?php }?>
+                <?php } ?>
               </select>
-              <label>國中是否曾有中輟通報紀錄</label>
             </div>
           </div>
 
           <!-- counselIdentity -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select disabled name="counselIdentity" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (empty($youths->counsel_identity)) {?>
-                  <option disabled selected value>請選擇</option>
-                  <?php }
-foreach ($counselIdentitys as $i) {
-    if (!empty($youths->counsel_identity)) {
-        if ($i['no'] == $youths->counsel_identity) {?>
+          <div class="col-10 m-2 mx-auto">
+            <label>輔導時身分</label>
+            <div class="input-group">
+              <select disabled class="form-select" name="counselIdentity" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (empty($youths->counsel_identity)) { ?>
+                <option disabled selected value>請選擇</option>
+                <?php } foreach ($counselIdentitys as $i) {
+                  if (!empty($youths->counsel_identity)) {
+                    if ($i['no'] == $youths->counsel_identity) { ?>
                       <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                    <?php } else {?>
+                    <?php } else { ?>
                       <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
                     <?php }
-    } else {?>
+                  } else { ?>
                     <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                  <?php }?>
-                <?php }?>
+                  <?php } ?>
+                <?php } ?>
               </select>
-              <label>輔導時身分</label>
             </div>
           </div>
 
           <!-- juniorSchool -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formJuniorSchool" name="juniorSchool" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->junior_school ?>">
-              <label for="formJuniorSchool">國中學校/年級</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formJuniorSchool" class="form-label">國中學校/年級</label>
+              <input class="form-control" type="text" id="formJuniorSchool" name="juniorSchool" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->junior_school ?>">
             </div>
           </div>
 
           <!-- seniorSchool -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formSeniorSchool" name="seniorSchool" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->senior_school ?>">
-              <label for="formSeniorSchool">高中學校/年級/科系</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formSeniorSchool" class="form-label">高中學校/年級/科系</label>
+              <input class="form-control" type="text" id="formSeniorSchool" name="seniorSchool" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($youths)) ? "" : $youths->senior_school ?>">
             </div>
           </div>
 
           <!-- source -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select disabled name="source" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (empty($caseAssessments->source)) {?>
-                  <option disabled selected value>請選擇</option>
-                <?php }
-foreach ($sources as $i) {
-    if (!empty($caseAssessments->source)) {
-        if ($i['no'] == $caseAssessments->source) {?>
+          <div class="col-10 m-2 mx-auto">
+            <label>青少年來源</label>
+            <div class="input-group">
+              <select disabled class="form-select" name="source" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (empty($caseAssessments->source)) { ?>
+                <option disabled selected value>請選擇</option>
+                <?php } foreach ($sources as $i) {
+                  if (!empty($caseAssessments->source)) {
+                    if ($i['no'] == $caseAssessments->source) { ?>
                       <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                    <?php } else {?>
+                    <?php } else { ?>
                       <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
                     <?php }
-    } else {?>
+                  } else { ?>
                     <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                  <?php }?>
-                <?php }?>
+                  <?php } ?>
+                <?php } ?>
               </select>
-              <label>青少年來源</label>
             </div>
           </div>
 
           <!-- counselTarget -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <textarea readonly id="formCounselTarget" class="materialize-textarea" name="counselTarget" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?>><?php echo (empty($caseAssessments)) ? "" : $caseAssessments->counsel_target ?></textarea>
-              <label for="formCounselTarget">預計輔導目標及綜合評估(請條列):</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formCounselTarget" class="form-label">預計輔導目標及綜合評估(請條列):</label>
+              <textarea readonly class="form-control" type="text" id="formCounselTarget" name="counselTarget" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?>><?php echo (empty($caseAssessments)) ? "" : $caseAssessments->counsel_target ?></textarea>
             </div>
           </div>
 
-          <h6 class="card-title text-center">輔導情形(系統自動統計時數，不需修改)</h6>
-          <div class="card-content">
-            <table class="highlight centered">
+          <h5 class="text-dark text-center">輔導情形(（系統自動統計時數，不需修改)</h5>
+
+          <div class="col-10 m-2 mx-auto">
+            <table class="table table-hover">
               <thead class="thead-dark">
                 <tr>
                   <th>項目</th>
@@ -215,30 +232,31 @@ foreach ($sources as $i) {
                 <tr>
                   <td>個別諮詢小時</td>
                   <td><?php echo (empty($individualCounselingHour)) ? "0" : $individualCounselingHour ?></td>
-                  <td><a class="btn waves-effect blue lighten-1" href="<?php echo site_url('member/get_individual_counseling_table_by_member/' . $member); ?>">個別諮詢紀錄</a></td>
+                  <td><a class="btn btn-info" href="<?php echo site_url('member/get_individual_counseling_table_by_member/' . $member); ?>">個別諮詢紀錄</a></td>
                 </tr>
                 <tr>
                   <td>團體輔導小時</td>
                   <td><?php echo (empty($groupCounselingHour)) ? "0" : $groupCounselingHour ?></td>
-                  <td><a class="btn waves-effect blue lighten-1" href="<?php echo site_url('member/get_group_counseling_table_by_member/' . $member); ?>">團體輔導紀錄</a></td>
+                  <td><a class="btn btn-info" href="<?php echo site_url('member/get_group_counseling_table_by_member/' . $member); ?>">團體輔導紀錄</a></td>
                 </tr>
                 <tr>
                   <td>已參與生涯探索課程小時</td>
                   <td><?php echo (empty($courseAttendanceHour)) ? "0" : $courseAttendanceHour ?></td>
-                  <td><a class="btn waves-effect blue lighten-1" href="<?php echo site_url('course/get_course_attendance_table_by_member/' . $member); ?>">參與課程紀錄</a></td>
+                  <td><a class="btn btn-info" href="<?php echo site_url('course/get_course_attendance_table_by_member/' . $member); ?>">參與課程紀錄</a></td>
                 </tr>
                 <tr>
                   <td>已參與工作體驗小時</td>
                   <td><?php echo (empty($workAttendanceHour)) ? "0" : $workAttendanceHour ?></td>
-                  <td><a class="btn waves-effect blue lighten-1" href="<?php echo site_url('work/get_work_attendance_table_by_member/' . $member); ?>">參與工作紀錄</a></td>
+                  <td><a class="btn btn-info" href="<?php echo site_url('work/get_work_attendance_table_by_member/' . $member); ?>">參與工作紀錄</a></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h6 class="card-title text-center">參與工作情形(系統自動統計時數，不需修改)</h6>
-          <div class="card-content">
-            <table class="highlight centered">
+          <h5 class="text-dark text-center">參與工作情形(（系統自動統計時數，不需修改)</h5>
+
+          <div class="col-10 m-2 mx-auto">
+            <table class="table table-hover">
               <thead class="thead-dark">
                 <tr>
                   <th></th>
@@ -262,9 +280,10 @@ foreach ($sources as $i) {
             </table>
           </div>
 
-          <h6 class="card-title text-center">轉銜情形(系統自動統計時數，不需修改)</h6>
-          <div class="card-content">
-            <table class="highlight centered">
+          <h5 class="text-dark text-center">轉銜情形(（系統自動統計時數，不需修改)</h5>
+
+          <div class="col-10 m-2 mx-auto">
+            <table class="table table-hover">
               <thead class="thead-dark">
                 <tr>
                   <th>項目</th>
@@ -309,176 +328,172 @@ foreach ($sources as $i) {
           </div>
 
           <!-- trend -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select name="trend" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (empty($endCases->trend)) {?>
-                  <option disabled selected value>請選擇</option>
-                <?php }
-foreach ($trends as $i) {
-    if (!empty($endCases->trend)) {
-        if ($i['no'] == $endCases->trend) {?>
+          <div class="col-10 m-2 mx-auto">
+            <label>結案動向</label>
+            <div class="input-group">
+              <select class="form-select" name="trend" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (empty($endCases->trend)) { ?>
+                <option disabled selected value>請選擇</option>
+                <?php } foreach ($trends as $i) {
+                  if (!empty($endCases->trend)) {
+                    if ($i['no'] == $endCases->trend) { ?>
                       <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                    <?php } else {?>
+                    <?php } else { ?>
                       <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
                     <?php }
-    } else {?>
+                  } else { ?>
                     <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                  <?php }?>
-                <?php }?>
+                  <?php } ?>
+                <?php } ?>
               </select>
-              <label>結案動向</label>
             </div>
           </div>
 
           <!-- workDescription -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formWorkDescription" name="workDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->work_description ?>">
-              <label for="formWorkDescription">就業職種/單位/職稱</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formWorkDescription" class="form-label">就業職種/單位/職稱</label>
+              <input class="form-control" type="text" id="formWorkDescription" name="workDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->work_description ?>">
             </div>
           </div>
 
           <!-- isOriginCompany -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select name="isOriginCompany" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (isset($endCases->is_origin_company)) {
-    if ($endCases->is_origin_company == "1") {?>
+          <div class="col-10 m-2 mx-auto">
+            <label>是否原工作體驗單位留用</label>
+            <div class="input-group">
+              <select class="form-select" name="isOriginCompany1" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (isset($endCases->is_origin_company)) {
+                  if ($endCases->is_origin_company == "1") { ?>
                   <option value="1" selected>是</option>
-                  <option value="0" >否</option>
-                <?php } else {?>
-                  <option value="1" >是</option>
+                  <option value="0">否</option>
+                <?php } else { ?>
+                  <option value="1">是</option>
                   <option value="0" selected>否</option>
                 <?php }
-} else {?>
+                } else { ?>
                   <option disabled selected value>請選擇</option>
                   <option value="1">是</option>
                   <option value="0">否</option>
-                <?php }?>
+                <?php } ?>
               </select>
-              <label>是否原工作體驗單位留用</label>
             </div>
           </div>
 
           <!-- schoolDescription -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formSchoolDescription" name="schoolDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->school_description ?>">
-              <label for="formSchoolDescription">學校/系科/年級/部別</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formSchoolDescription" class="form-label">學校/系科/年級/部別</label>
+              <input class="form-control" type="text" id="formSchoolDescription" name="schoolDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->school_description ?>">
             </div>
           </div>
 
           <!-- trainingDescription -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formTrainingDescription" name="trainingDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->training_description ?>">
-              <label for="formTrainingDescription">職訓項目</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formTrainingDescription" class="form-label">職訓項目</label>
+              <input class="form-control" type="text" id="formTrainingDescription" name="trainingDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->training_description ?>">
             </div>
           </div>
 
           <!-- unresistibleReason -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formUnresistibleReason" name="unresistibleReason" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->unresistible_reason ?>">
-              <label for="formUnresistibleReason">不可抗力說明</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formUnresistibleReason" class="form-label">不可抗力說明</label>
+              <input class="form-control" type="text" id="formUnresistibleReason" name="unresistibleReason" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->unresistible_reason ?>">
             </div>
           </div>
 
           <!-- otherDescription -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formOtherDescription" name="otherDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->other_description ?>">
-              <label for="formOtherDescription">其他說明</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formOtherDescription" class="form-label">其他說明</label>
+              <input class="form-control" type="text" id="formOtherDescription" name="otherDescription" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->other_description ?>">
             </div>
           </div>
 
           <!-- isCompleteCounsel -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select name="isCompleteCounsel" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (isset($endCases->is_complete_counsel)) {
-    if ($endCases->is_complete_counsel == "1") {?>
+          <div class="col-10 m-2 mx-auto">
+            <label>是否達成輔導目標</label>
+            <div class="input-group">
+              <select class="form-select" name="isCompleteCounsel" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (isset($endCases->is_complete_counsel)) {
+                  if ($endCases->is_complete_counsel == "1") { ?>
                   <option value="1" selected>是</option>
-                  <option value="0" >否</option>
-                <?php } else {?>
-                  <option value="1" >是</option>
+                  <option value="0">否</option>
+                <?php } else { ?>
+                  <option value="1">是</option>
                   <option value="0" selected>否</option>
                 <?php }
-} else {?>
+                } else { ?>
                   <option disabled selected value>請選擇</option>
                   <option value="1">是</option>
                   <option value="0">否</option>
-                <?php }?>
+                <?php } ?>
               </select>
-              <label>是否達成輔導目標</label>
             </div>
           </div>
 
           <!-- completeCounselReason -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formCompleteCounselReason" name="completeCounselReason" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->complete_counsel_reason ?>">
-              <label for="formCompleteCounselReason">沒有達成輔導目標的原因</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formCompleteCounselReason" class="form-label">沒有達成輔導目標的原因</label>
+              <input class="form-control" type="text" id="formCompleteCounselReason" name="completeCounselReason" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->complete_counsel_reason ?>">
             </div>
           </div>
 
           <!-- isTransfer -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select name="isTransfer" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (isset($endCases->is_transfer)) {
-    if ($endCases->is_transfer == "1") {?>
+          <div class="col-10 m-2 mx-auto">
+            <label>是否需後續轉銜</label>
+            <div class="input-group">
+              <select class="form-select" name="isTransfer" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (isset($endCases->is_transfer)) {
+                  if ($endCases->is_transfer == "1") { ?>
                   <option value="1" selected>是</option>
-                  <option value="0" >否</option>
-                <?php } else {?>
-                  <option value="1" >是</option>
+                  <option value="0">否</option>
+                <?php } else { ?>
+                  <option value="1">是</option>
                   <option value="0" selected>否</option>
                 <?php }
-} else {?>
+                } else { ?>
                   <option disabled selected value>請選擇</option>
                   <option value="1">是</option>
                   <option value="0">否</option>
-                <?php }?>
+                <?php } ?>
               </select>
-              <label>是否需後續轉銜</label>
             </div>
           </div>
 
           <!-- transferPlace -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formTransferPlace" name="transferPlace" placeholder="將與OO高職輔導室保持聯絡" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->transfer_place ?>">
-              <label for="formTransferPlace">轉銜單位說明</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formTransferPlace" class="form-label">轉銜單位說明</label>
+              <input class="form-control" type="text" id="formTransferPlace" name="transferPlace" placeholder="將與OO高職輔導室保持聯絡" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->transfer_place ?>">
             </div>
           </div>
 
           <!-- transferReason -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formTransferReason" name="transferReason" placeholder="協助個案穩定就學狀況" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->transfer_reason ?>">
-              <label for="formTransferReason">轉銜原因</label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formTransferReason" class="form-label">轉銜原因</label>
+              <input class="form-control" type="text" id="formTransferReason" name="transferReason" placeholder="協助個案穩定就學狀況" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($endCases)) ? "" : $endCases->transfer_reason ?>">
             </div>
           </div>
 
           <div class="row">
-            <div class="file-field input-field col s10 offset-m2 m8">
+            <div class="col-10 m-2 mx-auto">
               <?php if ($hasDelegation != '0'): ?>
-              <button class="btn waves-effect blue darken-4">
-                <span>上傳檔案</span>
-                <input type="file" name="familyDiagram">
-              </button>
+                <span>家系圖</span>
+                <div class="input-group mb-3">
+                  <input type="file" class="form-control" name="familyDiagram">
+                </div>
               <?php endif;?>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="家系圖(jpg/png/pdf)">
-              </div>
             </div>
             <?php if (!empty($caseAssessments->family_diagram_name)): ?>
               <?php if (strpos($caseAssessments->family_diagram_name, 'pdf') !== false): ?>
-                <a class="col s10 offset-m2 m8" href="<?php echo site_url() . '/files/' . $caseAssessments->family_diagram_name; ?>" download="家系圖">家系圖(jpg/png/pdf)</a>
+                <a class="col-10 m-2 mx-auto" href="<?php echo site_url() . '/files/' . $caseAssessments->family_diagram_name; ?>" download="家系圖">家系圖(jpg/png/pdf)</a>
               <?php else: ?>
-                <div class="col s10 offset-m2 m8">
-                  <img class="materialboxed responsive-img" src="<?php echo site_url() . '/files/' . $caseAssessments->family_diagram_name; ?>" />
+                <div class="col-10 m-2 mx-auto">
+                  <img class="img-fluid" src="<?php echo site_url() . '/files/' . $caseAssessments->family_diagram_name; ?>" />
                 </div>
               <?php endif;?>
             <?php endif;?>
@@ -486,7 +501,9 @@ foreach ($trends as $i) {
 
           <?php if ($hasDelegation != '0' && $youthRate == '100' && $intakeRate == '100' && $caseAssessmentRate == '100' && $individualCounselingRate == '100' && $groupCounselingRate == '100'): ?>
           <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">送出</button>
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button class="btn btn-primary my-5" type="submit">送出</button>
+            </div>
           </div>
           <?php else: ?>
             <!-- <h6 class="card-title text-center">有尚未完成之表單(未完成無法結案)</h6>
@@ -552,14 +569,14 @@ foreach ($trends as $i) {
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
   const elementRelation = new ElementBinder();
-  elementRelation.selectInput('trend', 'workDescription', '已就業');
-  elementRelation.selectInput('trend', 'isOriginCompany', '已就業');
-  elementRelation.selectInput('trend', 'schoolDescription', '已就學(全職學生)');
-  elementRelation.selectInput('trend', 'workDescription', '半工半讀');
-  elementRelation.selectInput('trend', 'schoolDescription', '半工半讀');
-  elementRelation.selectInput('trend', 'trainingDescription', '參加職訓');
-  elementRelation.selectInput('trend', 'unresistibleReason', '不可抗力(說明)');
-  elementRelation.selectInput('trend', 'otherDescription', '其他(說明)');
+  // elementRelation.selectInput('trend', 'workDescription', '已就業');
+  // elementRelation.selectInput('trend', 'isOriginCompany', '已就業');
+  // elementRelation.selectInput('trend', 'schoolDescription', '已就學(全職學生)');
+  // elementRelation.selectInput('trend', 'workDescription', '半工半讀');
+  // elementRelation.selectInput('trend', 'schoolDescription', '半工半讀');
+  // elementRelation.selectInput('trend', 'trainingDescription', '參加職訓');
+  // elementRelation.selectInput('trend', 'unresistibleReason', '不可抗力(說明)');
+  // elementRelation.selectInput('trend', 'otherDescription', '其他(說明)');
 
   elementRelation.selectInput('isCompleteCounsel', 'completeCounselReason', '否');
   elementRelation.selectInput('isTransfer', 'transferPlace', '是');
@@ -567,4 +584,4 @@ foreach ($trends as $i) {
 
 </script>
 
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>

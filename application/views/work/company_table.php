@@ -1,11 +1,13 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
-      <a class="btn col s2 offset-s5 waves-effect blue lighten-1" href="<?php echo site_url($url);?>">新增</a>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
+      <div class="d-grid gap-2 col-2 mx-auto">
+        <a class="btn btn-info m-3" href="<?php echo site_url($url);?>">新增</a>
+      </div>
       <div class="card-content">
-        <table class="highlight centered">
+        <table class="table table-hover">
           <thead class="thead-dark">
             <tr>
               <th scope="col">店家名稱</th>
@@ -25,7 +27,8 @@
                   }
                 };?></td>
                 <td>
-                  <a class="btn waves-effect blue lighten-1" href="<?php echo site_url($url . $i['no']);?>">查看/修改</a>   
+                  <a class="btn btn-info mx-2" href="<?php echo site_url($url . $i['no']);?>">查看/修改</a>
+                  <a class="btn btn-warning" href="<?php echo site_url('work/delete_company_table?no=' . $i['no']); ?>">刪除</a>
                 </td>
               </tr>
             <?php } ?>
@@ -35,4 +38,4 @@
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
