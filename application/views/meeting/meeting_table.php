@@ -22,7 +22,6 @@
           </div>
         </div>
 
-        <h5 class="text-center">跨局處會議</h5>
         <table class="responsive-table highlight centered">
           <thead class="thead-dark">
             <tr>
@@ -33,39 +32,14 @@
           </thead>
           <tbody>
             <?php foreach ($meetings as $i) {?>
-              <?php if($i['meeting_type'] == 227) :?>
-                <tr>
-                  <td><?php echo $i['title']; ?></td>
-                  <td><?php echo $i['start_time']; ?></td>
-                  <td>
-                    <a class="btn waves-effect blue lighten-1" href="<?php echo site_url($url . $i['no'] . '/' . $i['year']); ?>">查看/修改</a>
-                  </td>
-                </tr>
-              <?php endif;?>
-            <?php }?>
-          </tbody>
-        </table>
-
-        <h5 class="text-center">預防性講座</h5>
-        <table class="responsive-table highlight centered">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">會議名稱</th>
-              <th scope="col">時間</th>
-              <th scope="col">要項</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($meetings as $i) {?>
-              <?php if($i['meeting_type'] == 228) :?>
-                <tr>
-                  <td><?php echo $i['title']; ?></td>
-                  <td><?php echo $i['start_time']; ?></td>
-                  <td>
-                    <a class="btn waves-effect blue lighten-1" href="<?php echo site_url($url . $i['no'] . '/' . $i['year']); ?>">查看/修改</a>
-                  </td>
-                </tr>
-              <?php endif;?>
+              <tr>
+                <td><?php echo $i['title']; ?></td>
+                <td><?php echo $i['start_time']; ?></td>
+                <td>
+                  <a class="btn waves-effect blue lighten-1" href="<?php echo site_url($url . $i['no'] . '/' . $i['year']); ?>">查看/修改</a>
+                  <a class="btn waves-effect orange darken-2" href="<?php echo site_url('meeting/delete?no=' . $i['no']); ?>">刪除</a>
+                </td>
+              </tr>
             <?php }?>
           </tbody>
         </table>
