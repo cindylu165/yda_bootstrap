@@ -56,7 +56,8 @@
                   }
                 }?></td>
                 <td>
-                  <a class="btn btn-info" href="<?php echo site_url('youth/end_youth/'.$youth.'/'.$i['no']);?>">查看</a>                         
+                  <a class="btn btn-info" href="<?php echo site_url('youth/end_youth/'.$youth.'/'.$i['no']);?>">查看</a>
+									<a class="btn waves-effect orange darken-2" href="<?php echo site_url('youth/delete_end_youth_table?no=' . $i['no']); ?>">刪除</a>
                 </td>
               </tr>
             <?php }} ?>
