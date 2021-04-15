@@ -33,6 +33,7 @@
     ;?></td>
                 <td>
                   <a class="btn waves-effect blue darken-4" href="<?php echo site_url($url . '/' . $i['no']); ?>">查看/修改</a>
+									<a class="btn waves-effect orange darken-2" href="<?php echo site_url('messager/delete?no=' . $i['no']); ?>">刪除</a>
                 </td>
               </tr>
             <?php }?>
