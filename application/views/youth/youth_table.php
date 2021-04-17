@@ -130,7 +130,7 @@
           <a class="btn btn-warning"href="<?php echo site_url('youth/personal_data/allYouth/' . $i['no']); ?>">基本資料</a>
           <a class="btn btn-primary"  href="<?php echo site_url('youth/intake/allYouth/' . $i['no']); ?>">青少年初評表</a>
           <a class="btn btn-success"  href="<?php echo site_url('youth/get_seasonal_review_table_by_youth/' . $i['no']); ?>">季追蹤清單</a>
-          <a class="btn btn-danger" href="<?php echo site_url('youth/end_youth_table/' . $i['no']); ?>">結案/復案申請單</a>
+          <a class="btn btn-info" href="<?php echo site_url('youth/end_youth_table/' . $i['no']); ?>">結案/復案申請單</a>
           <a class="btn btn-danger" href="<?php echo site_url('youth/transfer_youth_table/' . $i['no']); ?>">縣市轉移申請單</a>
         </td>
         <?php }?>
