@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 
 <div class="container" style="width:90%;">
   <div class="row">
@@ -150,4 +150,4 @@
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
