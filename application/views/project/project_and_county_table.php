@@ -41,7 +41,8 @@
                 <td><?php echo $i['projectName'];?></td>
                 <td><?php echo $i['organizationName'];?></td>
                 <?php if($current_role == 3) : ?>
-                  <td><a class="btn waves-effect blue darken-4" href="<?php echo site_url('project/create_project/'.$i['no']);?>">查看/修改</a></td>
+                  <td><a class="btn waves-effect blue darken-4" href="<?php echo site_url('project/create_project/'.$i['no']);?>">查看/修改</a>
+								  <a class="btn waves-effect orange darken-2" href="<?php echo site_url('project/delete?no=' . $i['no']); ?>">刪除</a></td>
                 <?php elseif ($current_role == 2) :?>
                   <td><a class="btn waves-effect blue darken-4" href="<?php echo site_url('project/project_table/'.$i['no']);?>">查看</a></td>
                 <?php endif; ?>

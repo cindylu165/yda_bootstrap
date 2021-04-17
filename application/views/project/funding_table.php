@@ -34,7 +34,10 @@
 							<td><?php echo empty($value) ? '' : $value['date']; ?></td>
               <td><?php echo empty($value) ? '' : number_format($value['funding']); ?></td>
               <td><?php echo empty($value) ? '' : $value['note']; ?></td>
-              <td> <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('project/funding/' . $counties->no . '/' . $value['no']); ?>">管理</a></td>
+              <td>
+                <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('project/funding/' . $counties->no . '/' . $value['no']); ?>">管理</a>
+                <a class="btn waves-effect orange darken-2" href="<?php echo site_url('project/delete_funding_table?no=' . $value['no']); ?>">刪除</a>
+              </td>
 						</tr>
             <?php }?>
 
