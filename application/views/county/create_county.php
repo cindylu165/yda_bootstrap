@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
   <form action="create_county" method="post" accept-charset="utf-8" enctype="multipart/form-data">
   <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
     <div class="row justify-content-center">
@@ -47,4 +47,4 @@
     </div>
   </form>
   <div style="height:120px;"></div>
-  <?php $this->load->view('templates/footer');?>
+  <?php $this->load->view('templates/new_footer');?>
