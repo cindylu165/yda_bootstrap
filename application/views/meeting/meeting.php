@@ -1,7 +1,7 @@
-<?php $this->load->view('templates/header');?>
-<div class="container">
-  <div class="row">
-    <div class="card col s12">
+<?php $this->load->view('templates/new_header');?>
+<div class="container" style="width:100%;">
+	<div class="row">
+		<div class="card-body col-sm-12">
       <h4 class="card-title text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url($url); ?>"
@@ -11,83 +11,73 @@
           <?php echo isset($success) ? '<p class="green-text text-accent-4 text-center">' . $success . '</p>' : ''; ?>
 
           <!-- title -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formTitle" name="title" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> required value="<?php echo (empty($meetings)) ? "" : $meetings->title ?>">
+          <div class="col-10 m-2 mx-auto">
               <label for="formTitle">會議/講座名稱*</label>
-            </div>
+              <input class="form-control" type="text" id="formTitle" name="title" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> required value="<?php echo (empty($meetings)) ? "" : $meetings->title ?>">
           </div>
 
           <!-- meeting_type -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <select name="meetingType" required <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                <?php if (empty($meetings->meeting_type)) {?>
-                  <option disabled selected value>請選擇</option>
-                  <?php }
-foreach ($meetingTypes as $i) {
-    if (!empty($meetings->meeting_type)) {
-        if ($i['no'] == $meetings->meeting_type) {?>
-                      <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                    <?php } else {?>
-                      <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                    <?php }
-    } else {?>
-                    <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                  <?php }?>
-                <?php }?>
-              </select>
+            <div class="col-sm-10 col-md-8">
               <label>類型*</label>
-            </div>
+                <select class="form-select" name="meetingType" required <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+                  <?php if (empty($meetings->meeting_type)) {?>
+                    <option disabled selected value>請選擇</option>
+                    <?php }
+  foreach ($meetingTypes as $i) {
+      if (!empty($meetings->meeting_type)) {
+          if ($i['no'] == $meetings->meeting_type) {?>
+                        <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+                      <?php } else {?>
+                        <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+                      <?php }
+      } else {?>
+                      <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+                    <?php }?>
+                  <?php }?>
+                </select>
           </div>
 
           <!-- startTime -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formStartTime" name="startTime" class="datepicker" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->start_time ?>">
-              <label for="formStartTime">會議時間*</label>
-            </div>
+          <div class="col-10 m-2 mx-auto">
+            <label for="formStartTime">會議時間*</label>
+            <input class="form-control" type="text" id="formStartTime" name="startTime" class="datepicker" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->start_time ?>">
           </div>
 
             <!-- participants -->
-            <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="number" min="0" id="formParticipants" name="participants" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->participants ?>">
+          <div class="col-10 m-2 mx-auto">
               <label for="formParticipants">參與人次*</label>
-            </div>
+              <input class="form-control" type="number" min="0" id="formParticipants" name="participants" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->participants ?>">
           </div>
 
 
           <!-- chairman -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formChairman" name="chairman" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->chairman ?>">
+          <div class="col-10 m-2 mx-auto">
               <label for="formChairman">主席*</label>
-            </div>
+              <input class="form-control" type="text" id="formChairman" name="chairman" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->chairman ?>">
           </div>
 
           <!-- chairman_background -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formChairmanBackground" name="chairmanBackground" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->chairman_background ?>">
+          <div class="col-10 m-2 mx-auto">
               <label for="formChairmanBackground">主席背景*</label>
-            </div>
+              <input class="form-control" type="text" id="formChairmanBackground" name="chairmanBackground" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($meetings)) ? "" : $meetings->chairman_background ?>">
           </div>
 
           <!-- note -->
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <textarea id="formNote" class="materialize-textarea" placeholder="" name="note" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?>><?php echo (empty($meetings)) ? "" : $meetings->note ?></textarea>
+          <div class="col-10 m-2 mx-auto">
               <label for="formNote">備註*</label>
-            </div>
+              <textarea class="form-control" id="formNote" class="materialize-textarea" placeholder="" name="note" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?>><?php echo (empty($meetings)) ? "" : $meetings->note ?></textarea>
           </div>
 
           <?php if ($hasDelegation != '0'): ?>
           <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">建立</button>
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button class="btn btn-primary m-3" type="submit">建立</button>
+            </div>
           </div>
           <?php endif;?>
         </form>
+      </div>
       </div>
     </div>
   </div>
@@ -102,4 +92,4 @@ foreach ($meetingTypes as $i) {
 
 </script>
 
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
