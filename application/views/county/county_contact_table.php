@@ -1,12 +1,15 @@
-<?php $this->load->view('templates/header');?>
-<div class="container" style="width:90%;">
+<?php $this->load->view('templates/new_header');?>
+<div class="container" style="width:100%;">
   <div class="row">
-    <div class="card col s12">
+    <div class="card-body col-sm-12">
       <h4 class="card-title text-center"><?php echo $title ?></h4>
-      <a class="btn waves-effect blue darken-4" href="<?php echo site_url($url);?>">新增</a>
+      <!-- <a class="btn waves-effect blue darken-4" href="<?php echo site_url($url);?>">新增</a> -->
+      <div class="col-md-12" style="text-align:center;">
+        <a class="btn btn-info" href="<?php echo site_url($url);?>">新增</a>
+      </div>
       <div class="card-content">
-        <table class="highlight centered">
-          <thead class="thead-dark">
+        <table class="table table-hover align-middle text-center">
+          <thead>
             <tr>
               <th scope="col">縣市</th>
               <th scope="col">承辦單位</th>
@@ -31,8 +34,8 @@
                 <td><?php echo $i['phone'];?></td>
                 <td><?php echo $i['email'];?></td>
                 <td>
-                  <a class="btn waves-effect blue darken-4" href="<?php echo site_url($url . '/' . $i['no']);?>">查看/修改</a>
-									<a class="btn waves-effect orange darken-2" href="<?php echo site_url('county/delete?no=' . $i['no']); ?>">刪除</a>
+                  <a class="btn btn-info" href="<?php echo site_url($url . '/' . $i['no']);?>">查看/修改</a>
+									<a class="btn btn-warning" href="<?php echo site_url('county/delete?no=' . $i['no']); ?>">刪除</a>
                 </td>
               </tr>
             <?php } ?>
@@ -42,4 +45,4 @@
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
