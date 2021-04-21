@@ -173,13 +173,13 @@ class Youth extends CI_Controller
                 }
             }
 
-            $youthTrendSource = $this->MenuModel->get_no_resource_by_content('動向調查', 'youth')->no;
-            $youthReferralSource = $this->MenuModel->get_no_resource_by_content('轉介或自行開發', 'youth')->no;
-            $youthHighSource = $this->MenuModel->get_no_resource_by_content('高中已錄取未註冊', 'youth')->no;
-            $youthSource = true;
-            if($youths) {
-              if($youths->source == $youthTrendSource || $youths->source == $youthHighSource) $youthSource = false;
-            }
+            // $youthTrendSource = $this->MenuModel->get_no_resource_by_content('動向調查', 'youth')->no;
+            // $youthReferralSource = $this->MenuModel->get_no_resource_by_content('轉介或自行開發', 'youth')->no;
+            // $youthHighSource = $this->MenuModel->get_no_resource_by_content('高中已錄取未註冊', 'youth')->no;
+            // $youthSource = true;
+            // if($youths) {
+            //   if($youths->source == $youthTrendSource || $youths->source == $youthHighSource) $youthSource = false;
+            // }
             // get county no
             $county = $passport['county'];
             $organization = $passport['organization'];
