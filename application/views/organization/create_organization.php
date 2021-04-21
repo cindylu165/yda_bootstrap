@@ -1,7 +1,6 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container">
-  <div class="row">
-    <div class="card col s12">
+  <div class="col-md-12">
       <h4 class="card-title text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url($url);?>" 
@@ -9,30 +8,26 @@
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
           <?php echo isset($error) ? '<p class="red-text text-darken-1 text-center">'.$error.'</p>' : '';?>
           <?php echo isset($success) ? '<p class="green-text text-accent-4 text-center">'.$success.'</p>' : '';?>
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formName" name="name" required>
-              <label for="formName">機構名稱*</label>
-            </div>
+          <div class="col-10 m-2 mx-auto">
+            <label for="formName">機構名稱*</label>
+            <input class="form-control" type="text" id="formName" name="name" required>
           </div>
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formPhone" name="phone" required>
-              <label for="formPhone">機構電話*</label>
-            </div>
+          <div class="col-10 m-2 mx-auto">
+            <label for="formPhone">機構電話*</label>
+            <input class="form-control" type="text" id="formPhone" name="phone" required>
           </div>
-          <div class="row">
-            <div class="input-field col s10 offset-m1 m10">
-              <input type="text" id="formAddress" name="address" required>
-              <label for="formAddress">機構地址*</label>
-            </div>
+          <div class="col-12 m-2 mx-auto">
+            <label for="formAddress">機構地址*</label>
+            <input class="form-control" type="text" id="formAddress" name="address" required>
           </div>
-          <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">建立</button>
+          <div class="col-12 m-2 mx-auto">
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button class="btn btn-primary m-3" type="submit">送出</button>
+            </div>
           </div>
         </form>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
