@@ -1,8 +1,8 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container" style="width:90%;">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url($url); ?>"
           method="post" accept-charset="utf-8" enctype="multipart/form-data">
@@ -11,7 +11,7 @@
         <!-- years -->
 				
 
-        <table id="memberTable" class="highlight centered">
+        <table id="memberTable" class="table table-hover">
           <thead class="thead-dark">
             <tr>
               <th scope="col">no</th>
@@ -48,15 +48,15 @@
           </tbody>
         </table>
 
-        <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" name="save" value="Save" type="submit">送出</button>
+          <div class="row">
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button class="btn btn-primary my-5" name="save" value="Save" type="submit">送出</button>
+            </div>
           </div>
-
 
         </form>
       </div>
     </div>
   </div>
 </div>
-
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
