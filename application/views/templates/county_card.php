@@ -1,8 +1,8 @@
 <div class="card">
-  <div class="card-content">
+  <div class="card-body">
     <div class="dashboard_card">
-      <h3 class="dashboard_card_title">縣市聯絡表</h3>
-      <table class="highlight">
+      <h3 class="card-title">縣市聯絡表</h3>
+      <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
             <th scope="col">縣市</th>
@@ -16,7 +16,7 @@
             <td><?php echo $i['phone']; ?></td>
             <td><?php echo $i['orgnizer']; ?></td>
           </tr>
-          <?php }?>
+          <?php } ?>
         </tbody>
       </table>
     </div>
