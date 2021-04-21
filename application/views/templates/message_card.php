@@ -1,8 +1,8 @@
 <div class="card">
-  <div class="card-content">
+  <div class="card-body">
     <div class="dashboard_card">
-      <h3 class="dashboard_card_title">最新消息</h3>
-      <table class="highlight">
+      <h3 class="card-title">最新消息</h3>
+      <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
             <th scope="col">日期</th>
