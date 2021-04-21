@@ -18,9 +18,9 @@
 
           <!-- meeting_type -->
           <div class="row">
-            <div class="col-sm-10 col-md-8">
+          <div class="col-10 m-2 mx-auto">
               <label>類型*</label>
-                <select class="form-select" name="meetingType" required <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+                <select class="form-select" name="meetingType" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
                   <?php if (empty($meetings->meeting_type)) { ?>
                     <option disabled selected value>請選擇</option>
                     <?php }
@@ -87,10 +87,10 @@
 
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
-  const elementRelation = new ElementBinder();
-  elementRelation.selectInput('meetingType', 'chairman', '跨局處會議');
-  elementRelation.selectInput('meetingType', 'chairmanBackground', '跨局處會議');
-  elementRelation.selectInput('meetingType', 'participants', '預防性講座');
+  // const elementRelation = new ElementBinder();
+  // elementRelation.selectInput('meetingType', 'chairman', '跨局處會議');
+  // elementRelation.selectInput('meetingType', 'chairmanBackground', '跨局處會議');
+  // elementRelation.selectInput('meetingType', 'participants', '預防性講座');
 
 </script>
 
