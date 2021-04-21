@@ -1,10 +1,10 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container">
   <div class="row">
-    <div class="card col s12 offset-m1 m13">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
-        <table class="highlight">
+        <table class="table table-hover">
           <thead class="thead-dark">
             <tr>
               <th scope="col">編號</th>
@@ -50,4 +50,4 @@
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
