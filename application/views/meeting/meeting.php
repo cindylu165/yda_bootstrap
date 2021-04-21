@@ -7,8 +7,8 @@
         <form action="<?php echo site_url($url); ?>"
           method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
-          <?php echo isset($error) ? '<p class="red-text text-darken-1 text-center">' . $error . '</p>' : ''; ?>
-          <?php echo isset($success) ? '<p class="green-text text-accent-4 text-center">' . $success . '</p>' : ''; ?>
+          <?php echo isset($error) ? '<p class="text-danger text-center">' . $error . '</p>' : ''; ?>
+          <?php echo isset($success) ? '<p class="text-success text-center">' . $success . '</p>' : ''; ?>
 
           <!-- title -->
           <div class="col-10 m-2 mx-auto">
@@ -21,21 +21,23 @@
             <div class="col-sm-10 col-md-8">
               <label>類型*</label>
                 <select class="form-select" name="meetingType" required <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
-                  <?php if (empty($meetings->meeting_type)) {?>
+                  <?php if (empty($meetings->meeting_type)) { ?>
                     <option disabled selected value>請選擇</option>
                     <?php }
-  foreach ($meetingTypes as $i) {
-      if (!empty($meetings->meeting_type)) {
-          if ($i['no'] == $meetings->meeting_type) {?>
+                  foreach ($meetingTypes as $i) {
+                    if (!empty($meetings->meeting_type)) {
+                      if ($i['no'] == $meetings->meeting_type) {?>
                         <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
-                      <?php } else {?>
+                      <?php 
+                      } else {?>
                         <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
                       <?php }
-      } else {?>
+                    } else {?>
                       <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
                     <?php }?>
                   <?php }?>
                 </select>
+            </div>
           </div>
 
           <!-- startTime -->
@@ -77,7 +79,7 @@
           </div>
           <?php endif;?>
         </form>
-      </div>
+      <!-- </div> -->
       </div>
     </div>
   </div>
