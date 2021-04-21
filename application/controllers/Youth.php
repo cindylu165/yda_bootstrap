@@ -209,8 +209,8 @@ class Youth extends CI_Controller
                 'counselorCase' => $counselorCase,
                 'password' => $passport['password'],
                 'updatePwd' => $passport['updatePwd'],
-                'comePage' => $comePage,
-                'youthSource' => $youthSource
+                'comePage' => $comePage
+                // 'youthSource' => $youthSource
             );
 
             $referralInstitution = $this->security->xss_clean($this->input->post('referralInstitution'));
