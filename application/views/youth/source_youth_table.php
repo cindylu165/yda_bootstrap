@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/new_header');echo $current_role;?>
+<?php $this->load->view('templates/new_header');?>
 
 <div class="breadcrumb-div">
   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
