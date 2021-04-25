@@ -1,7 +1,7 @@
 <?php $this->load->view('templates/new_header');?>
-<div class="container">
-  <div class="row">
-    <div class="card col s12">
+<div class="container" style="width:100%;">
+	<div class="row">
+		<div class="card-body col-sm-12">
       <h4 class="card-title text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url($url); ?>"
