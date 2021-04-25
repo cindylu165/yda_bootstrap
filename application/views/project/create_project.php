@@ -35,7 +35,7 @@ foreach ($executeWays as $i) {
 
           <!-- executeMode -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
+          <div class="input-field col-10 s10 offset-m2 m8 mx-auto">
               <label>辦理模式</label>
               <select class="form-select" name="executeMode">
                 <?php if (empty($projects->execute_mode)) {?>
