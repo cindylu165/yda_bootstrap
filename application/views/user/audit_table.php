@@ -1,60 +1,69 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
+
+<div class="breadcrumb-div">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/user/index'); ?>" <?php echo $url == '/user/index' ? 'active' : ''; ?>>首頁</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="#">系統帳號管理</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
+    </ol>
+  </nav>
+</div>
+
 <div class="container" style="width:90%;">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url($url . $accountGroup . '/' . $county . '/' . $account . '/' . $startTime . '/' . $endTime); ?>"
           method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
 
         <!-- years -->
-        <div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <select name="accountGroup" id="accountGroup" onchange="location = this.value;">
+        <div class="col-10 m-2 mx-auto">
+          <label>帳號群組</label>
+          <div class="input-group">
+            <select class="form-select" name="accountGroup" id="accountGroup" onchange="location = this.value;">
               <option disabled selected value>請選擇</option>
-              <?php foreach ($accountGroups as $i) {?>
-
-              <option <?php echo ($accountGroup == ($i['no'])) ? 'selected' : '' ?>
-                value="<?php echo site_url($url . $i['no'] . '/' . $county . '/' . $account. '/' . $startTime . '/' . $endTime); ?>"><?php echo $i['content'] ?></option>
-              <?php }?>
-
+              <?php foreach ($accountGroups as $i) { ?>
+                <option <?php echo ($accountGroup == ($i['no'])) ? 'selected' : '' ?>
+                  value="<?php echo site_url($url . $i['no'] . '/' . $county . '/' . $account. '/' . $startTime . '/' . $endTime); ?>"><?php echo $i['content'] ?></option>
+              <?php } ?>
             </select>
-            <label>帳號群組</label>
           </div>
-        </div>
+          </div>
 
-        <?php if($accountGroup != $ydaGroupNo) :?>
+        <?php if ($accountGroup != $ydaGroupNo) :?>
          <!-- county -->
-         <div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <select name="counties" id="counties" onchange="location = this.value;">
+        <div class="col-10 m-2 mx-auto">
+          <label>縣市</label>
+          <div class="input-group">
+            <select class="form-select" name="counties" id="counties" onchange="location = this.value;">
               <option disabled selected value>請選擇</option>
-              <?php foreach ($counties as $i) {?>
-
-              <option <?php echo ($county == $i['no']) ? 'selected' : '' ?>
-                value="<?php echo site_url($url . $accountGroup . '/' . $i['no'] . '/' . $account. '/' . $startTime . '/' . $endTime); ?>"><?php echo $i['name'] ?></option>
-              <?php }?>
-
+              <?php foreach ($counties as $i) { ?>
+                <option <?php echo ($county == $i['no']) ? 'selected' : '' ?>
+                  value="<?php echo site_url($url . $accountGroup . '/' . $i['no'] . '/' . $account. '/' . $startTime . '/' . $endTime); ?>"><?php echo $i['name'] ?></option>
+              <?php } ?>
             </select>
-            <label>縣市</label>
           </div>
         </div>
 
-        <?php endif;?>
+        <?php endif; ?>
 
-        <div class="row">
-          <div class="input-field col s10 offset-m2 m8">
-            <select name="account" id="account" onchange="location = this.value;">
+        <div class="col-10 m-2 mx-auto">
+          <label>帳號</label>
+          <div class="input-group">
+            <select class="form-select" name="account" id="account" onchange="location = this.value;">
               <option disabled selected value>請選擇</option>
-              <?php foreach ($accounts as $i) {?>
-
-              <option <?php echo ($account == ($i['id'])) ? 'selected' : '' ?>
-                value="<?php echo site_url($url . $accountGroup . '/' . $county . '/'. $i['id']. '/' . $startTime . '/' . $endTime); ?>"><?php echo $i['id'] ?></option>
-              <?php }?>
-
+              <?php foreach ($accounts as $i) { ?>
+                <option <?php echo ($account == ($i['id'])) ? 'selected' : '' ?>
+                  value="<?php echo site_url($url . $accountGroup . '/' . $county . '/'. $i['id']. '/' . $startTime . '/' . $endTime); ?>"><?php echo $i['id'] ?></option>
+              <?php } ?>
             </select>
-            <label>帳號</label>
           </div>
         </div>
 
@@ -74,12 +83,14 @@
           </div>
 
           <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">送出</button>
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button class="btn btn-primary my-5" type="submit">送出</button>
+            </div>
           </div>
 
-          <?php if($logs) :?>
+          <?php if ($logs) :?>
 
-            <table class="responsive-table highlight centered">
+            <table class="table table-hover text-center">
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">帳號</th>
@@ -89,7 +100,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($logs as $i) {?>
+                <?php foreach ($logs as $i) { ?>
                 
                     <tr>
                       <td><?php echo $i['user']; ?></td>
@@ -229,32 +240,28 @@
               </tbody>
             </table>
 
-            <div class="row">
-              <div class="input-field col s10 offset-m2 m8">
-                <select name="status" id="status">
+            <div class="col-10 m-2 mx-auto">
+              <label>審核</label>
+              <div class="input-group">
+                <select class="form-select" name="status" id="status">
                   <option disabled selected value>請選擇</option>
-                  <?php foreach ($statuses as $i) {?>
-
-                  <option 
-                    value="<?php echo $i['no']?>"><?php echo $i['content'] ?></option>
-                  <?php }?>
-
+                  <?php foreach ($statuses as $i) { ?>
+                    <option value="<?php echo $i['no']?>"><?php echo $i['content'] ?></option>
+                  <?php } ?>
                 </select>
-                <label>審核</label>
               </div>
             </div>
 
-            <div class="row">
-              <div class="input-field col s10 offset-m2 m8">
-                <textarea id="formNote" class="materialize-textarea" placeholder=""
-                  name="note"></textarea>
-                <label for="formNote">備註:</label>
-              </div>
-            </div>
+            <div class="col-10 m-2 mx-auto">
+            <label for="formNote" class="form-label">備註:</label>
+            <textarea class="form-control" id="formNote" name="note" placeholder=""></textarea>
+          </div>
 
             <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" name="save" value="Save" type="submit">送出</button>
-             </div>
+              <div class="d-grid gap-2 col-2 mx-auto">
+                <button class="btn btn-primary my-5" name="save" value="Save" type="submit">送出</button>
+              </div>
+            </div>
 
           <?php endif;?>
 
@@ -263,4 +270,4 @@
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
