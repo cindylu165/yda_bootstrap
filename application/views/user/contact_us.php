@@ -1,12 +1,12 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container">
   <div class="row">
-    <div class="card col s12">
-      <h4 class="card-title text-center"><?php echo '聯絡我們' ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo '聯絡我們' ?></h4>
 
       <div class="card-content">
         <!-- years -->
-        <table class="responsive-table highlight centered">
+        <table class="table table-hover text-center">
           <thead class="thead-dark">
             <tr>
               <th scope="col">姓名</th>
@@ -33,4 +33,4 @@
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
