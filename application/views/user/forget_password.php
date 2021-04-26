@@ -1,34 +1,38 @@
-<?php $this->load->view('templates/header');?>
+<?php $this->load->view('templates/new_header');?>
 <div class="container">
   <div class="row all_center">
-    <div class="card col s12 offset-m3 m6 ">
-      <h4 class="card-title text-center"><?php echo $title ?></h4>
+    <div class="col-md-12">
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
         <form action="<?php echo site_url('user/forget_password'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
          
-          <?php echo isset($error) ? '<p class="red-text text-darken-3 text-center">' . $error . '</p>' : ''; ?>
-          <?php echo isset($success) ? '<p class="green-text text-darken-3 text-center">' . $success . '</p>' : ''; ?>
+          <?php echo isset($error) ? '<p class="text-danger text-center">' . $error . '</p>' : ''; ?>
+          <?php echo isset($success) ? '<p class="text-success text-center">' . $success . '</p>' : ''; ?>
 
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formId" name="id" required>
-              <label for="formId">帳號</label>
+            <div class="col-3 m-2 mx-auto">
+              <label for="formId" class="form-label">帳號</label>
+              <input class="form-control" type="text" id="formId" name="id">
             </div>
           </div>
 
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
+            <div class="col-3 m-2 mx-auto">
               <img class="materialboxed responsive-img" src="<?php echo base_url(); ?>/files/captcha/<?php echo $captcha['filename']; ?>">
             </div>
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="captcha" name="captcha">
-              <label for="captcha">*驗證碼</label>
+          <div>
+          <div class="row">
+            <div class="col-3 m-2 mx-auto">
+              <label for="captcha" class="form-label">*驗證碼</label>
+              <input class="form-control" type="text" id="captcha" name="captcha">
             </div>
           </div>
 
           <div class="row">
-            <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">送出</button>
+            <div class="d-grid gap-2 col-2 mx-auto">
+              <button class="btn btn-primary my-5" type="submit">送出</button>
+            </div>
           </div>
         
         </form>
@@ -53,4 +57,4 @@
     }
 
 </script>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
