@@ -9,6 +9,9 @@
       <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
         <a href="#">系統帳號管理</a>
       </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/user/audit_record_table'); ?>" <?php echo $url == '/user/audit_record_table' ? 'active' : ''; ?>>稽查清單</a>
+      </li>
       <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
     </ol>
   </nav>
