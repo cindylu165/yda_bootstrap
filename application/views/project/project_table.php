@@ -1,11 +1,25 @@
-<?php $this->load->view('templates/header');?>
-<div class="container">
-  <div class="row">
-    <div class="card col s12">
+<?php $this->load->view('templates/new_header');?>
+<div class="breadcrumb-div">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/user/index'); ?>" <?php echo $url == '/user/index' ? 'active' : ''; ?>>首頁</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="#">計劃案管理</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container" style="width:100%;">
+	<div class="row">
+    <div class="card-body col-sm-12">
       <h4 class="card-title text-center"><?php echo $title ?></h4>
       <div class="card-content">
 
-      <table class="countyDelegateOrganization highlight centered" style="border:2px grey solid;">
+      <table class="countyDelegateOrganization table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
           <thead class="thead-dark">
 						<tr>
               <th scope="col">縣市</th>
@@ -64,4 +78,4 @@
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/footer');?>
+<?php $this->load->view('templates/new_footer');?>
