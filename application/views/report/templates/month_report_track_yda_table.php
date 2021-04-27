@@ -1,102 +1,258 @@
-<table class="surveyTypeHighSchoolTrack highlight centered" style="border:2px grey solid;">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" rowspan="2">縣市</th>
-      <th scope="col" colspan="4">具輔導成效</th>
-      <th scope="col" colspan="7">尚無輔導成效</th>
-      <th scope="col" colspan="6">不可抗力</th>
-      <th scope="col" rowspan="2">總計</th>
-      <th scope="col" rowspan="2">青少年人數</th>
-      <th scope="col" rowspan="2" style="width:30%;">備註</th>
-      <?php if($countyType == 'all') :?>
-        <th scope="col" rowspan="2" style="width: 10%;">審核</th>
-        <th scope="col" rowspan="2">繳交</th>
-      <?php endif;?>
-    </tr>
-    <tr>
-      <th scope="col">1.已就業</th>
-      <th scope="col">2.已就學</th>
-      <th scope="col">3.職業訓練或勞政單位協助中</th>
-      <th scope="col">4.其他</th>
-      <th scope="col">5.準備升學</th>
-      <th scope="col">6.準備或正在找工作</th>
-      <th scope="col">7.家務勞動</th>
-      <th scope="col">8.健康因素</th>
-      <th scope="col">9.尚未規劃</th>
-      <th scope="col">10.失聯</th>
-      <th scope="col">11.其他</th>
-      <th scope="col">12.特教生</th>
-      <th scope="col">13.移民</th>
-      <th scope="col">14.警政或司法單位協助中</th>
-      <th scope="col">15.服兵役</th>
-      <th scope="col">16.死亡</th>
-      <th scope="col">17.成年</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php for ($j = 0; $j < count($counties); $j++) { ?>
-    <tr>
-      <?php if($reportProcessesCountyStatusArray[$j] != $reviewStatus['review_process_pass']) :?>
-        <td colspan = "23"><?php echo $counties[$j]['name'] . '尚未送出報表'?></td>
-      <?php else:?>
-        <td><?php echo $counties[$j]['name']; ?></td>
-        <td><?php echo $reportArray[$j]->one ?></td>
-        <td><?php echo $reportArray[$j]->two ?></td>
-        <td><?php echo $reportArray[$j]->three ?></td>
-        <td><?php echo $reportArray[$j]->four ?></td>
-        <td><?php echo $reportArray[$j]->five ?></td>
-        <td><?php echo $reportArray[$j]->six ?></td>
-        <td><?php echo $reportArray[$j]->seven ?></td>
-        <td><?php echo $reportArray[$j]->eight ?></td>
-        <td><?php echo $reportArray[$j]->nine ?></td>
-        <td><?php echo $reportArray[$j]->ten ?></td>
-        <td><?php echo $reportArray[$j]->eleven ?></td>
-        <td><?php echo $reportArray[$j]->twelve ?></td>
-        <td><?php echo $reportArray[$j]->thirteen ?></td>
-        <td><?php echo $reportArray[$j]->fourteen ?></td>
-        <td><?php echo $reportArray[$j]->fifteen ?></td>
-        <td><?php echo $reportArray[$j]->sixteen ?></td>
-        <td><?php echo $reportArray[$j]->seventeen ?></td>
-        <td><?php echo $reportArray[$j]->eighteen ?></td>
-        <td><?php echo $reportArray[$j]->nineteen ?></td>
-        <td style="text-align:left"><?php echo str_replace("\n", "<br/>", $reportArray[$j]->note); ?></td>
-        <?php if ($countyType == 'all') :?>
-          <td ><a class="btn waves-effect blue lighten-1" href="<?php echo site_url('report/' . $reviewPage . '/' . $yearType . '/' . $monthType . '/' . $counties[$j]['no']);?>">審核</a></td>
-          <td> <?php echo ($isOverTimeArray[$j] == 1 ) ? '遲交' : '準時';?></td>
-        <?php endif; ?>
-      <?php endif;?>
-    
-    </tr>
+<?php $this->load->view('templates/new_header'); ?>
 
-  <?php }?>
+<div class="breadcrumb-div">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/user/index'); ?>" <?php echo $url == '/user/index' ? 'active' : ''; ?>>首頁</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="#">報表管理</a>
+      </li>
+      <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
+        <a href="<?php echo site_url('/report/counseling_member_count_report_table'); ?>" <?php echo $url == '/report/counseling_member_count_report_table' ? 'active' : ''; ?>>每月執行進度表清單</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container" style="width:90%;">
+  <div class="row">
+    <div class="card-body col-sm-12">
+
+      <div class="col-10 m-2"> 
+        <a class="btn btn-success" href="<?php echo site_url('/report/counseling_member_count_report_table/' . $yearType . '/' . $monthType); ?>">←每月執行進度表清單</a>
+      </div>
+
+      <h4 class="text-dark text-center"><?php echo $title ?></h4>
+      <h6 class="text-dark text-center"><?php echo '民國'  . $yearType . '年' . $monthType . '月'; ?></h6>
+      <div class="card-content">
+
+      <form action="<?php echo site_url($url); ?>"
+          method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>"
+            value="<?php echo $security->get_csrf_hash() ?>" />
      
-    <?php if($countyType == 'all') :?>
-      <tr>
-        <td>總計</td>
-        <td><?php echo $valueSum ? $valueSum['one'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['two'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['three'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['four'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['five'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['six'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['seven'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['eight'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['nine'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['ten'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['eleven'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['twelve'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['thirteen'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['fourteen'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['fifteen'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['sixteen'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['seventeen'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['eighteen'] : 0 ?></td>
-        <td><?php echo $valueSum ? $valueSum['nineteen'] : 0 ?></td>   
-        <td></td>
-        <td></td>
-        <td></td>
-     
-			</tr>
-    <?php endif;?>
-  </tbody>
-</table>
+        <!-- years -->
+        <div class="row justify-content-center">
+          <div class="col-sm-10 col-md-8">
+            <label>年度</label>
+            <select class="form-select form-select-lg mb-3" name="years" id="years" onchange="location = this.value;">
+              <?php foreach ($years as $i) { ?>
+                <option <?php echo ($yearType == ($i['year'])) ? 'selected' : '' ?> value="<?php echo site_url('/report/high_school_trend_survey_count_report_yda_table/' . $i['year'] . '/' . $monthType . '/' . $countyType); ?>"><?php echo $i['year'] ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+
+        <!-- months -->
+        <div class="row justify-content-center">
+          <div class="col-sm-10 col-md-8">
+            <label>月份</label>
+            <select class="form-select form-select-lg mb-3" name="months" id="months" onchange="location = this.value;">
+              <?php foreach ($months as $i) { ?>
+                <option <?php echo ($monthType == $i) ? 'selected' : '' ?> value="<?php echo site_url('/report/high_school_trend_survey_count_report_yda_table/' . $yearType . '/' . $i . '/' . $countyType); ?>"><?php echo $i ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+
+        <!-- counties -->
+        <div class="row justify-content-center">
+          <div class="col-sm-10 col-md-8">
+            <label>縣市</label>
+            <select class="form-select form-select-lg mb-3" name="counties" id="counties" onchange="location = this.value;">
+              <option <?php echo ($countyType == 'all') ? 'selected' : '' ?> value="<?php echo site_url('/report/high_school_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType . '/all'); ?>">全部</option>
+              <?php foreach ($countiesName as $i) { ?>
+                <option <?php echo ($countyType == $i['no']) ? 'selected' : '' ?> value="<?php echo site_url('/report/high_school_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType . '/' . $i['no']); ?>"><?php echo $i['name'] ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+
+        <?php $total = 0;
+          $county_table = [];
+          if ($countyType != 'all') {
+            for ($i = 0; $i < count($counties); $i++) {
+              foreach ($counties[$i] as $cValue) {
+                if ($cValue == $countyType) {
+                  $county_table[$i] = $counties[$i];
+                }
+              }
+            }
+            // print_r($county_table);
+          } else {
+            $county_table = $counties;
+            // print_r($county_table);
+        } ?>
+
+        <a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'surveyTypeHighSchoolTrack' . '/' . $yearType . '/' . $monthType); ?>"><?php echo $title?>表列印(下載EXCEL檔)</a>
+        <br/><br/>
+
+        <h5 class="text-center"><?php echo $yearType . '第' . $monthType / 3 . '季追蹤' ?></h5>
+
+        <?php $this->load->view('report/templates/month_report_track_yda_table'); ?>
+        <br/>
+
+        <?php for ($i = 0; $i < count($counties); $i++) {
+          if ($countyType != 'all' && $reportLogsArray[$i]) :?>
+
+        <h5 class="text-center"><?php echo '審核流程' ?></h5>
+
+        <table class="highlight centered" style="border:2px grey solid;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">使用者姓名</th>
+              <th scope="col">時間</th>
+              <th scope="col">狀態</th>
+              <th scope="col">評論</th>
+            </tr>
+          </thead>
+          
+            <?php foreach($reportLogsArray[$i] as $value){?>
+              <tbody>
+                <tr>
+                  <td><?php echo $value['userName'] ?></php></td>
+                  <td><?php echo $value['time'] ?></php></td>
+                  <td><?php foreach($processReviewStatuses as $i){
+                    if($i['no'] == $value['review_status']){
+                      echo $i['content'];
+                    }
+                  } ?></php></td>
+                    <td><?php echo $value['comment'] ?></php></td>
+
+                </tr>
+
+              </tbody>
+            <?php }?>
+          
+        </table>
+        <?php endif;
+        }?>
+
+        <br/><br/>
+
+        <?php for ($i = 0; $i < count($counties); $i++) {?>
+
+          <?php if ($countyType != 'all' && $reportProcessesYdaStatusArray[$i] == $reviewStatus['review_process_wait']) :?>
+
+            <div class="row">
+          <?php if (!empty($twoYearsTrendSurveyCountReportArray[$i]->report_file_name)): ?>
+            <?php if (strpos($twoYearsTrendSurveyCountReportArray[$i]->report_file_name, 'pdf') !== false): ?>
+            <a class="col s10 offset-m2 m8"
+              href="<?php echo site_url() . '/files/' . $twoYearsTrendSurveyCountReportArray[$i]->report_file_name; ?>" download="<?php echo $yearType . '年' . $monthType . '月' . $counties[0]['name']?>"><?php echo $yearType . '年' . $monthType . '月' . $counties[0]['name'] . '-' . $title?></a>
+            <?php else: ?>
+            <div class="col s10 offset-m2 m8">
+              <img class="materialboxed responsive-img"
+                src="<?php echo site_url() . '/files/' . $twoYearsTrendSurveyCountReportArray[$i]->report_file_name; ?>" />
+            </div>
+            <?php endif;?>
+            <?php endif;?>
+          </div>
+
+          <div class="row">
+              <div class="input-field col s10 offset-m2 m8">
+                <select name="reviewStatus">
+                  <?php if ($reportProcessesYdaStatusArray[$i] == $reviewStatus['review_process_wait']) {?>
+                  <option disabled selected value>請選擇</option>
+                  <?php }
+          foreach ($processReviewStatuses as $i) {
+              if ($reportProcessesYdaStatusArray[$i] != $reviewStatus['review_process_wait']) {
+                  if ($i['no'] == $reportProcessesYdaStatusArray[$i]) {?>
+                  <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+                  <?php } else {
+                    if($i['content'] != '等待送出') {?>
+                  <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+
+                  <?php } }
+          } else {if($i['content'] != '等待送出') {?>
+            <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+
+            <?php } }?>
+                  <?php }?>
+                </select>
+                <label>審核</label>
+              </div>
+            </div>
+            
+
+            <div class="row">
+              <div class="input-field col s10 offset-m2 m8">
+                <textarea required id="formComment" class="materialize-textarea" placeholder=""
+                  name="comment"></textarea>
+                <label for="formComment">備註*:</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <button class="btn waves-effect col s6 offset-m4 m4 blue darken-4" type="submit">送出</button>
+            </div>
+          </form>
+
+        <?php endif;?>
+
+        <?php }?>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $('#download').click(function () {
+        var data = $("#form").html();
+        if (data == '') {
+            alert('請先搜尋您想要下載的數據');
+        } else {
+            var html = "<html><head><meta   charset= 'utf-8'></head><body>" + data + "</body></html>";
+            window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,' + encodeURIComponent(html));
+        }
+    });
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob(["\uFEFF"+csv], {type: 'text/csv;charset=utf-8;'});
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    } 
+
+    function exportTableToCSV(report,filename) {
+      var csv = [];
+      var rows = document.querySelectorAll(report + "table tr");
+      
+      for (var i = 0; i < rows.length; i++) {
+          var row = [], cols = rows[i].querySelectorAll("td, th");
+          if(i%2 != 0 || i == 0){
+            for (var j = 0; j < cols.length; j++) 
+                
+                row.push(cols[j].innerText);
+            csv.push(row.join(","));        
+          }
+                
+    }
+    // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+    }
+
+</script>
+<?php $this->load->view('templates/new_footer'); ?>
