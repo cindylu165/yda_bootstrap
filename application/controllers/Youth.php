@@ -710,7 +710,8 @@ class Youth extends CI_Controller
                 'isCounselingMember' => $isCounselingMember,
                 'security' => $this->security,
                 'password' => $passport['password'],
-                'updatePwd' => $passport['updatePwd']
+                'updatePwd' => $passport['updatePwd'],
+                'youths' => $youths
             );
 
             $date = $this->security->xss_clean($this->input->post('date'));
