@@ -19,7 +19,7 @@
 
           <div class="row">
             <div class="col-3 m-2 mx-auto">
-              <img class="img-fluid img-fluid" src="<?php echo base_url(); ?>/files/captcha/<?php echo $captcha['filename']; ?>">
+              <img class="rounded img-fluid" src="<?php echo base_url(); ?>/files/captcha/<?php echo $captcha['filename']; ?>">
             </div>
           <div>
           <div class="row">
