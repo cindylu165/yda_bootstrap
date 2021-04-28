@@ -264,7 +264,7 @@
 								<?php endif; ?>
 								<td>
 									<?php if ($role == 6) : ?>
-										<a class="btn btn-info" href="<?php echo site_url('/report/now_years_trend_survey_count_report/' . $yearType . '/' . $monthType); ?>">新增/修改</a>
+										<a class="btn btn-info" href="<?php echo site_url('/report/high_school_trend_survey_count_report/' . $yearType . '/' . $monthType); ?>">新增/修改</a>
 
 									<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/now_years_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
