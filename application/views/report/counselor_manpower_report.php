@@ -18,11 +18,6 @@
 <div class="container" style="width:100%;">
 	<div class="row">
 		<div class="card-body col-sm-12">
-			<div class="row">
-				<div class="col-sm-6">
-					<a class="btn btn-success" style="margin:10px;" href="<?php echo site_url('/report/counseling_member_count_report_table/' . $yearType . '/' . $monthType); ?>">←每月執行進度表清單</a>
-				</div>
-			</div>
 			<h4 class="card-title text-center"><?php echo $title ?></h4>
 
 			<div class="card-content">
