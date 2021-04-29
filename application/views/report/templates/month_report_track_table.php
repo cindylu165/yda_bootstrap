@@ -1,4 +1,5 @@
-<table class="surveyTypeHighSchoolTrack highlight centered" style="border:2px grey solid;">
+<!-- <table class="surveyTypeHighSchoolTrack highlight centered" style="border:2px grey solid;"> -->
+<table class="table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" rowspan="2">縣市</th>
