@@ -21,9 +21,9 @@
   <div class="row">
     <div class="card-body col-sm-12">
 
-      <div class="col-10 m-2"> 
+      <!-- <div class="col-10 m-2"> 
         <a class="btn btn-success" href="<?php echo site_url('/report/counseling_member_count_report_table/' . $yearType . '/' . $monthType); ?>">←每月執行進度表清單</a>
-      </div>
+      </div> -->
 
       <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <h6 class="text-dark text-center"><?php echo '民國'  . $yearType . '年' . $monthType . '月'; ?></h6>
