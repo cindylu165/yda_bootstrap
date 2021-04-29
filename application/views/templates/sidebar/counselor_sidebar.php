@@ -79,8 +79,8 @@
         <?php echo $url == '/report/counseling_member_count_report_table' ? 'active' : ''; ?>>每月執行進度表清單</a>
     </li>
     <li>
-      <a href="<?php echo site_url('/report/county_report_table'); ?>"
-        <?php echo $url == '/report/county_report_table' ? 'active' : ''; ?>>即時數據統計</a>
+      <a href="<?php echo site_url('/report/counselor_report_table'); ?>"
+        <?php echo $url == '/report/counselor_report_table' ? 'active' : ''; ?>>即時數據統計</a>
     </li>
   </ul>
 </li>
