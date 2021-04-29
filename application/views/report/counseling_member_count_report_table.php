@@ -184,7 +184,7 @@
 
 
 							<tr>
-								<td>表五.經費執行情形表</td>
+								<td>經費執行情形表</td>
 								<td>
 									<a class="btn btn-info" href="<?php echo site_url('/report/funding_execute_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
@@ -192,7 +192,7 @@
 							</tr>
 
 							<tr>
-								<td>表六.回傳情形紀錄表</td>
+								<td>回傳情形紀錄表</td>
 								<td>
 									<a class="btn btn-info" href="<?php echo site_url('/report/timing_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
@@ -203,7 +203,7 @@
 
 						<?php if ($monthType % 3 == 0) : ?>
 							<tr>
-								<td>表七.<?php echo $yearType - 4 ?>年動向調查追蹤</td>
+								<td>表五.<?php echo $yearType - 4 ?>年動向調查追蹤</td>
 								<?php if ($role == 6) : ?>
 									<td><?php echo $twoYearsTrendSurveyCountReportCompletionRate ?>%</td>
 
@@ -230,7 +230,7 @@
 							</tr>
 
 							<tr>
-								<td>表八.<?php echo $yearType - 3 ?>年動向調查追蹤</td>
+								<td>表六.<?php echo $yearType - 3 ?>年動向調查追蹤</td>
 								<?php if ($role == 6) : ?>
 									<td><?php echo $oneYearsTrendSurveyCountReportCompletionRate ?>%</td>
 
@@ -257,14 +257,14 @@
 							</tr>
 
 							<tr>
-								<td>表九.<?php echo $yearType - 2 ?>年動向調查追蹤</td>
+								<td>表七.<?php echo $yearType - 2 ?>年動向調查追蹤</td>
 								<?php if ($role == 6) : ?>
 									<td><?php echo $nowYearsTrendSurveyCountReportCompletionRate ?>%</td>
 
 								<?php endif; ?>
 								<td>
 									<?php if ($role == 6) : ?>
-										<a class="btn btn-info" href="<?php echo site_url('/report/high_school_trend_survey_count_report/' . $yearType . '/' . $monthType); ?>">新增/修改</a>
+										<a class="btn btn-info" href="<?php echo site_url('/report/now_years_trend_survey_count_report/' . $yearType . '/' . $monthType); ?>">新增/修改</a>
 
 									<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/now_years_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -283,7 +283,7 @@
 							</tr>
 
 							<tr>
-								<td>表十.前一年結案後動向調查追蹤</td>
+								<td>表八.前一年結案後動向調查追蹤</td>
 								<?php if ($role == 6) : ?>
 									<td><?php echo $oldCaseTrendSurveyCountReportCompletionRate ?>%</td>
 
@@ -306,6 +306,35 @@
 									</td>
 								<?php endif; ?>
 							</tr>
+							<tr>
+								<td>表九.高中已錄取未註冊動向調查追蹤</td>
+								<?php if ($role == 6): ?>
+									<td><?php echo $highSchoolTrendSurveyCountReportCompletionRate ?>%</td>
+									
+									<?php endif;?>
+									<td>
+									<?php if ($role == 6): ?>
+										<a class="btn btn-info"
+										href="<?php echo site_url('/report/high_school_trend_survey_count_report/' . $yearType . '/' . $monthType); ?>">新增/修改</a>
+
+										<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2): ?>
+										<a class="btn btn-info"
+										href="<?php echo site_url('/report/high_school_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
+										<?php elseif ($role == 1 || $role == 8 || $role == 9): ?>
+										<a class="btn btn-info"
+										href="<?php echo site_url('/report/high_school_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
+									<?php endif;?>
+									</td>
+								<?php if ($role == 1 || $role == 8 || $role == 9): ?>
+								<td>
+							
+								<a class="btn btn-info"
+								href="<?php echo site_url('/report/yda_month_report_table/highSchoolTrendSurveyCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
+							
+							</td>
+						<?php endif;?>
+						</tr>
+
 						<?php endif; ?>
 
 
