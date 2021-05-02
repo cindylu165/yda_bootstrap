@@ -439,4 +439,106 @@ class YouthModel extends CI_Model
         return $result;
     }
 
+    public function get_now_years_need_track_youth_by_county($county)
+    {
+      $this->db->select('youth.*');
+      $this->db->where('youth.county', $county);
+      $this->db->where('youth.source', 194);
+      $this->db->where('youth.source_school_year', date("Y")-1911-2);
+      $this->db->where('youth.survey_type >=', 216);
+      $this->db->where('youth.survey_type <=', 232);
+      $this->db->where('youth.survey_type !=', 225);
+      return $this->db->get('youth')->result_array();
+    }
+
+    public function get_high_school_youth_by_county($county)
+    {
+      $this->db->select('youth.*');
+      $this->db->where('youth.county', $county);
+      $this->db->where('youth.source', 229);
+      return $this->db->get('youth')->result_array();
+    }
+
+    public function get_one_years_need_track_youth_by_county($county)
+    {
+      $this->db->select('youth.*');
+      $this->db->where('youth.county', $county);
+      $this->db->where('youth.source', 194);
+      $this->db->where('youth.source_school_year', date("Y")-1911-3);
+      $this->db->where('youth.survey_type >=', 216);
+      $this->db->where('youth.survey_type <=', 232);
+      $this->db->where('youth.survey_type !=', 225);
+      return $this->db->get('youth')->result_array();
+    }
+
+    public function get_two_years_need_track_youth_by_county($county)
+    {
+      $this->db->select('youth.*');
+      $this->db->where('youth.county', $county);
+      $this->db->where('youth.source', 194);
+      $this->db->where('youth.source_school_year', date("Y")-1911-4);
+      $this->db->where('youth.survey_type >=', 216);
+      $this->db->where('youth.survey_type <=', 232);
+      $this->db->where('youth.survey_type !=', 225);
+      return $this->db->get('youth')->result_array();
+    }
+
+    public function get_transfer_out_youth_by_county($county) 
+    {
+      $this->db->select('review.*');
+      $this->db->where('review.county', $county);
+      $this->db->where('review.form_name', 'transfer_youth');
+      $this->db->where('review.status', 237);
+      $this->db->where('review.end_time >=', '2021-04-15 12:00:00');
+      return $this->db->get('review')->result_array();
+    }
+
+    public function get_transfer_out_youth_by_youth($youth, $updateValue) 
+    {
+      $this->db->select('review.*');
+
+      $this->db->where('review.form_no', $youth);
+      $this->db->where('review.county', $updateValue);
+      $this->db->where('review.form_name', 'transfer_youth');
+      $this->db->where('review.status', 237);
+      $this->db->where('review.end_time >=', '2021-04-15 12:00:00');
+
+      $result = $this->db->get('review', 1)->row();
+      return $result;
+    }
+
+    public function get_transfer_in_youth_by_county($county) 
+    {
+      $this->db->select('review.*');
+      $this->db->where('review.county', $county);
+      $this->db->where('review.update_value', $county);
+      $this->db->where('review.form_name', 'transfer_youth');
+      $this->db->where('review.status', 237);
+      $this->db->where('review.end_time >=', '2021-04-15 12:00:00');
+      return $this->db->get('review')->result_array();
+    }
+
+    public function get_now_years_end_youth_by_county($county)
+    {
+      $this->db->select('youth.*');
+      $this->db->where('youth.county', $county);
+      $this->db->where('youth.source', 194);
+      $this->db->where('youth.source_school_year', date("Y")-1911-4);
+      $this->db->where('youth.survey_type >=', 216);
+      $this->db->where('youth.survey_type <=', 232);
+      $this->db->where('youth.survey_type !=', 225);
+      $this->db->where('youth.is_end', 1);
+
+      return $this->db->get('youth')->result_array();
+    }
+
+    public function get_high_school_end_youth_by_county($county)
+    {
+      $this->db->select('youth.*');
+      $this->db->where('youth.county', $county);
+      $this->db->where('youth.source', 229);
+      $this->db->where('youth.is_end', 1);
+      return $this->db->get('youth')->result_array();
+    }
+
 }

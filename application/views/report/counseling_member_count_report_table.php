@@ -67,7 +67,7 @@
 
 				<?php if ($role == 2 || $role == 3 || $role == 4 || $role == 5) : ?>
 					<a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'all' . '/' . $yearType . '/' . $monthType); ?>">列印(下載EXCEL檔)</a><br /><br />
-				<?php elseif ($role == 1 || $role == 8) : ?>
+				<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 					<a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'all' . '/' . $yearType . '/' . $monthType); ?>">列印(下載EXCEL檔)</a>
 					<br /><br />
 				<?php endif; ?>
@@ -83,7 +83,7 @@
 							<?php endif; ?>
 							<th scope="col">要項</th>
 
-							<?php if ($role == 1 || $role == 8) { ?>
+							<?php if ($role == 1 || $role == 8 || $role == 9) { ?>
 								<th scope="col">即時數據</th>
 							<?php } ?>
 						</tr>
@@ -101,12 +101,12 @@
 								<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counseling_member_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
-								<?php elseif ($role == 1 || $role == 8) : ?>
+								<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counseling_member_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
 								<?php endif; ?>
 							</td>
-							<?php if ($role == 1 || $role == 8) : ?>
+							<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 								<td>
 
 									<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/counselingMemberCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -127,11 +127,11 @@
 
 								<?php elseif ($role == 2 || $role == 3 || $role == 4 || $role == 5) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counseling_identity_count_report_table/' . $yearType . '/' . $monthType); ?>">查看</a>
-								<?php elseif ($role == 1 || $role == 8) : ?>
+								<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counseling_identity_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 								<?php endif; ?>
 							</td>
-							<?php if ($role == 1 || $role == 8) : ?>
+							<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 								<td>
 
 									<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/counselingIdentityCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -152,11 +152,11 @@
 
 								<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counseling_meeting_count_report_table/' . $yearType . '/' . $monthType); ?>">查看</a>
-								<?php elseif ($role == 1 || $role == 8) : ?>
+								<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counseling_meeting_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 								<?php endif; ?>
 							</td>
-							<?php if ($role == 1 || $role == 8) : ?>
+							<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 								<td>
 
 									<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/counselingMeetingCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -179,12 +179,12 @@
 								<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counselor_manpower_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
-								<?php elseif ($role == 1 || $role == 8) : ?>
+								<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 									<a class="btn btn-info" href="<?php echo site_url('/report/counselor_manpower_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
 								<?php endif; ?>
 							</td>
-							<?php if ($role == 1 || $role == 8) : ?>
+							<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 								<td>
 
 									<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/counselorManpowerCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -228,12 +228,12 @@
 									<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/two_years_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
-									<?php elseif ($role == 1 || $role == 8) : ?>
+									<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/two_years_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
 									<?php endif; ?>
 								</td>
-								<?php if ($role == 1 || $role == 8) : ?>
+								<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 									<td>
 
 										<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/twoYearsTrendSurveyCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -255,12 +255,12 @@
 									<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/one_years_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
-									<?php elseif ($role == 1 || $role == 8) : ?>
+									<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/one_years_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
 									<?php endif; ?>
 								</td>
-								<?php if ($role == 1 || $role == 8) : ?>
+								<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 									<td>
 
 										<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/oneYearsTrendSurveyCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -282,11 +282,11 @@
 									<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/now_years_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 
-									<?php elseif ($role == 1 || $role == 8) : ?>
+									<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/now_years_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 									<?php endif; ?>
 								</td>
-								<?php if ($role == 1 || $role == 8) : ?>
+								<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 									<td>
 
 										<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/nowYearsTrendSurveyCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
@@ -307,11 +307,11 @@
 
 									<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/old_case_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
-									<?php elseif ($role == 1 || $role == 8) : ?>
+									<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/old_case_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 									<?php endif; ?>
 								</td>
-								<?php if ($role == 1 || $role == 8) : ?>
+								<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 									<td>
 
 										<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/oldCaseTrendSurveyCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>
