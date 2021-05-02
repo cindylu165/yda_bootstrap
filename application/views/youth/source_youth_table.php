@@ -14,7 +14,9 @@
   </nav>
 </div>
 
-<div class="container">
+<div class="container" style="width:100%;">
+	<div class="row">
+		<div class="card-body col-sm-12">
   <div class="col-md-12">
     <h4 class="text-dark text-center"><?php echo $title ?></h4>
   </div>
@@ -45,11 +47,11 @@
   <div class="mb-3 row">
     <label for="counties" style="text-align:right;"class="col-md-5 col-form-label">search</label>
     <div class="col-md-4">
-    <input id="myInput" class="form-control" style="width:350px" type="search" onkeyup="myFunction('all_counselor')" placeholder="搜尋學年度、動向調查類別、身分證或姓名">
+    <input id="myInput" class="form-control" style="width:350px" type="search" onkeyup="myFunction('trend_counselor')" placeholder="搜尋學年度、動向調查類別、身分證或姓名">
     </div>
   </div>
 
-  <?php elseif (($youthSource == 'all' || $youthSource == '' || $youthSource == 'high' || $youthSource == 'case' || $youthSource == 'referral') && $current_role != '6'): ?>
+  <?php  elseif (($youthSource == 'all' || $youthSource == '' || $youthSource == 'high' || $youthSource == 'case' || $youthSource == 'referral') && $current_role != '6'): ?>
   
   <div class="mb-3 row">
     <label for="counties" style="text-align:right;"class="col-md-5 col-form-label">search</label>
@@ -63,13 +65,13 @@
   <div class="mb-3 row">
     <label for="counties" style="text-align:right;"class="col-md-5 col-form-label">search</label>
     <div class="col-md-4">
-    <input id="myInput" class="form-control" style="width:350px" type="search" onkeyup="myFunction('all_counselor')" placeholder="搜尋編號學年度、動向調查類別或姓名">
+    <input id="myInput" class="form-control" style="width:350px" type="search" onkeyup="myFunction('trend_counselor')" placeholder="搜尋編號學年度、動向調查類別或姓名">
     </div>
   </div>
 
   <?php endif;?>
   <div class="table-responsive">
-    <table class="table table-hover">
+    <table id="youthTable" class="table table-hover text-center">
       <thead class="thead-dark">
         <tr>
           <?php if ($current_role != '6') {?>
@@ -106,15 +108,17 @@
           <td><?php echo $i['name']; ?></td>
           <td><?php echo $i['identifications']; ?></td>
           <td>
-            <a class="btn btn-warning" style="color:white;background:orange;border:2px none;" href="<?php echo site_url('youth/personal_data/allSource/' . $i['no']); ?>">基本資料</a>
-            <a class="btn btn-success" style="color:white;background:green;border:2px none;" href="<?php echo site_url('youth/intake/allSource/' . $i['no']); ?>">青少年初評表</a>
-            <a class="btn btn-primary" style="color:white;background:#0d47a1;border:2px none;" href="<?php echo site_url('youth/get_seasonal_review_table_by_youth/' . $i['no']); ?>">季追蹤清單</a>
+            <a class="btn btn-warning" href="<?php echo site_url('youth/personal_data/allSource/' . $i['no']); ?>">基本資料</a>
+            <a class="btn btn-primary" href="<?php echo site_url('youth/intake/allSource/' . $i['no']); ?>">青少年初評表</a>
+            <a class="btn btn-success" href="<?php echo site_url('youth/get_seasonal_review_table_by_youth/' . $i['no']); ?>">季追蹤清單</a>
           </td>
         <?php }?>
         </tr>
       <?php }?>
       </tbody>
     </table>
+    </div>
+    </div>
   </div>
 </div>
 
