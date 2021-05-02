@@ -494,6 +494,8 @@ foreach ($counselors as $i) {
         </form>
       </div>
 
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ElementBinder.js"></script>

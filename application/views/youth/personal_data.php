@@ -288,8 +288,8 @@ foreach ($surveyTypes as $i) {
           </div><br>
 
           <div class="row text-center">
-            <div class="mg-2">
-              <button class="btn btn-primary my-5" type="submit" style="width:150px">送出</button>
+            <div class=" my-5">
+              <button class="btn btn-primary" type="submit" style="width:150px">送出</button>
             </div>
           </div>
           
