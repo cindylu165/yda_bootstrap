@@ -83,7 +83,7 @@
     <?php }?> -->
 
   <div class="table-responsive">
-    <table class="table table-hover">
+    <table id="youthTable" class="table table-hover">
       <!-- <thead class="header"> -->
       <thead class="thead-dark">
       <tr>
