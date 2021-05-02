@@ -152,7 +152,7 @@
     <div class="row">
       <div class="col-10 m-2 mx-auto">
         <label for="formBirth">出生年月日</label>
-        <input class="form-control" type="text" id="formBirth" name="birth" class="datepicker"
+        <input class="form-control datepickerTW" type="text" id="formBirth" name="birth"
           value="<?php echo (empty($youths)) ? "" : $youths->birth ?>"
           <?php echo (empty($youths)) ? "" : "" ?>>
       </div>
@@ -500,6 +500,7 @@ foreach ($counselors as $i) {
 
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
+  $('.datepickerTW').datepickerTW();
   const elementRelation = new ElementBinder();
   elementRelation.selectInput('referralAttitude', 'referralAttitudeOther', '其他');
   elementRelation.selectInput('majorDemand', 'majorDemandOther', '其他');

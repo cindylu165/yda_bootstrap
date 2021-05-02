@@ -19,12 +19,12 @@
   </nav>
 </div>
 
-<div class="container">
-  <div class="row" style="text-align:center;">
-    <div class="row">
+<div class="container" style="width:100%;">
+	<div class="row">
+		<div class="card-body col-sm-12">
       <h4 class="card-title text-center"><?php echo $title ?></h4>
     </div>
-    <div class="col-md-12" style="text-align:center;">
+    <div class="col-md-12">
         <form action="<?php echo site_url($url);?>" 
           method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
@@ -32,11 +32,12 @@
           <?php echo isset($success) ? '<p class="green-text text-accent-4 text-center">'.$success.'</p>' : '';?>
        
           <h6 class="text-center">青少年: <?php echo $youthName; ?></h6>
-          <div class="row justify-content-md-center input-group">
+          <!-- <div class="row justify-content-md-center input-group"> -->
+          <div class="col-3 m-4  mx-auto">
           <!-- <label for="formDate">追蹤日期*</label> -->
-            <label for="formDate">追蹤日期*:</label>
-            <div class="col col-lg-2" style="text-align:center">
-              <input class="form-control datepickerTW" value="<?php echo (empty($seasonalReviews)) ? "" : $seasonalReviews->date ?>">
+            <label for="formDate">追蹤日期*</label>
+            <div class="col" style="text-align:center">
+              <input  id="formDate" class="form-control datepickerTW" value="<?php echo (empty($seasonalReviews)) ? "" : $seasonalReviews->date ?>">
             </div>
           </div>
     <!-- </div>       -->
@@ -49,8 +50,7 @@
           </div> -->
 
           <!-- isCounseling -->
-          <div class="row justify-content-md-center input-group">
-            <div class="col col-lg-2">
+          <div class="col-10 m-2 mx-auto">
             <label for="counties" style="text-align:center;"class="col-form-label">是否進入本計畫輔導</label>
               <select name="isCounseling" class="form-select">
               <?php if(isset($seasonalReviews->is_counseling)){
@@ -69,14 +69,13 @@
                   <option value="0">否</option>
               <?php }}?>
               </select>
-            </div>
           </div>
             
           <!-- trend -->
           
-          <div class="row justify-content-md-center input-group">
+          <div class="col-10 m-2 mx-auto">
             <label for="counties">動向調查</label>
-            <div class="col">
+            <!-- <div class="col"> -->
               <select name="trend" class="form-select" > 
                 <?php if(empty($seasonalReviews->trend)){?>
                   <option disabled selected value>請選擇</option>
@@ -93,8 +92,7 @@
                   <?php } ?>
                 <?php } ?>
               </select>
-              <!-- <label>動向調查</label> -->
-            </div>
+            <!-- </div> -->
           <!-- </div> -->
           </div>
 
@@ -105,10 +103,9 @@
               <label for="formTrendDescription">動向調查-說明(如選填「其他」、「其他單位協助」、「未取得聯繫」請說明原因)</label>
             </div>
           </div> -->
-          <br>
-          <div class="md-3 row">
-            <div class="input-group">
-              <span class="input-group-text">動向調查-說明<br>(如選填「其他」、「其他單位協助」、「未取得聯繫」請說明原因)</span>
+          <div class="row">
+            <div class="col-10 m-2 mx-auto">
+              <label for="formTrendDescription">動向調查-說明(如選填「其他」、「其他單位協助」、「未取得聯繫」請說明原因)</label>
               <textarea class="form-control" id="formTrendDescription" name="trendDescription" aria-label="With textarea"><?php echo (empty($seasonalReviews)) ? "" : $seasonalReviews->trend_description ?></textarea>
             </div>
           </div><br>
@@ -116,11 +113,12 @@
           <!-- <div class="row">
             <button class="btn" type="submit">建立</button>
           </div> -->
-          <div class="mg-2 row">
-            <div class="mg-2">
-              <button class="btn btn-primary" type="submit" style="width:150px">建立</button>
+          <div class="row text-center">
+            <div class="my-5">
+              <button class="btn btn-primary" type="submit" style="width:150px">送出</button>
             </div>
           </div>
+        
         </form>
     </div>
   </div>
@@ -129,7 +127,7 @@
 <script type="text/javascript" src="<?php echo site_url();?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
   $('.datepickerTW').datepickerTW();
-  const elementRelation = new ElementBinder();
+  // const elementRelation = new ElementBinder();
   elementRelation.selectInput('isCounseling', 'trend', '否');
   elementRelation.selectInput('isCounseling', 'trendDescription', '否');
 
