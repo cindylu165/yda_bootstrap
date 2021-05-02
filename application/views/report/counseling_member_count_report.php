@@ -96,11 +96,15 @@
 					<br /><br />
 
 					<div>
-						<h5 class="text-center">輔導人數統計</h5>
-						<?php if ($accumCounselingMemberCount != $monthTempCount) { ?>
-							<h6 style="color:red;" class="text-center">請先填寫『輔導成效概況表』</h5><br />
-							<?php } ?>
+						<h5 class="text-center">關懷青少年人數統計</h5>
+
 					</div>
+					
+					<?php if ($accumCounselingMemberCount != count($monthMemberTempCounselings['one'])) {?>
+						<h6 style="color:red;" class="text-center">請先填寫『輔導成效概況表』</h6>
+						<h6 style="color:red;" class="text-center">填寫狀況 : <?php echo count($monthMemberTempCounselings['one']) . '/' . $accumCounselingMemberCount;?></h6>
+						<br/>
+					<?php }?>
 
 					<table class="countyDelegateOrganization table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
 						<thead>
@@ -120,7 +124,7 @@
 								<th scope="col">小計</th>
 							</tr>
 						</thead>
-						<tbody>
+						<!-- <tbody>
 							<tr>
 								<td><?php echo (empty($projects)) ? "" : $projects->counseling_youth; ?></td>
 								<td><?php echo (empty($accumCounselingYouthCount)) ? "0" : $accumCounselingYouthCount; ?></td>
@@ -138,10 +142,35 @@
 										+ $surveyType['pregnancy'] + $surveyType['health'] + $surveyType['other']; ?></td>
 								<td><?php echo (empty($surveyType)) ? "0" : $surveyType['specialEducationStudent'] + $surveyType['immigration'] + $surveyType['death']; ?></td>
 							</tr>
+						</tbody> -->
+						<tbody>
+							<tr>
+								<td><?php echo (empty($projects)) ? "" : $projects->counseling_youth; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_seasonal_review/one') . "'>" . count($surveyType['one']) : $counselingMemberCountReport->youth_count; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_seasonal_review/two') . "'>" . count($surveyType['two']) : $counselingMemberCountReport->school_youth; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_seasonal_review/three') . "'>" . count($surveyType['three']) : $counselingMemberCountReport->work_youth; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_seasonal_review/four') . "'>" . count($surveyType['four']) : $counselingMemberCountReport->vocational_training_youth; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_seasonal_review/five') . "'>" . count($surveyType['five']) : $counselingMemberCountReport->other_youth; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : count($surveyType['two']) + count($surveyType['three']) + count($surveyType['four']) + count($surveyType['five']) : ($counselingMemberCountReport->school_youth + $counselingMemberCountReport->work_youth + $counselingMemberCountReport->vocational_training_youth + $counselingMemberCountReport->other_youth); ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_seasonal_review/six') . "'>" . count($surveyType['six']) : $counselingMemberCountReport->no_plan_youth; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($surveyType)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_seasonal_review/seven') . "'>" . count($surveyType['seven']) : $counselingMemberCountReport->force_majeure_youth; ?></td>
+							</tr>
 						</tbody>
+
 					</table>
 
 					<br />
+					<div>
+						<h5 class="text-center">輔導人數統計</h5>
+					
+					</div>
+					
+					<?php if ($accumCounselingMemberCount != count($monthMemberTempCounselings['one'])) {?>
+						<h6 style="color:red;" class="text-center">請先填寫『輔導成效概況表』</h6>
+						<h6 style="color:red;" class="text-center">填寫狀況 : <?php echo count($monthMemberTempCounselings['one']) . '/' . $accumCounselingMemberCount;?></h6>
+						<br/>
+					<?php }?>
+
 
 					<table class="countyDelegateOrganization table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
 						<thead>
@@ -162,7 +191,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<!-- <tr>
 								<td><?php echo (empty($projects)) ? "" : $projects->counseling_member; ?></td>
 								<td><?php echo (empty($accumCounselingMemberCount)) ? "0" : $accumCounselingMemberCount; ?></td>
 								<td><?php echo (empty($monthMemberTempCounselings)) ? "" : $monthMemberTempCounselings->schoolMember; ?></td>
@@ -172,7 +201,19 @@
 								<td><?php echo (empty($monthMemberTempCounselings)) ? "" : $monthMemberTempCounselings->otherNumberOne + $monthMemberTempCounselings->otherNumberTwo + $monthMemberTempCounselings->otherNumberThree + $monthMemberTempCounselings->schoolMember + $monthMemberTempCounselings->workMember + $monthMemberTempCounselings->vocationalTrainingMember; ?></td>
 								<td><?php echo (empty($monthMemberTempCounselings)) ? "" : $monthMemberTempCounselings->noPlanMember; ?></td>
 								<td><?php echo (empty($monthMemberTempCounselings)) ? "" : $monthMemberTempCounselings->forceMajeureMember + $monthMemberTempCounselings->otherNumberFour; ?></td>
+							</tr> -->
+							<tr>
+								<td><?php echo (empty($projects)) ? "" : $projects->counseling_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_month_temp/one') . "'>" . count($monthMemberTempCounselings['one']) : $counselingMemberCountReport->member_count; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_month_temp/two') . "'>" . count($monthMemberTempCounselings['two']) : $counselingMemberCountReport->school_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_month_temp/three') . "'>" . count($monthMemberTempCounselings['three']) : $counselingMemberCountReport->work_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_month_temp/four') . "'>" . count($monthMemberTempCounselings['four']) : $counselingMemberCountReport->vocational_training_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_month_temp/five') . "'>" . count($monthMemberTempCounselings['five']) : $counselingMemberCountReport->other_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : count($monthMemberTempCounselings['two']) + count($monthMemberTempCounselings['three']) + count($monthMemberTempCounselings['four']) + count($monthMemberTempCounselings['five']) : ($counselingMemberCountReport->school_member + $counselingMemberCountReport->work_member + $counselingMemberCountReport->vocational_training_member + $counselingMemberCountReport->other_member) ; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_month_temp/six') . "'>" . count($monthMemberTempCounselings['six']) : $counselingMemberCountReport->no_plan_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($monthMemberTempCounselings)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_month_temp/seven') . "'>" . count($monthMemberTempCounselings['seven']) : $counselingMemberCountReport->force_majeure_member; ?></td>
 							</tr>
+
 						</tbody>
 					</table>
 
@@ -196,7 +237,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<!-- <tr>
 								<td><?php echo (empty($newCaseCount)) ? "0" : $newCaseCount; ?></td>
 								<td><?php echo (empty($oldCaseCount)) ? "0" : $oldCaseCount; ?></td>
 								<td><?php echo (empty($twoYearSurvryCaseCount)) ? "0" : $twoYearSurvryCaseCount; ?></td>
@@ -204,7 +245,17 @@
 								<td><?php echo (empty($nowYearSurvryCaseCount)) ? "0" : $nowYearSurvryCaseCount; ?></td>
 								<td><?php echo (empty($nextYearSurvryCaseCount)) ? "0" : $nextYearSurvryCaseCount; ?></td>
 								<td><?php echo (empty($highSchoolSurveryCaseCount)) ? "0" : $highSchoolSurveryCaseCount; ?></td>
+							</tr> -->
+							<tr>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberSourceData)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_source/one') . "'>" . count($memberSourceData['one']) : $counselingMemberCountReport->new_case_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberSourceData)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_source/two') . "'>" . count($memberSourceData['two']) : $counselingMemberCountReport->old_case_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberSourceData)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_source/three') . "'>" . count($memberSourceData['three']) : $counselingMemberCountReport->two_year_survry_case_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberSourceData)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_source/four') . "'>" . count($memberSourceData['four']) : $counselingMemberCountReport->one_year_survry_case_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberSourceData)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_source/five') . "'>" . count($memberSourceData['five']) : $counselingMemberCountReport->now_year_survry_case_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberSourceData)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_source/six') . "'>" . count($memberSourceData['six']) : $counselingMemberCountReport->next_year_survry_case_member; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberSourceData)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_source/seven') . "'>" . count($memberSourceData['seven']) : $counselingMemberCountReport->high_school_survry_case_member; ?></td>
 							</tr>
+
 						</tbody>
 					</table>
 
@@ -224,12 +275,18 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<!-- <tr>
 								<td><?php echo (empty($memberCounselingCount)) ? "0" : $memberCounselingCount->individualCounselingCount + $memberCounselingCount->groupCounselingCount; ?></td>
 								<td><?php echo (empty($memberCounselingCount)) ? "0" : $memberCounselingCount->courseAttendanceCount; ?></td>
 								<td><?php echo (empty($memberCounselingCount)) ? "0" : $memberCounselingCount->workAttendanceCount; ?></td>
 
+							</tr> -->
+							<tr>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberCounselingCount)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_counseling/one') . "'>" . ($memberCounselingCount->individualCounselingCount + $memberCounselingCount->groupCounselingCount) : $counselingMemberCountReport->month_counseling_hour; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberCounselingCount)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_counseling/two') . "'>" . $memberCounselingCount->courseAttendanceCount : $counselingMemberCountReport->month_course_hour; ?></td>
+								<td><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? (empty($memberCounselingCount)) ? "0" : "<a href='" . site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/report_one_member_counseling/three') . "'>" . $memberCounselingCount->workAttendanceCount : $counselingMemberCountReport->month_working_hour; ?></td>
 							</tr>
+
 						</tbody>
 					</table>
 					<br />
@@ -329,11 +386,31 @@
 							</div>
 						</div>
 
-						<div class="row justify-content-center">
-							<div class="d-grid gap-2 col-sm-6 col-md-4 mb-3">
-								<button class="btn btn-primary" name="save" value="Save" type="submit">送出</button>
+						<?php if ($accumCounselingMemberCount != count($monthMemberTempCounselings['one'])) {?>
+							<h6 style="color:red;" class="text-center">『輔導成效概況表』未填寫完整，無法送出報表。</h6>
+							<h6 style="color:red;" class="text-center">填寫狀況 : <?php echo count($monthMemberTempCounselings['one']) . '/' . $accumCounselingMemberCount;?></h6>
+							<br/>
+							<?php }?>
+
+							<?php if ($youthSum != count($surveyType['one'])) {?>
+							<h6 style="color:red;" class="text-center">請先填寫『青少年季追蹤』</h6>
+							<h6 style="color:red;" class="text-center">填寫狀況 : <?php echo count($surveyType['one']) . '/' . $youthSum;?></h6>
+							<br/>
+						<?php }?>
+
+						<?php if ( ($youthSum == count($surveyType['one'])) && ($accumCounselingMemberCount == count($monthMemberTempCounselings['one']))) {?>
+							<div class="row justify-content-center">
+								<div class="d-grid gap-2 col-sm-6 col-md-4 mb-3">
+									<button class="btn btn-primary" name="save" value="Save" type="submit">送出</button>
+								</div>
 							</div>
-						</div>
+						<?php }?>
+
+					<?php else : ?>
+
+						<a class="btn btn-primary" href="<?php echo site_url('report/counseling_member_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">預覽縣市承辦人端</a>
+						<br/><br/>
+
 
 					<?php endif; ?>
 

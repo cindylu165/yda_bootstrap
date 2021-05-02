@@ -307,11 +307,11 @@
 
 									<?php elseif ($role == 4 || $role == 5 || $role == 3 || $role == 2) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/old_case_trend_survey_count_report_organization_table/' . $yearType . '/' . $monthType); ?>">查看</a>
-									<?php elseif ($role == 1 || $role == 8) : ?>
+									<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 										<a class="btn btn-info" href="<?php echo site_url('/report/old_case_trend_survey_count_report_yda_table/' . $yearType . '/' . $monthType); ?>">查看</a>
 									<?php endif; ?>
 								</td>
-								<?php if ($role == 1 || $role == 8) : ?>
+								<?php if ($role == 1 || $role == 8 || $role == 9) : ?>
 									<td>
 
 										<a class="btn btn-info" href="<?php echo site_url('/report/yda_month_report_table/oldCaseTrendSurveyCountReport/' . $yearType . '/' . $monthType); ?>">查看</a>

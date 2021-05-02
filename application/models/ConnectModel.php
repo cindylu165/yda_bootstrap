@@ -1,6 +1,15 @@
 <?php
 class ConnectModel extends CI_Model {
 
+  function update_file($file, $no) {
+
+	
+    $this->file = $file;
+	
+    $this->db->where('no', $no);
+    return $this->db->update('download_file', $this);
+	}
+
   function update_user_password($id, $password) {
 
     $this->password = $password;

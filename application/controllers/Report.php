@@ -2494,7 +2494,8 @@ class Report extends CI_Controller
     
       /**
        * 輔導人數統計(學員)
-       * 來源 : 本年度開案學員與輔導員成效概況表
+       * 來源 : 本年度開案學員與輔導員成效概況表----(old)
+       * 來源 : 本年度開案學員與輔導員成效概況表(結案的學員也需要被記錄)----(new)
        **/
       // 累積輔導人數
       $accumCounselingMemberCount = $this->MemberModel->get_by_county_count($county, $monthType, $yearType);
@@ -2514,6 +2515,12 @@ class Report extends CI_Controller
       $memberData['year'] = $yearType;
       $memberData['month'] = $monthType;
       $memberSourceData = report_one_member_source_table_value($memberData, $members);
+        /**
+       * 青少年應該追蹤人數 : 108動向調查(4-12)與109高中-(108&109開案)
+       */
+      $highSchoolYouth = $this->YouthModel->get_high_school_youth_by_county($county);
+      $nowYearTrendYouth = $this->YouthModel->get_now_years_need_track_youth_by_county($county);
+      $youthSum = count($highSchoolYouth) + count($nowYearTrendYouth) - count($memberSourceData['five']) - count($memberSourceData['seven']);
 
        /**
        * 辦理情形
@@ -2564,6 +2571,13 @@ class Report extends CI_Controller
         }
       }
       if($workDetail == "[工作體驗紀錄]" . "\n") $workDetail = $workDetail . '無' . "\n";
+      /**
+       * 執行金額
+       * 預先帶入上一個月資料
+       */
+      if($monthType != 1) {
+        $lastMonthData = $this->CounselingMemberCountReportModel->get_by_no($yearType, $monthType-1, $projects->no);
+      }
 
       /**
        * 投保事項
@@ -2616,7 +2630,9 @@ class Report extends CI_Controller
         'reportLogs' => $reportLogs,
         'processReviewStatuses' => $processReviewStatuses,
         'surveyType' =>$surveyType,
-        'memberSourceData' => $memberSourceData
+        'memberSourceData' => $memberSourceData,
+        'youthSum' => $youthSum,
+        'lastMonthData' => $lastMonthData
       );
 
       $schoolYouth = $surveyType ? count($surveyType['two']) : 0;
