@@ -423,11 +423,11 @@
           <?php endif; ?>
 
           <div class="row">
-              <div class="col-10 m-2 mx-auto">
-                <label for="line" class="form-label">line帳號</label>
-                <input class="form-control" type="text" id="line" name="line" value="<?php echo (empty($users)) ? "" : $users['line'] ?>">
-              </div>
+            <div class="col-10 m-2 mx-auto">
+              <label for="line" class="form-label">line帳號</label>
+              <input class="form-control" type="text" id="line" name="line" value="<?php echo (empty($users)) ? "" : $users['line'] ?>">
             </div>
+          </div>
 
           <div class="row">
             <div class="d-grid gap-2 col-2 mx-auto">
