@@ -58,7 +58,7 @@
           <div class="row">
             <div class="col-10 m-2 mx-auto">
               <label for="id" class="form-label">帳號*</label>
-              <input class="form-control" type="text" id="id" name="id" <?php echo (empty($users)) ? "" : "disabled" ?> value="<?php echo (empty($users)) ? $accountPrefix : $users->id ?>">
+              <input class="form-control" type="text" id="id" name="id" <?php echo (empty($users)) ? "" : "disabled" ?> value="<?php echo (empty($users)) ? $accountPrefix : $users['id'] ?>">
             </div>
           </div>
 

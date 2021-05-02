@@ -15,8 +15,8 @@
         <form action="<?php echo site_url($url); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>"
             value="<?php echo $security->get_csrf_hash() ?>" />
-          <?php echo isset($error) ? '<p class="red-text text-darken-3 text-center">' . $error . '</p>' : ''; ?>
-          <?php echo isset($success) ? '<p class="green-text text-darken-3 text-center">' . $success . '</p>' : ''; ?>
+          <?php echo isset($error) ? '<p class="text-danger text-center">' . $error . '</p>' : ''; ?>
+          <?php echo isset($success) ? '<p class="text-success text-center">' . $success . '</p>' : ''; ?>
 
           <!-- identification -->
         <div class="row">
@@ -264,9 +264,10 @@ foreach ($surveyTypes as $i) {
 
           <div class="row text-center">
             <div class="mg-2">
-              <button class="btn btn-primary" type="submit" style="width:150px">送出</button>
+              <button class="btn btn-primary my-5" type="submit" style="width:150px">送出</button>
             </div>
           </div>
+          
         </form>
       </div>
     </div>
