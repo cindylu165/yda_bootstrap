@@ -156,6 +156,7 @@
           value="<?php echo (empty($youths)) ? "" : $youths->birth ?>"
           <?php echo (empty($youths)) ? "" : "" ?>>
       </div>
+    </div>
 
     <!-- gender -->
       <div class="col-10 m-2 mx-auto">
