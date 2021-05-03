@@ -32,26 +32,26 @@
     //     dateFormat: "Y-m-d H:i:00",
     //   });
     // }
-    const selects = document.querySelectorAll('select');
-    M.FormSelect.init(selects, {});
-    const requiredSelects = document.querySelectorAll('select[required]');
-    for ( i=0, n=requiredSelects.length; i < n; i++) {
-      const select = requiredSelects[i];
-      select.style['display'] = 'inline';
-      select.style['height'] = 0;
-      select.style['padding'] = 0;
-      select.style['width'] = 0;
-    }
+    // const selects = document.querySelectorAll('select');
+    // M.FormSelect.init(selects, {});
+    // const requiredSelects = document.querySelectorAll('select[required]');
+    // for ( i=0, n=requiredSelects.length; i < n; i++) {
+    //   const select = requiredSelects[i];
+    //   select.style['display'] = 'inline';
+    //   select.style['height'] = 0;
+    //   select.style['padding'] = 0;
+    //   select.style['width'] = 0;
+    // }
   });
 
-  const requiredSelects = document.querySelectorAll('select[required]');
-  for ( i=0, n=requiredSelects.length; i < n; i++) {
-    const select = requiredSelects[i];
-    select.style['display'] = 'inline';
-    select.style['height'] = 0;
-    select.style['padding'] = 0;
-    select.style['width'] = 0;
-  }
+  // const requiredSelects = document.querySelectorAll('select[required]');
+  // for ( i=0, n=requiredSelects.length; i < n; i++) {
+  //   const select = requiredSelects[i];
+  //   select.style['display'] = 'inline';
+  //   select.style['height'] = 0;
+  //   select.style['padding'] = 0;
+  //   select.style['width'] = 0;
+  // }
 
   function removeElementsByClass(className){
     var elements = document.getElementsByClassName(className);
