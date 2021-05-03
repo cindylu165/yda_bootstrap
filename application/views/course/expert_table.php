@@ -25,7 +25,7 @@
         <a class="btn btn-info m-3" href="<?php echo site_url($url);?>">新增</a>
       </div>
       <div class="card-content">
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
           <thead class="thead-dark">
             <tr>
               <th scope="col">姓名</th>
