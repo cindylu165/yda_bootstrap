@@ -27,7 +27,7 @@
         </div>
       <?php endif;?>
       <div class="card-content">
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
           <thead class="thead-dark">
             <tr>
               <th scope="col">日期</th>

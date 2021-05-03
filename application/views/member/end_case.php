@@ -21,9 +21,9 @@
   <div class="row">
     <div class="col-md-12">
 
-     <div class="col-10 m-2">
+     <!-- <div class="col-10 m-2">
         <a class="btn btn-success" href="<?php echo site_url('/member/get_member_table_by_counselor'); ?>">←學員列表</a>
-      </div>
+      </div> -->
 
       <div class="row">
         <h4 class="text-dark text-center"><?php echo $title ?></h4>
@@ -41,7 +41,7 @@
           <?php else: ?>
             <h5 class="text-dark text-center">有尚未完成之表單(未完成無法結案)</h5>
 
-            <table class="table table-hover" style="border:2px grey solid;">
+            <table class="table table-hover text-center" style="border:2px grey solid;">
               <thead class="thead-dark">
                 <tr>
                   <?php if ($youthRate != '100'): ?>
@@ -220,7 +220,7 @@
           <h5 class="text-dark text-center">輔導情形(（系統自動統計時數，不需修改)</h5>
 
           <div class="col-10 m-2 mx-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead class="thead-dark">
                 <tr>
                   <th>項目</th>
@@ -256,7 +256,7 @@
           <h5 class="text-dark text-center">參與工作情形(（系統自動統計時數，不需修改)</h5>
 
           <div class="col-10 m-2 mx-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead class="thead-dark">
                 <tr>
                   <th></th>
@@ -283,7 +283,7 @@
           <h5 class="text-dark text-center">轉銜情形(（系統自動統計時數，不需修改)</h5>
 
           <div class="col-10 m-2 mx-auto">
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead class="thead-dark">
                 <tr>
                   <th>項目</th>

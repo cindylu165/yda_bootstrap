@@ -20,9 +20,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="col-10 m-2"> 
+      <!-- <div class="col-10 m-2"> 
         <a class="btn btn-success" href="<?php echo site_url('/member/get_member_table_by_counselor'); ?>">←學員列表</a>
-      </div>
+      </div> -->
       <div class="row">
         <h4 class="text-dark text-center"><?php echo $title ?></h4>
       </div>
