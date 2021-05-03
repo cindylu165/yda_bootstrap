@@ -37,7 +37,7 @@
           </div>
         </div>
 
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
           <thead class="thead-dark">
             <tr>
               <th scope="col">單元名稱</th>
@@ -47,15 +47,15 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach($groupCounselings as $i) { ?>
+            <?php foreach ($groupCounselings as $i) { ?>
               <tr>
                 <td><?php echo $i['title'];?></td>
                 <td><?php echo $i['start_time'];?></td>
-                <td><?php foreach($groupCounselingCompletions as $value) {
-                  if($i['no'] == $value['form_no']) {
+                <td><?php foreach ($groupCounselingCompletions as $value) {
+                  if ($i['no'] == $value['form_no']) {
                     echo $value['rate'] . '%';
                   }
-                }?>
+                } ?>
                 </td>
                 <td>
                   <a class="btn btn-info mx-2" href="<?php echo site_url('/member/group_counseling/' . $i['no']);?>">查看/修改</a>

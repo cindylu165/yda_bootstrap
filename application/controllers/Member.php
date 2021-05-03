@@ -176,6 +176,7 @@ class Member extends CI_Controller
             $beSentDataset = array(
                 'title' => '個別諮詢紀錄表',
                 'url' => '/member/individual_counseling/' . $memberNo . '/' . $no,
+                'memberNo' => $memberNo,
                 'role' => $current_role,
                 'memberSystemNo' => $memberSystemNo,
                 'memberName' => $memberName,
@@ -590,6 +591,7 @@ class Member extends CI_Controller
         $current_role = $passport['role'];
         $userTitle = $passport['userTitle'];
         $accept_role = array(6);
+
         if (in_array($current_role, $accept_role)) {
             $organization = $passport['organization'];
 
@@ -1132,6 +1134,7 @@ class Member extends CI_Controller
             $beSentDataset = array(
                 'title' => '當年度結案後月追蹤表單',
                 'url' => '/member/month_review/' . $member . '/' . $no,
+                'member' => $member,
                 'role' => $current_role,
                 'ways' => $ways,
                 'members' => $members,
@@ -1255,6 +1258,7 @@ class Member extends CI_Controller
             $beSentDataset = array(
                 'title' => '投保紀錄',
                 'url' => '/member/insurance/' . $member . '/' . $no,
+                'member' => $member,
                 'role' => $current_role,
                 'members' => $members,
                 'insurances' => $insurances,

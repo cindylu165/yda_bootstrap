@@ -10,7 +10,7 @@
         <a href="#">工作體驗(措施C)</a>
       </li>
       <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
-        <a href="<?php echo site_url('/work/get_work_attendance_table_by_organization'); ?>" <?php echo $url == '/work/get_work_attendance_table_by_organization' ? 'active' : ''; ?>>工作體驗時數清單(執行當日更新、每月自動統計報表數據)</a>
+        <a href="<?php echo site_url('/work/get_work_attendance_table_by_organization'); ?>" <?php echo $url == '/work/get_work_attendance_table_by_organization' ? 'active' : ''; ?>>工作體驗時數清單</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
     </ol>

@@ -435,7 +435,7 @@
 							<div class="row justify-content-center">
 								<div class="col-sm-10 col-md-8">
 									<label>審核</label>
-									<select class="form-select mb-3" name="reviewStatus">
+									<select class="form-select mb-3" name="reviewStatus" required>
 										<?php if ($reportProcessesYdaStatusArray[$i] == $reviewStatus['review_process_wait']) { ?>
 											<option disabled selected value>請選擇</option>
 											<?php }

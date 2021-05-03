@@ -151,7 +151,7 @@
             <div class="row">
               <div class="input-field col-10 m-2 mx-auto">
                 <label>審核</label>
-                <select name="reviewStatus">
+                <select name="reviewStatus" required>
                   <?php if ($reportProcessesYdaStatusArray[$i] == $reviewStatus['review_process_wait']) { ?>
                   <option disabled selected value>請選擇</option>
                   <?php }

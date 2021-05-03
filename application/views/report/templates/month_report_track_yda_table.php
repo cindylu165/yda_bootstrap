@@ -153,7 +153,7 @@
 
           <div class="row">
               <div class="input-field col s10 offset-m2 m8">
-                <select name="reviewStatus">
+                <select name="reviewStatus" required>
                   <?php if ($reportProcessesYdaStatusArray[$i] == $reviewStatus['review_process_wait']) {?>
                   <option disabled selected value>請選擇</option>
                   <?php }

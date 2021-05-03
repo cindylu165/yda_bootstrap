@@ -10,7 +10,7 @@
         <a href="#">工作體驗(措施C)</a>
       </li>
       <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
-        <a href="<?php echo site_url('/work/get_work_experience_table_by_organization'); ?>" <?php echo $url == '/work/get_work_experience_table_by_organization' ? 'active' : ''; ?>>工作體驗清單(今年度資料)</a>
+        <a href="<?php echo site_url('/work/get_work_experience_table_by_organization'); ?>" <?php echo $url == '/work/get_work_experience_table_by_organization' ? 'active' : ''; ?>>工作體驗清單</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
     </ol>
@@ -58,12 +58,6 @@
               <input required type="text" id="formStartTime" name="startTime" class="datetimepicker" value="<?php echo (empty($workExperiences)) ? "" : $workExperiences->start_time ?>">
               <label for="formStartTime">開始時間*</label>
             </div>
-          </div>
-
-          
-          <label for="formStartTime">開始時間*</label>
-          <div class="col col-lg-2" style="text-align:center">
-            <input id="formStartTime" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" class="form-control" value="<?php echo (empty($workExperiences)) ? "" : $workExperiences->start_time ?>">
           </div>
           
           <!-- endTime -->
