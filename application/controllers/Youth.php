@@ -681,7 +681,7 @@ class Youth extends CI_Controller
         $passport = $this->session->userdata('passport');
         $userTitle = $passport['userTitle'];
         $current_role = $passport['role'];
-        $accept_role = array(6);
+        $accept_role = array(3, 6);
 
         if (in_array($current_role, $accept_role)) {
             $county = $passport['county'];
@@ -693,9 +693,9 @@ class Youth extends CI_Controller
                 return show_404();
             }
             $trends = $this->MenuModel->get_by_form_and_column_order('seasonal_review', 'trend');
-           
+            $youths = $this->YouthModel->get_by_no($youthNo);
             $youthName = $youths->name;
-            $counselor = $passport['counselor'];
+            $counselor = $passport['counselor'] ? $passport['counselor'] : $county;
             $project = $this->ProjectModel->get_latest_by_county($county)->no;
             $isCounselingMember = $this->MemberModel->is_member_exist($youthNo, $project);
 
