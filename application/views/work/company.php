@@ -10,7 +10,7 @@
         <a href="#">工作體驗(措施C)</a>
       </li>
       <li class="breadcrumb-item active" style="color:blue;" aria-current="page">
-        <a href="<?php echo site_url('/work/get_company_table_by_organization'); ?>" <?php echo $url == '/work/get_company_table_by_organization' ? 'active' : ''; ?>>店家參考清單(歷年資料)</a>
+        <a href="<?php echo site_url('/work/get_company_table_by_organization'); ?>" <?php echo $url == '/work/get_company_table_by_organization' ? 'active' : ''; ?>>店家參考清單</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page"><?php echo $title;?></li>
     </ol>
@@ -107,7 +107,7 @@
           </div>
          
           <div class="d-grid gap-2 col-2 mx-auto">
-            <button class="btn btn-primary m-3" type="submit">送出</button>
+            <button class="btn btn-primary my-5" type="submit">送出</button>
           </div>
         </form>
       </div>
