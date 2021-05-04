@@ -120,6 +120,7 @@
 
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
+  $('.datepickerTW').datepickerTW();
   const elementRelation = new ElementBinder();
   $('#member').change(function() {
     var conceptName = $('#member').find(":selected").val();
