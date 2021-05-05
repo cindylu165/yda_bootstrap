@@ -36,9 +36,10 @@
 
           <!-- date -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formDate" name="date" required class="datetimepicker" value="<?php echo (empty($monthReviews)) ? "" : $monthReviews->date ?>">
+            <div class="col-10 m-2 mx-auto">
               <label for="formDate">追蹤日期*</label>
+              <input class="form-control datepickerTW" type="text" id="formDate" name="date"
+              value="<?php echo (empty($monthReviews)) ? "" : $monthReviews->date ?>">
             </div>
           </div>
 
@@ -87,6 +88,8 @@
 
 <script type="text/javascript" src="<?php echo site_url();?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
+  $('.datepickerTW').datepickerTW();
+
   const elementRelation = new ElementBinder();
 
 </script>

@@ -38,17 +38,19 @@
 
           <!-- startTime -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formStartTime" name="startTime" required class="datetimepicker"  value="<?php echo (empty($groupCounselings)) ? "" : $groupCounselings->start_time ?>">
+            <div class="col-10 m-2 mx-auto">
               <label for="formStartTime">開始時間*</label>
+              <input class="form-control datepickerTW" type="text" id="formStartTime" name="startTime"
+              value="<?php echo (empty($groupCounselings)) ? "" : $groupCounselings->start_time ?>">
             </div>
           </div>
 
           <!-- endTime -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input type="text" id="formEndTime" name="endTime" required class="datetimepicker" value="<?php echo (empty($groupCounselings)) ? "" : $groupCounselings->end_time ?>">
+            <div class="col-10 m-2 mx-auto">
               <label for="formEndTime">結束時間*</label>
+              <input class="form-control datepickerTW" type="text" id="formEndTime" name="endTime"
+              value="<?php echo (empty($groupCounselings)) ? "" : $groupCounselings->end_time ?>">
             </div>
           </div>
 
@@ -181,6 +183,8 @@
 
 <script type="text/javascript" src="<?php echo site_url();?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
+  $('.datepickerTW').datepickerTW();
+
   const elementRelation = new ElementBinder();
   elementRelation.selectInput('serviceTarget', 'serviceTargetOther', '其他');
 

@@ -104,18 +104,12 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <label for="formInterviewDate">初談日期</label>
-            </div>
-          </div>
-
-
           <!-- interviewDate -->
           <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input readonly type="text" id="formInterviewDate" name="interviewDate" class="datepicker" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($caseAssessments)) ? "" : $caseAssessments->interview_date ?>">
-              <label for="formInterviewDate"></label>
+            <div class="col-10 m-2 mx-auto">
+              <label for="formInterviewDate">初談日期</label>
+              <input class="form-control datepickerTW" type="text" id="formInterviewDate" name="interviewDate"
+              <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($caseAssessments)) ? "" : $caseAssessments->interview_date ?>">
             </div>
           </div>
 
@@ -569,6 +563,8 @@
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
   const elementRelation = new ElementBinder();
+  $('.datepickerTW').datepickerTW();
+
   // elementRelation.selectInput('trend', 'workDescription', '已就業');
   // elementRelation.selectInput('trend', 'isOriginCompany', '已就業');
   // elementRelation.selectInput('trend', 'schoolDescription', '已就學(全職學生)');

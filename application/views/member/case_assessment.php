@@ -90,32 +90,11 @@
           <!-- interviewDate -->
           <div class="row">
             <div class="col-10 m-2 mx-auto">
-              <label for="formInterviewDate" class="form-label">初談日期</label>
-              <input date-provide="datepicker" class="form-control" data-date-format="yyyy-mm-dd" type="text" id="formInterviewDate" name="interviewDate" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($caseAssessments)) ? "" : $caseAssessments->interview_date ?>">
+              <label for="formInterviewDate">初談日期</label>
+              <input class="form-control datepickerTW" type="text" id="formInterviewDate" name="interviewDate"
+              <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($caseAssessments)) ? "" : $caseAssessments->interview_date ?>">
             </div>
           </div>
-  
-          <!-- <div class="input-group date" data-provide="datepicker">
-            <div class="col-10 m-2 mx-auto">
-              <label for="formInterviewDate" class="form-label">初談日期</label>
-              <input type="text" class="form-control" id="formInterviewDate" name="interviewDate" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> >
-            </div>
-            <div class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </div>
-          </div>
-
-          <div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="yyyy-mm-dd">
-            <input class="span2" size="16" type="text">
-            <span class="add-on"><i class="icon-th"></i></span>
-          </div>  -->
-
-          <script>
-            $('#formInterviewDate').datetimepicker();
-          </script>
-
-          
-
 
           <!-- interviewWay -->
           <div class="col-10 m-2 mx-auto">
@@ -738,6 +717,8 @@
 
 <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
+  $('.datepickerTW').datepickerTW();
+
   const elementRelation = new ElementBinder();
   elementRelation.selectInput('interviewWay', 'interviewPlace', '面訪');
   elementRelation.selectInput('source', 'sourceOther', '其他');

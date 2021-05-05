@@ -35,18 +35,20 @@
           <h6 class="text-center">案號: <?php echo $members->system_no; ?></h6>
 
          <!-- insuranceStartDate -->
-         <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input required type="text" id="formStartDate" name="start_date" class="datepicker" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($insurances)) ? "" : $insurances->start_date ?>">
+          <div class="row">
+            <div class="col-10 m-2 mx-auto">
               <label for="formStartDate">保險開始時間*</label>
+              <input class="form-control datepickerTW" type="text" id="formStartDate" name="start_date"
+              <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($insurances)) ? "" : $insurances->start_date ?>">
             </div>
           </div>
 
          <!-- insuranceEndDate -->
-         <div class="row">
-            <div class="input-field col s10 offset-m2 m8">
-              <input required type="text" id="formEndDate" name="end_date" class="datepicker" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($insurances)) ? "" : $insurances->end_date ?>">
+          <div class="row">
+            <div class="col-10 m-2 mx-auto">
               <label for="formEndDate">保險結束時間*</label>
+              <input class="form-control datepickerTW" type="text" id="formEndDate" name="end_date"
+              <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?> value="<?php echo (empty($insurances)) ? "" : $insurances->end_date ?>">
             </div>
           </div>
 
@@ -73,6 +75,8 @@
 
 <script type="text/javascript" src="<?php echo site_url();?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
+  $('.datepickerTW').datepickerTW();
+
   const elementRelation = new ElementBinder();
 
 </script>
