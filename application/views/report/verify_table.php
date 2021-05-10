@@ -3,9 +3,9 @@
   <div class="row">
     <div class="col-md-12">
 
-      <div class="col-10 m-2"> 
+      <!-- <div class="col-10 m-2"> 
         <a class="btn btn-success" style="margin:10px;" href="<?php echo site_url('/youth/get_all_youth_table'); ?>">←需關懷追蹤青少年清單</a>
-      </div>
+      </div> -->
 
       <div class="row">
         <h4 class="text-dark text-center"><?php echo $title ?></h4>
@@ -42,7 +42,7 @@
                   } ?></td>
                    <td><?php echo $i['trend_description'];?></td>
                   <td>
-                    <a class="btn btn-info mx-2" href="<?php echo site_url('youth/seasonal_review/'.$i['youth'].'/'.$i['no']);?>">查看/修改</a>                         
+                    <a class="btn btn-info mx-2" href="<?php echo site_url('youth/seasonal_review/'.$i['youth'].'/'.$i['no']);?>">查看/修改</a>
                   </td>
                 </tr>
               <?php } ?>
@@ -74,7 +74,7 @@
                         }?></td>
                         <td><?php echo $i['trend_description'];?></td>
                         <td>
-                          <a class="btn btn-info mx-2" href="<?php echo site_url('report/month_member_temp_counseling/' . $yearType . '/' . $monthType);?>">查看/修改</a>                         
+                          <a class="btn btn-info mx-2" href="<?php echo site_url('report/month_member_temp_counseling/' . $yearType . '/' . $monthType);?>">查看/修改</a>
                         </td>
                       </tr>
               <?php } ?>
@@ -239,7 +239,7 @@
                     <td><?php echo $i['youthName'];?></td>
                     <td><?php echo $i['sum'];?></td>
                     <td>
-                      <a class="btn btn-info mx-2" href="<?php echo site_url('work/get_work_attendance_table_by_member/' . $i['memberNo']. '/' . $yearType);?>">查看</a>   
+                      <a class="btn btn-info mx-2" href="<?php echo site_url('work/get_work_attendance_table_by_member/' . $i['memberNo']. '/' . $yearType);?>">查看</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -277,7 +277,7 @@
                   }?></td>
                    <td><?php echo $i['trend_description'];?></td>
                   <td>
-                    <a class="btn btn-info mx-2" href="<?php echo site_url('youth/seasonal_review/'.$i['youth'].'/'.$i['no']);?>">查看/修改</a>                         
+                    <a class="btn btn-info mx-2" href="<?php echo site_url('youth/seasonal_review/'.$i['youth'].'/'.$i['no']);?>">查看/修改</a>
                   </td>
                 </tr>
               <?php } ?>
@@ -287,7 +287,6 @@
         <?php endif; ?>
          
       </div>
-      
     </div>
   </div>
 </div>

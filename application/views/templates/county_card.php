@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="dashboard_card">
       <h3 class="card-title">縣市聯絡表</h3>
-      <table class="table table-hover">
+      <table class="table table-hover text-center">
         <thead class="thead-dark">
           <tr>
             <th scope="col">縣市</th>

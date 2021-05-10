@@ -88,6 +88,7 @@
         } ?>
 
         <a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'surveyTypeHighSchoolTrack' . '/' . $yearType . '/' . $monthType); ?>"><?php echo $title?>表列印(下載EXCEL檔)</a>
+        <a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'surveyTypeHighSchoolTrack' . '/' . $yearType . '/' . $monthType . '/ods'); ?>"><?php echo $title?>表列印(下載ODS檔)</a>
         <br/><br/>
 
         <h5 class="text-center"><?php echo $yearType . '第' . $monthType / 3 . '季追蹤' ?></h5>
@@ -110,13 +111,13 @@
             </tr>
           </thead>
           
-          <?php foreach($reportLogsArray[$i] as $value){ ?>
+          <?php foreach ($reportLogsArray[$i] as $value) { ?>
             <tbody>
               <tr>
                 <td><?php echo $value['userName'] ?></php></td>
                 <td><?php echo $value['time'] ?></php></td>
-                <td><?php foreach($processReviewStatuses as $i) {
-                  if($i['no'] == $value['review_status']) {
+                <td><?php foreach ($processReviewStatuses as $i) {
+                  if ($i['no'] == $value['review_status']) {
                     echo $i['content'];
                   }
                 } ?></php></td>
@@ -144,8 +145,8 @@
                     <img class="img-fluid"
                       src="<?php echo site_url() . '/files/' . $twoYearsTrendSurveyCountReportArray[$i]->report_file_name; ?>" />
                   </div>
-                <?php endif;?>
-              <?php endif;?>
+                <?php endif; ?>
+              <?php endif; ?>
             </div>
 
             <div class="row">
@@ -237,11 +238,10 @@
           var row = [], cols = rows[i].querySelectorAll("td, th");
           if(i%2 != 0 || i == 0){
             for (var j = 0; j < cols.length; j++) 
-                
+
                 row.push(cols[j].innerText);
-            csv.push(row.join(","));        
+            csv.push(row.join(","));
           }
-                
     }
     // Download CSV file
     downloadCSV(csv.join("\n"), filename);

@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/new_header');?>
+<?php $this->load->view('templates/new_header'); ?>
 <div class="container">
   <div class="row all_center">
     <div class="col-md-12">
