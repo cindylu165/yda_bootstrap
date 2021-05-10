@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/new_header');?>
+<?php $this->load->view('templates/new_header'); ?>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -39,11 +39,11 @@
 	                <a class="btn btn-warning" href="<?php echo site_url('messager/delete?no=' . $i['no']); ?>">刪除</a>
                 </td>
               </tr>
-            <?php }?>
+            <?php } ?>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
-<?php $this->load->view('templates/new_footer');?>
+<?php $this->load->view('templates/new_footer'); ?>

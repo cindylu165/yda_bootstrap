@@ -9,7 +9,7 @@
             <tr>
               <th scope="col">編號</th>
               <th scope="col">身分證</th>
-              <th scope="col">姓名</th>      
+              <th scope="col">姓名</th>
               <th scope="col">輔導會談</th>
               <th scope="col">個別諮詢</th>
               <th scope="col">團體輔導</th>

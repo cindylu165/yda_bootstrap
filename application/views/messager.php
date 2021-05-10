@@ -128,6 +128,7 @@
               <button class="btn btn-primary my-5" type="submit">送出</button>
             </div>
           </div>
+
         </form>
       </div>
     </div>
