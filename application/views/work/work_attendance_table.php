@@ -42,21 +42,19 @@
         <table class="table table-hover text-center">
           <thead class="thead-dark">
             <tr>
-            <th scope="col">店家名稱</th>
-              <th scope="col">時間</th>
               <th scope="col">參與學員</th>
+              <th scope="col">總時數</th>
               <th scope="col">要項</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach($workAttendances as $i) { ?>
               <tr>
-              <td><?php echo $i['name'];?></td>
-                <td><?php echo $i['start_time'];?></td>
                 <td><?php echo $i['youthName'];?></td>
+                <td><?php echo $i['sum'];?></td>
                 <td>
-                  <a class="btn btn-info mx-2" href="<?php echo site_url($url .$i['work_experience'] . '/' .$i['no']);?>">查看/修改</a>
-                  <a class="btn btn-warning" href="<?php echo site_url('work/delete_work_attendance_table?no=' . $i['no']); ?>">刪除</a>
+                  <a class="btn waves-effect blue lighten-1" href="<?php echo site_url('work/get_work_attendance_table_by_member/' . $i['memberNo']. '/' . $yearType);?>">查看</a>
+                  <!-- <a class="btn btn-warning" href="<?php echo site_url('work/delete_work_attendance_table?no=' . $i['no']); ?>">刪除</a> -->
                 </td>
               </tr>
             <?php } ?>

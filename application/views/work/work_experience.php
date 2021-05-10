@@ -73,6 +73,7 @@
           <div class="d-grid gap-2 col-2 mx-auto">
             <button class="btn btn-primary m-3" type="submit">送出</button>
           </div>
+
         </form>
       </div>
     </div>

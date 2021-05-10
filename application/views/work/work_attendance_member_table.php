@@ -2,8 +2,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+
+      <!-- <div class="col-10 m-2"> 
+        <a class="btn btn-success" href="<?php echo site_url('/work/get_work_attendance_table_by_organization'); ?>">←工作時數列表</a>
+      </div> -->
+
       <h4 class="text-dark text-center"><?php echo $title ?></h4>
-      <?php if($hasDelegation != '0' && $canInsert != '0'): ?>
+      <?php if ($hasDelegation != '0' && $canInsert != '0'): ?>
 
         <div class="d-grid gap-2 col-2 mx-auto">
           <a class="btn btn-info m-3" href="<?php echo site_url($url);?>">新增</a>
