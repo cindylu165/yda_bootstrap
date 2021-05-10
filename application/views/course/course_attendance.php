@@ -186,7 +186,6 @@
     $("#formDuration").val(totalHours);
   }
 
-
 </script>
 
 <?php $this->load->view('templates/new_footer');?>

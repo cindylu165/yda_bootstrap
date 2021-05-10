@@ -88,6 +88,10 @@ $fixedFooter = '';
 <script type="text/javascript" src="<?php echo site_url(); ?>/assets/js/general.js"></script>
 <!-- <script type="text/javascript" src="<?php echo site_url(); ?>/assets/js/datepicker.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<!-- <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
