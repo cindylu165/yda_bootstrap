@@ -1,4 +1,5 @@
 <?php $this->load->view('templates/new_header'); ?>
+
 <div class="breadcrumb-div">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -15,6 +16,7 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container" style="width:100%;">
 	<div class="row">
 		<div class="card-body col-sm-12">
@@ -24,6 +26,7 @@
 				</div>
 			</div> -->
 			<h4 class="card-title text-center"><?php echo $title ?></h4>
+      <h6 class="card-title text-center"><?php echo '民國'  . $yearType . '年' . $monthType . '月'; ?></h6>
 
 			<div class="card-content">
 
@@ -138,9 +141,14 @@
 					</div>
 			</div>
 
+
+      <div>
+        <h5 class="text-center">備註</h5>
+      </div>
+
 			<div class="row justify-content-center">
 				<div class="col-sm-10 col-md-8 mb-3">
-					<label for="meeting_count_note" class="form-label">備註</label>
+					<label for="meeting_count_note" class="form-label">備註*</label>
 					<textarea required readonly class="form-control" id="meeting_count_note" name="meeting_count_note" style="height: 100px" <?php echo ($get_inserted_meeting_count_data) ? '' : '' ?>><?php echo (empty($get_inserted_meeting_count_data)) ? $planningNoteDetail . "\n" . $actualNoteDetail : (($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? $planningNoteDetail . "\n" . $actualNoteDetail : $get_inserted_meeting_count_data->meeting_count_note); ?></textarea>
 				</div>
 			</div>
@@ -207,6 +215,11 @@
 			<button class="btn btn-primary" name="save" value="Save" type="submit">送出</button>
 		</div>
 	</div>
+
+  <?php else : ?>
+
+    <a class="btn btn-info my-3" href="<?php echo site_url('report/counseling_meeting_count_report_table/' . $yearType . '/' . $monthType); ?>">預覽縣市承辦人端</a>
+    <br/><br/>
 
 <?php endif; ?>
 </form>

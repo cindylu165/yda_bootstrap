@@ -1,4 +1,5 @@
 <?php $this->load->view('templates/new_header'); ?>
+
 <div class="breadcrumb-div">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -12,6 +13,7 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container" style="width:90%;">
   <div class="row">
     <div class="card-body col-sm-12">
@@ -83,10 +85,25 @@
           </div>
         <?php } ?>
 
+        <?php if($reportType == 'reportOneRealTime') {?>
+          <h4>輔導與關懷追蹤統計表</h4>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'reportOneRealTime' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'reportOneRealTime' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
+          <?php $this->load->view('report/templates/real_time_report_one');?>
+        <?php }?>
+
+        <?php if($reportType == 'reportTwoRealTime') {?>
+          <h4>關懷追蹤青少年動向調查追蹤表(108國中與109高中)</h4>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'reportTwoRealTime' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'reportTwoRealTime' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
+          <?php $this->load->view('report/templates/real_time_report_two');?>
+        <?php }?>
+
         <?php if ($reportType == 'countyDelegateOrganization' || $reportType == 'all') { ?>
           <h4><?php echo $yearType ?>年縣市計畫資訊</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.countyDelegateOrganization', '各縣市各年度計畫清單.csv')">下載excel檔</a><br/><br/> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'countyDelegateOrganization' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'countyDelegateOrganization' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'countyDelegateOrganization' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="countyDelegateOrganization table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -117,7 +134,7 @@
                   <td><?php echo $i['organizationAddress']; ?></td>
                   <td><?php foreach ($executeModes as $value) {
                         if ($value['no'] == $i['executeMode']) {
-                          echo $value['content'];
+                          echo empty($value['content']) ? '自辦' : substr($value['content'], 0, 9);
                         }
                       } ?></td>
                   <td><?php foreach ($executeWays as $value) {
@@ -142,7 +159,8 @@
         <?php if ($reportType == 'memberCounseling' || $reportType == 'all') { ?>
           <h4>學員輔導清單</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.memberCounseling', '學員輔導清單.csv')">下載excel檔</a><br/><br/> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'memberCounseling' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'memberCounseling' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'memberCounseling' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="memberCounseling table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -179,7 +197,7 @@
             <thead>
               <tr>
                 <th scope="col" rowspan="2">縣市 / 類別</th>
-                <th scope="col" rowspan="2">青少年總人數</th>
+                <!-- <th scope="col" rowspan="2">青少年總人數</th> -->
                 <th scope="col" rowspan="2">學員總人數</th>
                 <th scope="col" colspan="2">關懷追蹤</th>
                 <th scope="col" colspan="2">措施A總計時數</th>
@@ -199,7 +217,7 @@
               <?php foreach ($counselEffectionCounts as $i) { ?>
                 <tr>
                   <td rowspan="2"><?php echo $i['name']; ?></td>
-                  <td rowspan="2"><?php echo $i['schoolSourceCount'] + $i['highSourceCount'] + count($trendMemberArray); ?></td>
+                  <!-- <td rowspan="2"><?php echo $i['schoolSourceCount'] + $i['highSourceCount'] + count($trendMemberArray); ?></td> -->
                   <td rowspan="2"><?php echo $i['memberCount']; ?></td>
                   <td colspan="2"><?php echo $i['seasonalReviewCount'] + $i['monthReviewCount']; ?></td>
                   <td colspan="2"><?php echo $i['individualCounselingCount'] + $i['groupCounselingCount']; ?></td>
@@ -221,7 +239,8 @@
         <?php if ($reportType == 'counselEffectionIndividual' || $reportType == 'all') { ?>
           <h4>個別輔導時數統計表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.counselEffectionIndividual', '個別輔導時數統計表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionIndividual' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionIndividual' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionIndividual' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="counselEffectionIndividual table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -276,7 +295,9 @@
         <?php if ($reportType == 'counselEffectionGroup' || $reportType == 'all') { ?>
           <h4>團體輔導時數統計表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.counselEffectionGroup', '團體輔導時數統計表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionGroup' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionGroup' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionGroup' . '/' . $yearType . '/ods'); ?>">下載ods檔</a>
+          <br /><br />
           <table class="counselEffectionGroup table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -316,7 +337,8 @@
         <?php if ($reportType == 'counselEffectionCourse' || $reportType == 'all') { ?>
           <h4>生涯探索課程或活動時數統計表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.counselEffectionCourse', '生涯探索課程或活動時數統計表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionCourse' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionCourse' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionCourse' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="counselEffectionCourse table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -346,7 +368,8 @@
         <?php if ($reportType == 'counselEffectionWork' || $reportType == 'all') { ?>
           <h4>工作體驗時數統計表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.counselEffectionWork', '工作體驗時數統計表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionWork' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionWork' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionWork' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="counselEffectionWork table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -411,14 +434,15 @@
 
           <h4>跨局處會議及預防性講座統計表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.counselEffectionMeeting', '跨局處會議及預防性講座統計表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionMeeting' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionMeeting' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'counselEffectionMeeting' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="counselEffectionMeeting table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
                 <th scope="col">縣市</th>
                 <th scope="col">跨局處會議</th>
                 <th scope="col">預防性講座</th>
-                <th scope="col">跨局處會議及預防性講座總次數</th>
+                <!-- <th scope="col">跨局處會議及預防性講座總次數</th> -->
             </thead>
             <tbody>
               <?php foreach ($counselEffectionMeeting as $i) { ?>
@@ -426,7 +450,7 @@
                   <td><?php echo $i ? $i['name'] : null ?></td>
                   <td><?php echo $i ? $i['meetingCount'] : null ?></td>
                   <td><?php echo $i ? $i['activityCount'] : null ?></td>
-                  <td><?php echo $i ? $i['meetingCount'] + $i['activityCount'] : null ?></td>
+                  <!-- <td><?php echo $i ? $i['meetingCount'] + $i['activityCount'] : null ?></td> -->
                 </tr>
               <?php } ?>
             </tbody>
@@ -437,68 +461,17 @@
         <?php if ($reportType == 'surveyTypeOldCaseTrack' || $reportType == 'all') { ?>
           <h4>前一年度開案後動向調查追蹤表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeOldCaseTrack', '前一年度開案後動向調查追蹤表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOldCaseTrack' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
-          <table class="surveyTypeOldCaseTrack table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
-            <thead>
-              <tr>
-                <th scope="col">縣市</th>
-                <th scope="col">1.已就業</th>
-                <th scope="col">2.已就學</th>
-                <th scope="col">3.特教生</th>
-                <th scope="col">4.準備升學</th>
-                <th scope="col">5.準備或正在找工作</th>
-                <th scope="col">6.參加職訓</th>
-                <th scope="col">7.家務勞動</th>
-                <th scope="col">8.健康因素</th>
-                <th scope="col">9.尚未規劃</th>
-                <th scope="col">10.失聯</th>
-                <th scope="col">11.其他(非不可抗力)</th>
-                <th scope="col">12.其他(不可抗力)</th>
-                <th scope="col">A.動向調查學生數</th>
-                <th scope="col">B.未升學未就業人數(4-12)</th>
-                <th scope="col">C.需政府關懷追蹤後，適時介入輔導人數(4-11)</th>
-                <th scope="col" style="width:30%;">備註</th>
-            </thead>
-            <tbody></tbody>
-            <?php $count = 0; ?>
-            <?php foreach ($surveyTypeOldCaseTrack as $i) { ?>
-              <tr>
-                <td><?php echo $i ? $i['name'] : null ?></td>
-                <td><?php echo $i ? $i['already_working'] : null ?></td>
-                <td><?php echo $i ? $i['already_attending_school'] : null ?></td>
-                <td><?php echo $i ? $i['special_education_student'] : null ?></td>
-                <td><?php echo $i ? $i['prepare_to_school'] : null ?></td>
-                <td><?php echo $i ? $i['prepare_to_work'] : null ?></td>
-                <td><?php echo $i ? $i['training'] : null ?></td>
-                <td><?php echo $i ? $i['family_labor'] : null ?></td>
-                <td><?php echo $i ? $i['health'] : null ?></td>
-                <td><?php echo $i ? $i['no_plan'] : null ?></td>
-                <td><?php echo $i ? $i['lost_contact'] : null ?></td>
-
-                <td><?php echo $i ? $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                      + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                      + $i['other'] : null ?></td>
-                <td><?php echo $i ? $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                <td><?php echo $i ? $i['youthCount'] : null ?></td>
-                <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                      + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                      + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy'] + $i['other'] + $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                      + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                      + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                      + $i['other'] : null ?></td>
-                <td style="text-align:left"><?php echo str_replace("\n", "<br/>", $noteDetailOldCase); ?></td>
-                <?php $count += 1; ?>
-              </tr>
-            <?php } ?>
-            </tbody>
-          </table>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOldCaseTrack' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOldCaseTrack' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
+          
+          <?php $this->load->view('report/templates/report_track_table');?>
         <?php } ?>
 
         <?php if ($reportType == 'surveyTypeTwoYears' || $reportType == 'all') { ?>
           <h4><?php echo $yearType - 4 ?>學年度國中畢業未升學未就業青少年動向調查表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeTwoYears', '<?php echo $yearType - 4 ?>學年度國中畢業未升學未就業青少年動向調查表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeTwoYears' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeTwoYears' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeTwoYears' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="surveyTypeTwoYears table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -553,7 +526,8 @@
         <?php if ($reportType == 'surveyTypeOneYears' || $reportType == 'all') { ?>
           <h4><?php echo $yearType - 3 ?>學年度國中畢業未升學未就業青少年動向調查表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeOneYears', '<?php echo $yearType - 3 ?>學年度國中畢業未升學未就業青少年動向調查表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOneYears' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOneYears' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOneYears' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="surveyTypeOneYears table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -608,7 +582,8 @@
         <?php if ($reportType == 'surveyTypeNowYears' || $reportType == 'all') { ?>
           <h4><?php echo $yearType - 2 ?>學年度國中畢業未升學未就業青少年動向調查表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeNowYears', '<?php echo $yearType - 2 ?>學年度國中畢業未升學未就業青少年動向調查表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeNowYears' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeNowYears' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeNowYears' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
           <table class="surveyTypeNowYears table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
             <thead>
               <tr>
@@ -663,248 +638,43 @@
         <?php if ($reportType == 'surveyTypeHighSchoolTrack' || $reportType == 'all') { ?>
           <h4>109學年度高中已錄取未註冊青少年動向調查追蹤表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeHighSchoolTrack', '109年度高中已錄取未註冊青少年動向調查追蹤表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeHighSchoolTrack' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
-          <table class="surveyTypeHighSchoolTrack table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
-            <thead>
-              <tr>
-                <th scope="col">縣市</th>
-                <th scope="col">1.已就業</th>
-                <th scope="col">2.已就學</th>
-                <th scope="col">3.特教生</th>
-                <th scope="col">4.準備升學</th>
-                <th scope="col">5.準備或正在找工作</th>
-                <th scope="col">6.參加職訓</th>
-                <th scope="col">7.家務勞動</th>
-                <th scope="col">8.健康因素</th>
-                <th scope="col">9.尚未規劃</th>
-                <th scope="col">10.失聯</th>
-                <th scope="col">11.其他(非不可抗力)</th>
-                <th scope="col">12.其他(不可抗力)</th>
-                <th scope="col">A.動向調查學生數</th>
-                <th scope="col">B.未升學未就業人數(4-12)</th>
-                <th scope="col">C.需政府關懷追蹤後，適時介入輔導人數(4-11)</th>
-                <th scope="col" style="width:30%;">備註</th>
-            </thead>
-            <tbody>
-              <?php $count = 0; ?>
-              <?php foreach ($surveyTypeHighSchoolTrack as $i) { ?>
-                <tr>
-                  <td><?php echo $i ? $i['name'] : null ?></td>
-                  <td><?php echo $i ? $i['already_working'] : null ?></td>
-                  <td><?php echo $i ? $i['already_attending_school'] : null ?></td>
-                  <td><?php echo $i ? $i['special_education_student'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_work'] : null ?></td>
-                  <td><?php echo $i ? $i['training'] : null ?></td>
-                  <td><?php echo $i ? $i['family_labor'] : null ?></td>
-                  <td><?php echo $i ? $i['health'] : null ?></td>
-                  <td><?php echo $i ? $i['no_plan'] : null ?></td>
-                  <td><?php echo $i ? $i['lost_contact'] : null ?></td>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeHighSchoolTrack' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeHighSchoolTrack' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
+          
+          <?php $this->load->view('report/templates/report_track_table');?>
 
-                  <td><?php echo $i ? $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-                  <td><?php echo $i ? $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['youthCount'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy'] + $i['other'] + $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-                  <td style="text-align:left"><?php echo str_replace("\n", "<br/>", $noteDetailHighSchool); ?></td>
-                  <?php $count += 1; ?>
-                </tr>
-              <?php } ?>
-            </tbody>
-          </table>
         <?php } ?>
 
 
         <?php if ($reportType == 'surveyTypeTwoYearsTrack' || $reportType == 'all') { ?>
           <h4><?php echo $yearType - 4 ?>學年度國中畢業未升學未就業青少年動向調查追蹤表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeTwoYearsTrack', '<?php echo $yearType - 4 ?>學年度國中畢業未升學未就業青少年動向調查追蹤表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeTwoYearsTrack' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
-          <table class="surveyTypeTwoYearsTrack table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
-            <thead>
-              <tr>
-                <th scope="col">縣市</th>
-                <th scope="col">1.已就業</th>
-                <th scope="col">2.已就學</th>
-                <th scope="col">3.特教生</th>
-                <th scope="col">4.準備升學</th>
-                <th scope="col">5.準備或正在找工作</th>
-                <th scope="col">6.參加職訓</th>
-                <th scope="col">7.家務勞動</th>
-                <th scope="col">8.健康因素</th>
-                <th scope="col">9.尚未規劃</th>
-                <th scope="col">10.失聯</th>
-                <th scope="col">11.其他(非不可抗力)</th>
-                <th scope="col">12.其他(不可抗力)</th>
-                <th scope="col">A.動向調查學生數</th>
-                <th scope="col">B.未升學未就業人數(4-12)</th>
-                <th scope="col">C.需政府關懷追蹤後，適時介入輔導人數(4-11)</th>
-                <th scope="col" style="width:30%;">備註</th>
-            </thead>
-            <tbody>
-              <?php $count = 0; ?>
-              <?php foreach ($surveyTypeTwoYearsTrack as $i) { ?>
-                <tr>
-                  <td><?php echo $i ? $i['name'] : null ?></td>
-                  <td><?php echo $i ? $i['already_working'] : null ?></td>
-                  <td><?php echo $i ? $i['already_attending_school'] : null ?></td>
-                  <td><?php echo $i ? $i['special_education_student'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_work'] : null ?></td>
-                  <td><?php echo $i ? $i['training'] : null ?></td>
-                  <td><?php echo $i ? $i['family_labor'] : null ?></td>
-                  <td><?php echo $i ? $i['health'] : null ?></td>
-                  <td><?php echo $i ? $i['no_plan'] : null ?></td>
-                  <td><?php echo $i ? $i['lost_contact'] : null ?></td>
-
-                  <td><?php echo $i ? $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-                  <td><?php echo $i ? $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['youthCount'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy'] + $i['other'] + $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-
-                  <td style="text-align:left"><?php echo str_replace("\n", "<br/>", $noteDetailTwoYear); ?></td>
-                  <?php $count += 1; ?>
-                </tr>
-              <?php } ?>
-            </tbody>
-          </table>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeTwoYearsTrack' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeTwoYearsTrack' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
+          
+          <?php $this->load->view('report/templates/report_track_table');?>
+          
         <?php } ?>
 
         <?php if ($reportType == 'surveyTypeOneYearsTrack' || $reportType == 'all') { ?>
           <h4><?php echo $yearType - 3 ?>學年度國中畢業未升學未就業青少年動向調查追蹤表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeOneYearsTrack', '<?php echo $yearType - 3 ?>學年度國中畢業未升學未就業青少年動向調查追蹤表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOneYearsTrack' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
-          <table class="surveyTypeOneYearsTrack table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
-            <thead>
-              <tr>
-                <th scope="col">縣市</th>
-                <th scope="col">1.已就業</th>
-                <th scope="col">2.已就學</th>
-                <th scope="col">3.特教生</th>
-                <th scope="col">4.準備升學</th>
-                <th scope="col">5.準備或正在找工作</th>
-                <th scope="col">6.參加職訓</th>
-                <th scope="col">7.家務勞動</th>
-                <th scope="col">8.健康因素</th>
-                <th scope="col">9.尚未規劃</th>
-                <th scope="col">10.失聯</th>
-                <th scope="col">11.其他(非不可抗力)</th>
-                <th scope="col">12.其他(不可抗力)</th>
-                <th scope="col">A.動向調查學生數</th>
-                <th scope="col">B.未升學未就業人數(4-12)</th>
-                <th scope="col">C.需政府關懷追蹤後，適時介入輔導人數(4-11)</th>
-                <th scope="col" style="width:30%;">備註</th>
-            </thead>
-            <tbody>
-              <?php $count = 0; ?>
-              <?php foreach ($surveyTypeOneYearsTrack as $i) { ?>
-                <tr>
-                  <td><?php echo $i ? $i['name'] : null ?></td>
-                  <td><?php echo $i ? $i['already_working'] : null ?></td>
-                  <td><?php echo $i ? $i['already_attending_school'] : null ?></td>
-                  <td><?php echo $i ? $i['special_education_student'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_work'] : null ?></td>
-                  <td><?php echo $i ? $i['training'] : null ?></td>
-                  <td><?php echo $i ? $i['family_labor'] : null ?></td>
-                  <td><?php echo $i ? $i['health'] : null ?></td>
-                  <td><?php echo $i ? $i['no_plan'] : null ?></td>
-                  <td><?php echo $i ? $i['lost_contact'] : null ?></td>
-
-                  <td><?php echo $i ? $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-                  <td><?php echo $i ? $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['youthCount'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy'] + $i['other'] + $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-                  <td style="text-align:left"><?php echo str_replace("\n", "<br/>", $noteDetailOneYear); ?></td>
-                  <?php $count += 1; ?>
-                </tr>
-              <?php } ?>
-            </tbody>
-          </table>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOneYearsTrack' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeOneYearsTrack' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
+          
+          <?php $this->load->view('report/templates/report_track_table');?>
+          
         <?php } ?>
 
 
         <?php if ($reportType == 'surveyTypeNowYearsTrack' || $reportType == 'all') { ?>
           <h4><?php echo $yearType - 2 ?>學年度國中畢業未升學未就業青少年動向調查追蹤表</h4>
           <!-- <a class="btn btn-success" onclick="exportTableToCSV('.surveyTypeNowYearsTrack', '<?php echo $yearType - 2 ?>學年度國中畢業未升學未就業青少年動向調查追蹤表.csv')">下載excel檔</a> -->
-          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeNowYearsTrack' . '/' . $yearType); ?>">下載excel檔</a><br /><br />
-          <table class="surveyTypeNowYearsTrack table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
-            <thead>
-              <tr>
-                <th scope="col">縣市</th>
-                <th scope="col">1.已就業</th>
-                <th scope="col">2.已就學</th>
-                <th scope="col">3.特教生</th>
-                <th scope="col">4.準備升學</th>
-                <th scope="col">5.準備或正在找工作</th>
-                <th scope="col">6.參加職訓</th>
-                <th scope="col">7.家務勞動</th>
-                <th scope="col">8.健康因素</th>
-                <th scope="col">9.尚未規劃</th>
-                <th scope="col">10.失聯</th>
-                <th scope="col">11.其他(非不可抗力)</th>
-                <th scope="col">12.其他(不可抗力)</th>
-                <th scope="col">A.動向調查學生數</th>
-                <th scope="col">B.未升學未就業人數(4-12)</th>
-                <th scope="col">C.需政府關懷追蹤後，適時介入輔導人數(4-11)</th>
-                <th scope="col" style="width:30%;">備註</th>
-            </thead>
-            <tbody>
-              <?php $count = 0; ?>
-              <?php foreach ($surveyTypeNowYearsTrack as $i) { ?>
-                <tr>
-                  <td><?php echo $i ? $i['name'] : null ?></td>
-                  <td><?php echo $i ? $i['already_working'] : null ?></td>
-                  <td><?php echo $i ? $i['already_attending_school'] : null ?></td>
-                  <td><?php echo $i ? $i['special_education_student'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_work'] : null ?></td>
-                  <td><?php echo $i ? $i['training'] : null ?></td>
-                  <td><?php echo $i ? $i['family_labor'] : null ?></td>
-                  <td><?php echo $i ? $i['health'] : null ?></td>
-                  <td><?php echo $i ? $i['no_plan'] : null ?></td>
-                  <td><?php echo $i ? $i['lost_contact'] : null ?></td>
-
-                  <td><?php echo $i ? $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-                  <td><?php echo $i ? $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['youthCount'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy'] + $i['other'] + $i['immigration'] + $i['death'] + $i['military'] : null ?></td>
-                  <td><?php echo $i ? $i['prepare_to_school'] + $i['prepare_to_work'] + $i['training'] + $i['family_labor']
-                        + $i['health'] + $i['no_plan'] + $i['lost_contact'] + $i['transfer_labor'] + $i['transfer_other_one'] + $i['transfer_other_two']
-                        + $i['transfer_other_three'] + $i['transfer_other_four'] + $i['transfer_other_five'] + $i['pregnancy']
-                        + $i['other'] : null ?></td>
-                  <td style="text-align:left"><?php echo str_replace("\n", "<br/>", $noteDetailNowYear); ?></td>
-                  <?php $count += 1; ?>
-                </tr>
-              <?php } ?>
-            </tbody>
-          </table>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeNowYearsTrack' . '/' . $yearType); ?>">下載excel檔</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/counselor_report_export/' . 'surveyTypeNowYearsTrack' . '/' . $yearType . '/ods'); ?>">下載ods檔</a><br/><br/>
+          
+          <?php $this->load->view('report/templates/report_track_table');?>
+          
         <?php } ?>
 
       </div>
@@ -968,4 +738,5 @@
     downloadCSV(csv.join("\n"), filename);
   }
 </script>
+
 <?php $this->load->view('templates/new_footer'); ?>

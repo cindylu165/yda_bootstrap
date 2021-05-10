@@ -1,4 +1,5 @@
 <?php $this->load->view('templates/new_header'); ?>
+
 <div class="breadcrumb-div">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -15,6 +16,7 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container" style="width:100%;">
 	<div class="row">
 		<div class="card-body col-sm-12">
@@ -24,6 +26,8 @@
 				</div>
 			</div> -->
 			<h4 class="card-title text-center"><?php echo $title ?></h4>
+      <h6 class="card-title text-center"><?php echo '民國'  . $yearType . '年' . $monthType . '月'; ?></h6>
+
 			<div class="card-content">
 
 				<form action="<?php echo site_url($url); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
@@ -59,7 +63,9 @@
 						</div>
 					</div>
 
-					<a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'counselorManpowerReport' . '/' . $yearType . '/' . $monthType); ?>">列印(下載EXCEL檔)</a><br /><br />
+					<a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'counselorManpowerReport' . '/' . $yearType . '/' . $monthType); ?>">列印(下載EXCEL檔)</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'counselorManpowerReport' . '/' . $yearType . '/' . $monthType . '/ods'); ?>">列印(下載ODS檔)</a>
+          <br /><br />
 
 					<?php if ($reportProcessesCounselorStatus == $reviewStatus['review_process_pass']) : ?>
 
@@ -191,7 +197,7 @@
 							</div>
 						</div>
 
-						<div class="row justify-content-center">
+						<!-- <div class="row justify-content-center">
 							<div class="col-sm-10 col-md-8 mb-2">
 								<?php if ('1 ' != '0') : ?>
 									<label for="reportFile" class="form-label">報表電子檔</label>
@@ -208,7 +214,7 @@
 									<img class="figure-img img-fluid" src="<?php echo site_url() . '/files/' . $counselorManpowerReports->report_file_name; ?>" />
 								</div>
 							<?php endif; ?>
-						<?php endif; ?>
+						<?php endif; ?> -->
 
 						<div class="row justify-content-center">
 							<div class="d-grid gap-2 col-sm-6 col-md-4">
@@ -218,7 +224,7 @@
 
 					<?php elseif ($reportProcessesCountyStatus == $reviewStatus['review_process_pass'] && $role == 3) : ?>
 
-						<div class="row justify-content-center">
+						<!-- <div class="row justify-content-center">
 							<div class="col-sm-10 col-md-8 mb-2">
 								<?php if ('1 ' != '0') : ?>
 									<label for="reportFile" class="form-label">報表電子檔</label>
@@ -241,7 +247,7 @@
 							<div class="d-grid gap-2 col-sm-6 col-md-4">
 								<button class="btn btn-primary" name="resubmit" value="Resubmit" type="submit">補上傳</button>
 							</div>
-						</div>
+						</div> -->
 				</form>
 
 			<?php endif; ?>
@@ -308,4 +314,5 @@
 		downloadEXCEL(csv.join("\n"), filename);
 	}
 </script>
+
 <?php $this->load->view('templates/new_footer'); ?>

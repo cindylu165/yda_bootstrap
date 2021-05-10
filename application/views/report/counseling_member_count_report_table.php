@@ -1,4 +1,5 @@
 <?php $this->load->view('templates/new_header'); ?>
+
 <div class="breadcrumb-div">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -12,6 +13,7 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container" style="width:100%;">
 	<div class="row">
 		<div class="card-body col-sm-12">
@@ -66,9 +68,12 @@
 				<?php endif; ?>
 
 				<?php if ($role == 2 || $role == 3 || $role == 4 || $role == 5) : ?>
-					<a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'all' . '/' . $yearType . '/' . $monthType); ?>">列印(下載EXCEL檔)</a><br /><br />
+					<a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'all' . '/' . $yearType . '/' . $monthType); ?>">列印(下載EXCEL檔)</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'all' . '/' . $yearType . '/' . $monthType . '/ods'); ?>">列印(下載ODS檔)</a>
+          <br /><br />
 				<?php elseif ($role == 1 || $role == 8 || $role == 9) : ?>
 					<a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'all' . '/' . $yearType . '/' . $monthType); ?>">列印(下載EXCEL檔)</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'all' . '/' . $yearType . '/' . $monthType . '/ods'); ?>">列印(下載ODS檔)</a>
 					<br /><br />
 				<?php endif; ?>
 
@@ -350,11 +355,11 @@
 
 						<?php endif; ?>
 
-
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
+
 <?php $this->load->view('templates/new_footer'); ?>

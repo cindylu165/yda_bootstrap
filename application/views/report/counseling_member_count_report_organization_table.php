@@ -1,4 +1,5 @@
 <?php $this->load->view('templates/new_header'); ?>
+
 <div class="breadcrumb-div">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -15,6 +16,7 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container" style="width: 100%;">
 	<div class="row">
 		<div class="card-body col-sm-12">
@@ -24,6 +26,8 @@
 				</div>
 			</div> -->
 			<h4 class="card-title text-center"><?php echo $title ?></h4>
+      <h6 class="card-title text-center"><?php echo '民國'  . $yearType . '年' . $monthType . '月'; ?></h6>
+
 			<div class="card-content">
 				<form action="<?php echo site_url($url); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					<?php echo isset($error) ? '<p class="text-danger text-center">' . $error . '</p>' : ''; ?>
@@ -61,8 +65,10 @@
 					</div>
 
 					<a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'counselingExecuteReport' . '/' . $yearType . '/' . $monthType); ?>">執行進度列印(下載EXCEL檔)</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'counselingExecuteReport' . '/' . $yearType . '/' . $monthType . '/ods'); ?>">執行進度列印(下載ODS檔)</a>
 					<br /><br />
 					<a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'counselingMemberCountReport' . '/' . $yearType . '/' . $monthType); ?>">輔導人數統計表列印(下載EXCEL檔)</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/organization_month_report_export/' . 'counselingMemberCountReport' . '/' . $yearType . '/' . $monthType . '/ods'); ?>">輔導人數統計表列印(下載ODS檔)</a>
 					<br /><br />
 
 					<?php if ($reportProcessesCounselorStatus == $reviewStatus['review_process_pass']) : ?>
@@ -185,8 +191,6 @@
 							</div>
 						</div>
 
-
-
 						<div class="row justify-content-center">
 							<div class="col-sm-10 col-md-8 mb-3">
 								<label for="formComment" class="form-label">備註*:</label>
@@ -194,8 +198,15 @@
 							</div>
 						</div>
 
+            <?php if($monthType % 3 == 0) :?>
+
 						<div class="row justify-content-center">
 							<div class="col-sm-10 col-md-8 mb-3">
+                <button class="btn btn-primary">
+                  <span>上傳檔案</span>
+                  <input type="file" name="reportFile">
+                </button>
+
 								<?php if ('1 ' != '0') : ?>
 									<label for="reportFile" class="form-label">報表電子檔</label>
 									<input class="form-control" type="file" name="reportFile">
@@ -211,6 +222,10 @@
 										<img class="figure-img img-fluid" src="<?php echo site_url() . '/files/' . $counselingMemberCountReport->report_file_name; ?>" />
 									</div>
 								<?php endif; ?>
+              <?php else :?>
+                <div class="col s10 offset-m2 m8">
+                  <h5 style="color:red;" class="text-center"><?php echo '尚未送出報表電子檔'; ?></h5>
+                </div>
 							<?php endif; ?>
 
 						<div class="row justify-content-center">
@@ -221,9 +236,16 @@
 
 					<?php elseif ($reportProcessesCountyStatus == $reviewStatus['review_process_pass'] && $role == 3) : ?>
 
+            <?php if($monthType % 3 == 0) :?>
 
 						<div class="row justify-content-center">
 							<div class="col-sm-10 col-md-8 mb-2">
+
+                <button class="btn waves-effect blue darken-4">
+                  <span>上傳檔案</span>
+                  <input type="file" name="reportFile">
+                </button>
+
 								<?php if ('1 ' != '0') : ?>
 									<label for="reportFile" class="form-label">報表電子檔</label>
 									<input class="form-control" type="file" name="reportFile">
@@ -239,6 +261,12 @@
 									<img class="figure-img img-fluid" src="<?php echo site_url() . '/files/' . $counselingMemberCountReport->report_file_name; ?>" />
 								</div>
 							<?php endif; ?>
+
+            <?php else:?>
+              <div class="col s10 offset-m2 m8">
+                <h5 style="color:red;" class="text-center"><?php echo '尚未送出報表電子檔'; ?></h5>
+              </div>
+
 						<?php endif; ?>
 
 						<div class="row justify-content-center">
@@ -246,6 +274,7 @@
 								<button class="btn btn-primary" name="resubmit" value="Resubmit" type="submit">補上傳</button>
 							</div>
 						</div>
+
 				</form>
 
 			<?php endif; ?>
@@ -254,4 +283,5 @@
 		</div>
 	</div>
 </div>
+
 <?php $this->load->view('templates/new_footer'); ?>

@@ -1,4 +1,5 @@
 <?php $this->load->view('templates/new_header'); ?>
+
 <div class="breadcrumb-div">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -15,10 +16,12 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container" style="width:100%;">
 	<div class="row">
 		<div class="card-body col-sm-12">
 			<h4 class="card-title text-center"><?php echo $title ?></h4>
+      <h6 class="card-title text-center"><?php echo '民國'  . $yearType . '年' . $monthType . '月'; ?></h6>
 
 			<div class="card-content">
 				<form action="<?php echo site_url($url); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
@@ -171,6 +174,11 @@
 							</div>
 						</div>
 
+          <?php else : ?>
+
+            <a class="btn btn-info my-3" href="<?php echo site_url('report/counselor_manpower_report_organization_table/' . $yearType . '/' . $monthType); ?>">預覽縣市承辦人端</a>
+            <br/><br/>
+
 					<?php endif; ?>
 
 				</form>
@@ -178,4 +186,5 @@
 		</div>
 	</div>
 </div>
+
 <?php $this->load->view('templates/new_footer'); ?>

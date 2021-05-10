@@ -1,4 +1,5 @@
 <?php $this->load->view('templates/new_header'); ?>
+
 <div class="breadcrumb-div">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -15,6 +16,7 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container" style="width:100%;">
 	<div class="row">
 		<div class="card-body col-sm-12">
@@ -24,6 +26,8 @@
 				</div>
 			</div> -->
 			<h4 class="card-title text-center"><?php echo $title ?></h4>
+      <h6 class="card-title text-center"><?php echo '民國'  . $yearType . '年' . $monthType . '月'; ?></h6>
+
 			<div class="card-content">
 				<form action="<?php echo site_url($url); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					<input type="hidden" name="<?php echo $security->get_csrf_token_name() ?>" value="<?php echo $security->get_csrf_hash() ?>" />
@@ -86,6 +90,7 @@
 						// print_r($county_table);
 					} ?>
 					<a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'counselorManpowerCountReport' . '/' . $yearType . '/' . $monthType); ?>">輔導對象身分統計表列印(下載EXCEL檔)</a>
+          <a class="btn btn-success" href="<?php echo site_url('export/yda_month_report_export/' . 'counselorManpowerCountReport' . '/' . $yearType . '/' . $monthType . '/ods'); ?>">輔導對象身分統計表列印(下載ODS檔)</a>
 					<br /><br />
 
 					<div class="row justify-content-center">
@@ -468,4 +473,5 @@
 		downloadCSV(csv.join("\n"), filename);
 	}
 </script>
+
 <?php $this->load->view('templates/new_footer'); ?>
