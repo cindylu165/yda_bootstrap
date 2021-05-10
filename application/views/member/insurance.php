@@ -52,21 +52,46 @@
             </div>
           </div>
 
+          <!-- type -->
+          <div class="col-10 m-2 mx-auto">
+            <label>類型</label>
+            <div class="input-group">
+              <select class="form-select" name="type" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>
+              <?php if (empty($insurances->type)) { ?>
+                <option disabled selected value>請選擇</option>
+                <?php } foreach ($typeArray as $i) {
+                  if (!empty($insurances->type)) {
+                    if ($i['no'] == $insurances->type) { ?>
+                      <option selected value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+                    <?php } else { ?>
+                      <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+                    <?php }
+                  } else { ?>
+                    <option value="<?php echo $i['no']; ?>"><?php echo $i['content']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+
           <!-- note -->
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-10 m-2 mx-auto">
               <label for="formNote" class="form-label">備註</label>
               <textarea class="form-control" type="text" id="formNote" name="note" placeholder="" <?php echo ($hasDelegation == '0') ? 'readonly' : '' ?>><?php echo (empty($insurances)) ? "" : $insurances->note ?></textarea>
             </div>
-          </div>
+          </div> -->
 
           <?php if($hasDelegation != '0'): ?>
+
           <div class="row">
             <div class="d-grid gap-2 col-2 mx-auto">
               <button class="btn btn-primary my-5" type="submit">建立</button>
             </div>
           </div>
-          <?php endif;?>
+
+          <?php endif; ?>
+          
         </form>
       </div>
     </div>

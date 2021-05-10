@@ -174,7 +174,6 @@
   </div>
 </div>
 
-
 <script type="text/javascript" src="<?php echo site_url();?>assets/js/ElementBinder.js"></script>
 <script type="text/javascript">
   const elementRelation = new ElementBinder();
@@ -240,8 +239,5 @@
   }
 
 </script>
-
-
-
 
 <?php $this->load->view('templates/new_footer');?>

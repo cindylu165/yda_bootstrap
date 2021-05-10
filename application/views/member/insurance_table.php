@@ -34,10 +34,13 @@
       <h6 class="text-dark">「針對參加生涯探索課程或活動（措施B）、工作體驗（措施C）之輔導對象應全程投保，每人保額至少為新台幣300萬元意外險和5醫療險，另參加工作體驗（措施C）之學員，應全程投保訓字保。」</h6>
       
       <?php if ($hasDelegation != '0'): ?>
+
         <div class="d-grid gap-2 col-2 mx-auto">
           <a class="btn btn-info m-3" href="<?php echo site_url($url);?>">新增</a>
         </div>
-      <?php endif;?>
+
+      <?php endif; ?>
+      
       <div class="card-content">
         <table class="table table-hover text-center">
           <thead class="thead-dark">

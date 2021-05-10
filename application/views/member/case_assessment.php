@@ -129,9 +129,9 @@
           <!-- interviewWay -->
           <div class="col-10 m-2 mx-auto">
             <label>學歷狀況
-              <?php if (empty($age)) { ?>
+              <!-- <?php if (empty($age)) { ?>
                 <h6 class="text-danger text-center">請先填寫該學員的生日</h5><br/>
-              <?php } ?>
+              <?php } ?> -->
             </label>
             <div class="input-group">
               <select class="form-select" name="interviewWay" id="interviewWay" <?php echo ($hasDelegation == '0') ? 'disabled' : '' ?>>

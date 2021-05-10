@@ -19,13 +19,30 @@
     <div class="col-md-12">
       <h4 class="text-dark text-center"><?php echo $title ?></h4>
       <div class="card-content">
+
+      <?php if($role == 9) :?>
+
+        <!-- counties -->
+        <div class="row">
+          <div class="col-12">
+            <label>縣市</label>
+            <select class="form-select" name="counties" id="counties" onchange="location = this.value;">
+              <?php foreach ($counties as $i) { ?>
+                <option <?php echo ($county == $i['no']) ? 'selected' : '' ?> value="<?php echo site_url($url . '/' . $i['no'] . '/' . $yearType); ?>"><?php echo $i['name'] ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+
+      <?php endif; ?>
+
         <!-- years -->
-				<div class="row">
+        <div class="row">
           <div class="col-12">
             <label>年度</label>
             <select class="form-select" name="years" id="years" onchange="location = this.value;">
               <?php foreach ($years as $i) { ?>
-                <option <?php echo ($yearType == $i['year']) ? 'selected' : ''?> value="<?php echo site_url($url . '/' .  $i['year']);?>"><?php echo $i['year']?></option>
+                <option <?php echo ($yearType == $i['year']) ? 'selected' : '' ?> value="<?php echo site_url($url . '/' .  $i['year']);?>"><?php echo $i['year']?></option>
               <?php } ?>
             </select>
           </div>
@@ -70,11 +87,11 @@
           <tbody>
             <?php foreach($members as $i) { ?>
               <tr>
-                <td><?php echo $i['system_no'];?></td>
+                <td><?php echo $i['system_no']; ?></td>
                
                 <td><?php echo $i['name'];?></td>
                 <?php if($current_role == '6'){ ?>
-                  <td><?php echo $i['identifications'];?></td>
+                  <td><?php echo $i['identifications']; ?></td>
                   <td>
                     <a class="btn btn-primary" href="<?php echo site_url('youth/intake/member/'.$i['youthNo']);?>">青少年初評表</a>
                     <a class="btn btn-warning" href="<?php echo site_url('member/case_assessment/'.$i['no']);?>">開案學員資料表</a>             
@@ -88,10 +105,10 @@
                         <a class="btn btn-danger" href="<?php echo site_url('member/get_month_review_table_by_member/'.$i['no']);?>">結案後追蹤清單</a>      
                         <?php
                       }
-                    }?>        
+                    } ?>
                   </td>
-                  <?php } else {?>
-                    <td><?php if(empty($i['end_date'])) { echo '否'; } else { echo '是'; }?></td>
+                  <?php } else { ?>
+                    <td><?php if(empty($i['end_date'])) { echo '否'; } else { echo '是'; } ?></td>
                   <?php } ?>
                   <?php if($current_role == '5'){ ?>
                     <td> <a class="btn btn-info" href="<?php echo site_url('member/change_counselor/'.$i['no']);?>">更換輔導員</a></td>
@@ -116,26 +133,24 @@
 
       // Loop through all table rows, and hide those who don't match the search query
      
-        for (i = 0; i < tr.length; i++) {
-          td_id = tr[i].getElementsByTagName("td")[1];
-          td = tr[i].getElementsByTagName("td")[0];
-          td_year = tr[i].getElementsByTagName("td")[2];
+      for (i = 0; i < tr.length; i++) {
+        td_id = tr[i].getElementsByTagName("td")[1];
+        td = tr[i].getElementsByTagName("td")[0];
+        td_year = tr[i].getElementsByTagName("td")[2];
 
-          if (td || td_id || td_year) {
-            txtValue = td.textContent || td.innerText;
-            tValue = td_id.textContent || td_id.innerText;
-            yearValue = td_year.textContent || td_year.innerText;
+        if (td || td_id || td_year) {
+          txtValue = td.textContent || td.innerText;
+          tValue = td_id.textContent || td_id.innerText;
+          yearValue = td_year.textContent || td_year.innerText;
 
-            if (txtValue.toUpperCase().indexOf(filter) > -1 || tValue.toUpperCase().indexOf(filter) > -1 || yearValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
+          if (txtValue.toUpperCase().indexOf(filter) > -1 || tValue.toUpperCase().indexOf(filter) > -1 || yearValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
           }
-          
-        } 
-      
+        }
+        
+      }
     }
-
 </script>
 <?php $this->load->view('templates/new_footer');?>

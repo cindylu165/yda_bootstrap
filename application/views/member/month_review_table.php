@@ -36,14 +36,14 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach($monthReviews as $i) { ?>
+            <?php foreach ($monthReviews as $i) { ?>
               <tr>
                 <td><?php echo $i['date'];?></td>
-                <td><?php foreach($monthReviewCompletions as $value) {
-                  if($i['no'] == $value['form_no']) {
+                <td><?php foreach ($monthReviewCompletions as $value) {
+                  if ($i['no'] == $value['form_no']) {
                     echo $value['rate'] . '%';
                   }
-                }?></td>
+                } ?></td>
                 <td>
                   <a class="btn btn-info m-2" href="<?php echo site_url('member/month_review/'.$i['member'].'/'.$i['no']);?>">查看/修改</a>
                   <a class="btn btn-warning" href="<?php echo site_url('member/delete_review_table?no=' . $i['no']); ?>">刪除</a>
