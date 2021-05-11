@@ -1,5 +1,5 @@
 <!-- <table class="surveyTypeHighSchoolTrack highlight centered" style="border:2px grey solid;"> -->
-<table class="table table-hover table-bordered align-middle text-center" style="border:2px grey solid;">
+<table class="table table-hover text-center" style="border:2px grey solid;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" rowspan="2">縣市</th>
@@ -57,9 +57,9 @@
           <td><a href="<?php echo site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/' . $type . '/eighteen'); ?>"><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? $i['eighteen'] : $report->eighteen ?></td>
           <td><a href="<?php echo site_url('/report/verify_table/' . $yearType . '/' . $monthType . '/' . $type . '/nineteen'); ?>"><?php echo ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? $i['nineteen'] : $report->nineteen ?></td>
           <td style="text-align:left"><?php echo str_replace("\n", "<br/>", ($reportProcessesCounselorStatus != $reviewStatus['review_process_pass']) ? $noteDetail[$count] : $report->note); ?></td>
-          <?php $count += 1;?>
+          <?php $count += 1; ?>
         </tr>
-      <?php }?>
+      <?php } ?>
     <?php else :?>
       <tr>
           <td><?php echo $countyName ?></td>
@@ -83,10 +83,10 @@
           <td><?php echo $report->eighteen ?></td>
           <td><?php echo $report->nineteen ?></td>
           <td style="text-align:left"><?php echo str_replace("\n", "<br/>", $report->note); ?></td>
-          <?php $count += 1;?>
+          <?php $count += 1; ?>
         </tr>
-    <?php endif;?>
-    <?php if($countyType == 'all') :?>
+    <?php endif; ?>
+    <?php if ($countyType == 'all') :?>
       <tr>
         <td>總計</td>
         <td><?php echo $valueSum ? $valueSum['one'] : 0 ?></td>
@@ -109,8 +109,8 @@
         <td><?php echo $valueSum ? $valueSum['eighteen'] : 0 ?></td>
         <td><?php echo $valueSum ? $valueSum['nineteen'] : 0 ?></td>   
         <td></td>
-        <?php $count += 1;?>
+        <?php $count += 1; ?>
 			</tr>
-    <?php endif;?>
+    <?php endif; ?>
   </tbody>
 </table>

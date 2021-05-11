@@ -384,7 +384,14 @@
 									<button class="btn btn-primary" name="save" value="Save" type="submit">送出</button>
 								</div>
 							</div>
-						<?php }?>
+
+              <?php } elseif ($county == 13) { ?>
+              <div class="row justify-content-center">
+								<div class="d-grid gap-2 col-sm-6 col-md-4 mb-3">
+									<button class="btn btn-primary" name="save" value="Save" type="submit">送出</button>
+								</div>
+							</div>
+						<?php } ?>
 
 					<?php else : ?>
 
